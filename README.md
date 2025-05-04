@@ -20,18 +20,24 @@ ThuongDinhLib is a modern web application for managing library resources and ser
 # Clone the repository
 git clone https://github.com/dungcan2k5/ThuongDinhLib.git
 
-# Install dependencies
+# Install all dependencies
 npm install
 
-# Start the application
-npm start
+# Start both frontend and backend in development mode
+npm run dev
+
+# Or run them separately:
+# Start backend only
+npm run server
+# Start frontend only
+npm run client
 ```
 
 ## Technologies
 
 - Frontend: HTML, CSS, JavaScript
-- Backend: Node.js
-- Database: 
+- Backend: Node.js, Express.js
+- Database: MongoDB
 
 ## Contributing
 
