@@ -1,15 +1,19 @@
 import { useState } from 'react'
 import './App.css'
 import MainLayout from './layouts/MainLayout'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom';
+
 function App() {
+  const location = useLocation();
+  const hideHeader = location.pathname === '/login'; // thêm path để ẩn header
 
   return (
     <>
-    <MainLayout/>
-    <Outlet/>
+      { !hideHeader && <MainLayout /> } 
+      <Outlet />
     </>
   )
 }
 
 export default App
+

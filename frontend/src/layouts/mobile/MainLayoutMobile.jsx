@@ -1,9 +1,12 @@
 import React from 'react'
 import HeaderMobile from '../../components/mobile/HeaderMobile'
-
+import './MainLayoutMobile.css'
 const MainLayoutMobile = () => {
   return (
-    <HeaderMobile/>
+    <main className='main__mobile'>
+            <HeaderMobile/>
+    </main>
+
   )
 }
 
