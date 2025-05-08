@@ -3,6 +3,8 @@ import App from "../App.jsx";
 import HomeMobile from "../pages/mobile/HomeMobile.jsx";
 import DashboardMobile from "../pages/mobile/DashboardMobile.jsx";
 import LoginMobile from "../pages/mobile/LoginMobile.jsx";
+import RegisterMobile from "../pages/mobile/RegisterMobile.jsx";
+
 
 
 const routerMobile = createBrowserRouter([
@@ -21,8 +23,11 @@ const routerMobile = createBrowserRouter([
             {
                 path: "/login",
                 element: <LoginMobile/>
+            },
+            {
+                path: "/register",
+                element: <RegisterMobile/>
             }
-
         ]
     }
 ]);
