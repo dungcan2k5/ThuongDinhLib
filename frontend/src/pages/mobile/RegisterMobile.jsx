@@ -1,5 +1,5 @@
 import React from 'react'
-import './LoginMobile.css'
+import './RegisterMobile.css'
 
 // import icon
 // import user_Icon from '../../assets/user-solid.svg';
@@ -12,7 +12,7 @@ const LoginMobile = () => {
     <div class ="login">
       <div>
         <h2 class='login__title'>
-          Sign in
+          Sign in to MyLib
         </h2>
 
         <form class='login__form'>
