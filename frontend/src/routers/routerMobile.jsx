@@ -8,7 +8,7 @@ import LoginMobile from "../pages/mobile/LoginMobile.jsx";
 const routerMobile = createBrowserRouter([
     {
         path: "/",
-        element: <App/>,
+        element: <App />,
         children: [
             {
                 path: "/",
