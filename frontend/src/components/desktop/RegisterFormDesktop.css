@@ -1,0 +1,98 @@
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: Arial, sans-serif
+}
+
+.register__title {
+    color: #000000;
+    font-size: 2.5rem;
+    margin-bottom: 0;
+}
+
+.register__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.register {
+    background-color: #E9A319;
+    min-width: 50rem;
+    max-width: 80rem;
+    display: flex;
+    margin: auto;
+    border-radius: 8px;
+}
+
+.register__left {
+    margin: 0 auto;
+    flex: 1;
+    padding: 2.5rem 3rem;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    min-width: 25rem;
+}
+
+.register__input {
+    padding: 0.5rem 0rem;
+    margin-bottom: 2.5rem;
+    border: none;
+    border-bottom: #D1D5DB solid 1px;
+    outline: none;
+}
+
+.register__feature {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.register__forgot {
+    font-size: 1.5rem;
+}
+
+.register__right {
+    width: 30rem;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: rgba(0, 0, 0, 0);
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.register__confirm {
+    background-color: #A86523;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 1.6rem;
+    padding: 0.8rem 1.2rem;
+    font-weight: bold;
+    margin-bottom: 4rem;
+    margin-top: 2rem;
+}
+
+.register__forgot {
+    color: #4B5563;
+    font-size: 1.4rem;
+}
+
+.register__forgot > a {
+    color: #A86523;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+
+.register__des {
+    font-weight: 200;
+    margin-top: 0.6rem;
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
+}
+
+.register__logo {
+    width: 100%;
+}
