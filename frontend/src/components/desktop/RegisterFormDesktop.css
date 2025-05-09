@@ -27,11 +27,12 @@ body {
 }
 
 .register__left {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
     margin: 0 auto;
-    flex: 1;
+    width: 40rem;
     padding: 2.5rem 3rem;
     background-color: #FFFFFF;
-    border-radius: 8px;
     min-width: 25rem;
 }
 
@@ -54,7 +55,7 @@ body {
 }
 
 .register__right {
-    width: 30rem;
+    flex: 1;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     background-color: rgba(0, 0, 0, 0);
