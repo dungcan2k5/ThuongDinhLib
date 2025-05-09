@@ -38,7 +38,7 @@ body {
 
 .register__input {
     padding: 0.5rem 0rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 0rem;
     border: none;
     border-bottom: #D1D5DB solid 1px;
     outline: none;
@@ -96,4 +96,10 @@ body {
 
 .register__logo {
     width: 100%;
+}
+
+.register__error {
+    display: block;
+    color: red;
+    min-height: 1.5rem;
 }
