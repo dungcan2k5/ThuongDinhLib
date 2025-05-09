@@ -38,7 +38,6 @@ body {
 
 .login__input {
     padding: 0.5rem 0rem;
-    margin-bottom: 2.5rem;
     border: none;
     border-bottom: #D1D5DB solid 1px;
     outline: none;
@@ -73,7 +72,7 @@ body {
     padding: 0.8rem 1.2rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .login__forgot {
@@ -98,6 +97,17 @@ body {
     width: 100%;
 }
 
+.login__abort {
+    color: red;
+    min-height: 2rem;
+}
+
 .login__error {
     color: red;
+    margin-bottom: 2rem;
+}
+
+.login__confirm:hover {
+    cursor: pointer;
+    background-color: rgba(168, 101, 35, 0.9);
 }

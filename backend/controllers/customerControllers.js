@@ -16,7 +16,7 @@ export const registerCustomer = asyncHandler(async (req, res) => {
     }
 
     const cus = await Customer.create(req.body);
-
+    
     if (cus) {
         res.status(201).json({
             _id: cus._id,

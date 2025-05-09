@@ -24,6 +24,8 @@ body {
     display: flex;
     margin: auto;
     border-radius: 8px;
+    position: relative;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 .register__left {
@@ -72,8 +74,7 @@ body {
     font-size: 1.6rem;
     padding: 0.8rem 1.2rem;
     font-weight: bold;
-    margin-bottom: 4rem;
-    margin-top: 2rem;
+    margin-top: 4rem;
 }
 
 .register__forgot {
@@ -99,7 +100,36 @@ body {
 }
 
 .register__error {
-    display: block;
     color: red;
     min-height: 1.5rem;
 }
+
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.popup__content {
+    background-color: #FCEFCB;
+    display: flex;
+    align-items: center;
+    min-width: 27rem;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.register__success {
+    color: #28a745;
+    font-size: 1.3rem;
+    min-height: 2rem;
+}
+
+.register__confirm:hover {
+    cursor: pointer;
+    background-color: rgba(168, 101, 35, 0.9);
+}
+

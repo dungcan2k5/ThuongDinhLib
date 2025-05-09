@@ -8,7 +8,10 @@ const RegisterFormDesktop = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [cPassword, setCPassword] = useState('');
-  const [phonenumber, setPhonenumber] = useState('');
+  const [address, setAddress] = useState('');
+  const [membershipDate, setMembershipDate] = useState(new Date());
+  const [phone, setPhone] = useState('');
+
   const [message, setMessage] = useState('');
 
   const [nameMessage, setNameMessage] = useState('');
@@ -16,11 +19,11 @@ const RegisterFormDesktop = () => {
   const [cPassMessage, setCPassMessage] = useState('');
   const [emailMessage, setEmailMessage] = useState('');
 
-  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  
 
   const handleRegister = async(e) => {
 
-     e.preventDefault();
+    e.preventDefault();
 
     //reset message
     setNameMessage('');
@@ -29,66 +32,61 @@ const RegisterFormDesktop = () => {
     setEmailMessage('');
     setMessage('');
 
+    let flag = false
+
     if (!name) {
       setNameMessage("Vui Lòng nhập tên người dùng")
+      flag = true
     }
 
     if (!password) {
       setPassMessage("Vui Lòng điền mật khẩu đăng ký")
+      flag = true
     }
 
     if (!cPassword) {
       setCPassMessage("Vui Lòng xác nhận mật khẩu")
+      flag = true
     } else {
       if (password != cPassword) {
         setCPassMessage('Mật khẩu xác nhận không trùng khớp')
+        flag = true
       }
     }
 
     if (!email) {
       setEmailMessage("Vui Lòng nhập email")
+      flag = true
     }
 
-    try {
+    if (!flag) {
+      try {
       const res = await fetch('http://localhost:5000/api/customers/register',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({name, email, password})
+        body: JSON.stringify({name, email, password, phone, address, membershipDate})
       });
-      console.log(name)
-      console.log(email)
-      console.log(password)
       const data = await res.json();
 
       if (res.ok) {
         localStorage.setItem('token', data.token);
-        setMessage('OK');//
-        setShowSuccessPopup(true);
-        setTimeout(() => {
-          setShowSuccessPopup(false);
-        }, 2000);
+        setMessage("Đăng kí tài khoản thành công")
       }
       else {
-        setMessage(data.message || 'Email đã có người sử dụng')
+        setEmailMessage('Email đã có người sử dụng')
       }
-    } catch (error) {
+      } catch (error) {
       console.error('Lỗi kết nối:', error);
       setMessage('Không thể kết nối tới máy chủ');
+      }
     }
   }
 
 
   return (
       <div className="register">
-        {showSuccessPopup && (
-          <div className="popup">
-            <div className="popup__content">
-              <p>🎉 Đăng ký thành công!</p>
-            </div>
-          </div>
-        )}
         <div className="register__left">
           <h2 className="register__title">Đăng kí tài khoản</h2>
           <p className="register__des">Thư viện sách Thượng Đình</p>
@@ -106,11 +104,11 @@ const RegisterFormDesktop = () => {
             <input type="text" className="register__input" placeholder='Email*' value={email} onChange={(e) => setEmail(e.target.value)}/>
             <p className="register__error">{emailMessage}</p>
 
-            <input type="text" className="register__input" placeholder='Số điện thoại' value={phonenumber} onChange={(e) => setPhonenumber(e.target.value)}/>
+            <input type="text" className="register__input" placeholder='Số điện thoại' value={phone} onChange={(e) => setPhone(e.target.value)}/>
 
             <div className="register__feature">
-              <button type = "submit"  className="register__confirm">Đăng kí</button>
-              <p>{message}</p>
+              <button type = 'submit'  className="register__confirm">Đăng kí</button>
+              <p className='register__success'>{message}</p>
               <p className="register__forgot">Đã có tài khoản?<Link to={'/login'} className="register__forgot">Đăng nhập ngay</Link></p>
             </div>
           </form>
