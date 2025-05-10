@@ -24,8 +24,17 @@ export const searchBooks = asyncHandler(async (req, res) => {
         ],
     });
 
-    res.json(books);
+    const _books = books.map(book => {
+        const obj = book.toObject();
+        return {
+            ...obj,
+            price: parseFloat(book.price?.toString() || '0'), // fallback nếu null
+        };
+    });
+
+    res.json(_books);
 });
+
 
 // @desc    Search books by category
 // @route   GET /api/books/search/category

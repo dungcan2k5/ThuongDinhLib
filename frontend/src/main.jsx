@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
+
+import mobileCheck from './utils/mobileCheck'
+import './main.css'
+
 import routerMobile from './routers/routerMobile';
 import routerDesktop from './routers/routerDesktop';
 
-function isMobile() {
-  return window.innerWidth <= 768;
-}
-
-const router = isMobile() ? routerMobile : routerDesktop;
+const router = mobileCheck() ? routerMobile : routerDesktop;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

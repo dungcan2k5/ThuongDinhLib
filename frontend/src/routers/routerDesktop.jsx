@@ -1,15 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
-import App from '../App.jsx';
+import LayoutDesktop from '../layouts/desktop/LayoutDesktop';
 import HomeDesktop from '../pages/desktop/HomeDesktop';
 import DashboardDesktop from '../pages/desktop/DashboardDesktop';
 import LoginDesktop from '../pages/desktop/LoginDesktop';
-import RegisterDesktop from '../pages/desktop/RegisterDesktop.jsx';
-
+import RegisterDesktop from '../pages/desktop/RegisterDesktop'
 
 const routerDesktop = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <LayoutDesktop />,
     children: [
       { path: '/', element: <HomeDesktop /> },
       { path: '/dashboard', element: <DashboardDesktop /> },

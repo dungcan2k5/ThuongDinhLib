@@ -6,7 +6,6 @@ import { Outlet, useLocation } from 'react-router-dom';
 function App() {
   const location = useLocation();
   const hideHeader = location.pathname === '/login' || location.pathname ==='/register'; // thêm path để ẩn header
-
   return (
     <>
       { !hideHeader && <MainLayout /> } 
