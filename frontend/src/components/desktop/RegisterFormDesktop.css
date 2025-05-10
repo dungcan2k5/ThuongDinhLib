@@ -125,7 +125,6 @@ body {
 .register__success {
     color: #28a745;
     font-size: 1.3rem;
-    min-height: 2rem;
 }
 
 .register__confirm:hover {
@@ -133,3 +132,11 @@ body {
     background-color: rgba(168, 101, 35, 0.9);
 }
 
+.register__abort {
+    color: red;
+    font-size: 1.3rem;
+}
+
+.register--a {
+    min-height: 1.5rem;
+}
