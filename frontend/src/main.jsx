@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
-import 'normalize.css'
 
 import mobileCheck from './utils/mobileCheck'
 import './main.css'

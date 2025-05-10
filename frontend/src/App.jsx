@@ -5,10 +5,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 
 function App() {
   const location = useLocation();
-  // thêm path để ẩn header
   const hideHeader = ['/login', '/register'].includes(location.pathname);
-
-
   return (
     <>
       { !hideHeader && <MainLayout /> } 
