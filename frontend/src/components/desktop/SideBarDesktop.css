@@ -1,0 +1,27 @@
+html {
+    font-size: 62.5;
+}
+
+.sideBar {
+    width: 23%;
+}
+
+.sideBar__item {
+    list-style: none;
+    color: #A86523;
+    font-size: 2rem;
+    margin-bottom: 5rem;
+}
+
+.sideBar__list {
+    margin-top: 5rem;
+}
+
+.SideBar__Home-icon, .SideBar__Account-icon, .SideBar__Cart-icon {
+    margin-right: 2rem;
+}
+
+.sideBar {
+    border-right: #A86523 solid 1px;
+    box-sizing: border-box;
+}

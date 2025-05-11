@@ -1,0 +1,149 @@
+html {
+    font-size: 62.5%;
+}
+
+.homePage {
+    width: 77%;
+}
+
+.bookCate {
+    padding: 2rem;
+}
+
+.bookCate__title {
+    font-size: 4rem;
+    color: #A86523;
+    font-weight: bold;
+}
+
+.bookCate__select {
+    font-size: 1.7rem;
+    border: #A86523 solid 2px;
+    border-radius: 8px;
+    background-color: #FAD59A;
+    color: #A86523;
+    font-weight: bold;
+    outline: none;
+    padding: 1.2rem 2.4rem;
+    margin-bottom: 5rem;
+}
+
+.bookCate__page {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+}
+
+.bookCate__card {
+    max-height: 25rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+}
+
+.bookCate__img {
+    flex-basis: 60%;
+    overflow: hidden;
+}
+
+.bookCate__img > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    max-width: 100%;
+    height: 300px; /* Hoặc chiều cao bạn muốn */
+    object-fit: cover; /* hoặc cover nếu bạn muốn ảnh tràn */
+    border-radius: 5px;
+}
+
+.bookCate__des {
+    flex-basis: 40%;
+    margin-left: 2rem;
+    position: relative;
+}
+
+.bookCate__des > h2 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.bookCate__des > h3 {
+    position: absolute;
+    bottom: 20%;
+    margin: 0;
+    font-size: 1.2rem;
+    color: #999999  ;
+    margin-bottom: 0.5rem;
+}
+
+.bookCate__des > p {
+    position: absolute;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #999999;
+    margin: 0;
+    bottom: 15%;
+}
+
+.bookCate__des > h4 {
+    color: #A86523;
+    font-size: 2rem;
+    text-align: right;
+    position: absolute;
+    right: 5%;
+    bottom: -10%;
+}
+
+.cross {
+    width: 100%;
+    display: block;
+    top: 67%;
+    position: absolute;
+    height: 1px;
+    background-color: #a0a0a0;
+}
+
+.des {
+    font-size: 1rem;
+    margin-top: 1.5rem;
+}
+
+.bookCate__flow {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bookCate__pre, .bookCate__next {
+    padding: 1rem 2.4rem;
+    background-color: rgba(0,0,0,0);
+    color: #A86523;
+    font-size: 3rem;
+    border: none;
+    margin: 0rem 10rem;
+}
+
+.bookCate_status {
+    font-size: 2rem;
+    color: #A86523;
+    font-weight: bold;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* Nền mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
