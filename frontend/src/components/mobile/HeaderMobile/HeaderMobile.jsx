@@ -16,12 +16,12 @@ const navigation = [
 const HeaderMobile = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-
+  const [currentUser, setCurrentUser] = useState(true);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
   const dropdownRef = useRef(null);
-  const currentUser = true;
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -73,6 +73,14 @@ const HeaderMobile = () => {
                         </Link>
                       </li>
                     ))}
+
+                    <li>
+                      <Link to="/" className="user-nav__item">
+                        <button onClick={() => setCurrentUser(!currentUser)}>
+                          Logout
+                        </button>
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </>

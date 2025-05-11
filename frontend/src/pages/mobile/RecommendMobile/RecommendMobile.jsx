@@ -11,9 +11,26 @@ const RecommendMobile = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("books.json")
-      .then((res) => res.json())
-      .then((data) => setBooks(data));
+    fetch("http://localhost:5000/api/books")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch books");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        const updatedBooks = data.map((book) => ({
+          ...book,
+          price: book.price.$numberDecimal
+            ? parseFloat(book.price.$numberDecimal)
+            : book.price,
+        }));
+        setBooks(updatedBooks);
+      })
+      .catch((error) => {
+        // Bắt lỗi và xử lý nếu có lỗi
+        console.error("Error fetching books:", error);
+      });
   }, []);
 
   return (
@@ -34,7 +51,7 @@ const RecommendMobile = () => {
               <div className="book-card">
                 <div className="book-card_container">
                   <div className="book-image">
-                    <img src={`${getImgUrl(book.image)}`} alt={book.title} />
+                    <img src={`${getImgUrl(book?.image)}`} alt={book.title} />
                   </div>
                   <div className="book-details__gap">
                     <div className="book-details">
