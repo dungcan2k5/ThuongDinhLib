@@ -3,17 +3,27 @@ import LayoutDesktop from '../layouts/desktop/LayoutDesktop';
 import HomeDesktop from '../pages/desktop/HomeDesktop';
 import DashboardDesktop from '../pages/desktop/DashboardDesktop';
 import LoginDesktop from '../pages/desktop/LoginDesktop';
+import RegisterDesktop from '../pages/desktop/RegisterDesktop'
 
 const routerDesktop = createBrowserRouter([
   {
     path: '/',
     element: <LayoutDesktop />,
     children: [
+<<<<<<< HEAD
       { path: "/", element: <HomeDesktop /> },
       { path: "/dashboard", element: <DashboardDesktop /> },
       { path: "/login", element: <LoginDesktop /> },
     ],
   },
+=======
+      { path: '/', element: <HomeDesktop /> },
+      { path: '/dashboard', element: <DashboardDesktop /> },
+      { path: '/login', element: <LoginDesktop /> },
+      { path: '/register', element: <RegisterDesktop />}
+    ]
+  }
+>>>>>>> feature/hoangm1
 ]);
 
 export default routerDesktop;

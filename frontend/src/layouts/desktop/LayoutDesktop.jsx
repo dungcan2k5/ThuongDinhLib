@@ -5,9 +5,10 @@ import './LayoutDesktop.css'
 import { Outlet } from 'react-router-dom';
 
 const MainLayoutDesktop = () => {
+  const hideHeader = location.pathname === '/login' || location.pathname ==='/register';
   return (
     <div className="layout">
-      <HeaderDesktop />
+      {!hideHeader && <HeaderDesktop/>}
       <main>
         <Outlet />
       </main>
