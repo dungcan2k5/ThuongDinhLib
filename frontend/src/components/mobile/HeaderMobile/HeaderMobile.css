@@ -1,0 +1,118 @@
+.header-mobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 1rem;
+  /* background-color: #fffaf0; */
+}
+
+.header-mobile__nav {
+  font-size: 2.2rem;
+  color: #000;
+}
+
+.header-mobile__search {
+  position: relative;
+  flex: 1;
+  max-width: 60%;
+  margin: 0 1rem;
+}
+.header-mobile__search input:focus {
+  outline: none;
+}
+
+.header-mobile__search--icon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: rgb(0, 0, 0);
+}
+
+.header-mobile__search--input {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 3rem;
+  border: none;
+  background-color: #eaeaea;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  box-sizing: border-box;
+}
+
+.header-mobile__user button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.header-mobile__user img {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 1px 3px 1px rgb(0, 85, 255);
+  box-sizing: border-box;
+}
+
+.header-mobile__user {
+  font-size: 2.2rem;
+  color: #000;
+}
+.header-mobile__nav,
+.header-mobile__user img {
+  display: flex;
+  align-items: center;
+}
+
+.header-mobile__user {
+  font-size: 2.2rem;
+  color: #000;
+  margin-left: 0.5rem;
+}
+
+.header-mobile__user--nav a,
+.header-mobile__user--nav li {
+  text-decoration: none;
+  list-style: none;
+}
+.header-mobile__user--nav {
+  position: absolute;
+  right: 0;
+  z-index: 40;
+  margin-top: 0.5rem;
+  border-radius: 0.375rem;
+  width: 12rem;
+  background-color: #fdfdfd;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Khi active */
+.header-mobile__user--nav.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.user-nav__item {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  color: #000;
+  font-family: var(--font-secondary);
+  transition: background-color 0.2s ease;
+}
+
+.user-nav__item:focus {
+  background-color: #f0f0f0;
+}

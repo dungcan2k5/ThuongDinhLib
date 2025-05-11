@@ -1,0 +1,38 @@
+.member-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 400px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.member-title {
+  font-size: larger;
+  font-family: var(--font-primary);
+  font-weight: bold;
+}
+.member-des {
+  font-family: var(--font-secondary);
+  margin: 1rem auto;
+  padding: 1.3rem;
+  line-height: 1.5rem;
+}
+.member-submit button {
+  padding: 0.5rem 2rem;
+  border: none;
+  background-color: #f1c40f;
+  font-family: var(--font-primary);
+  color: white;
+  font-size: medium;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+.member-submit button:focus {
+  background-color: #0047a3;
+  transition: 10ms;
+}
+.member-footer img {
+  width: 100%;
+}

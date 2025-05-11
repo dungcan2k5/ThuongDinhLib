@@ -1,0 +1,145 @@
+[
+  {
+    "title": "Cho tôi xin một vé đi tuổi thơ",
+    "isbn": "9786041848047",
+    "author": "Nguyễn Nhật Ánh",
+    "category": "Văn học Việt Nam",
+    "publishYear": 2008,
+    "price": "75000",
+    "quantity": 50,
+    "description": "Truyện về tuổi thơ",
+    "image": "cho-toi-xin-mot-ve-di-tuoi-tho.jpg"
+  },
+  {
+    "title": "Norwegian Wood",
+    "isbn": "9784061848474",
+    "author": "Murakami Haruki",
+    "category": "Văn học nước ngoài",
+    "publishYear": 1987,
+    "price": "250000",
+    "quantity": 30,
+    "description": "Norwegian Wood - Japanese Edition",
+    "image": "norwegian-wood.jpg"
+  },
+  {
+    "title": "Harry Potter and the Philosopher's Stone",
+    "isbn": "9780747532699",
+    "author": "J.K. Rowling",
+    "category": "Văn học nước ngoài",
+    "publishYear": 1997,
+    "price": "200000",
+    "quantity": 40,
+    "description": "First book in Harry Potter series",
+    "image": "harry-potter-and-the-philosophers-stone.jpg"
+  },
+  {
+    "title": "Tôi thấy hoa vàng trên cỏ xanh",
+    "isbn": "9786041846043",
+    "author": "Nguyễn Nhật Ánh",
+    "category": "Văn học Việt Nam",
+    "publishYear": 2010,
+    "price": "85000",
+    "quantity": 45,
+    "description": "Câu chuyện về tuổi thơ ở một vùng quê nghèo",
+    "image": "toi-thay-hoa-vang-tren-co-xanh.jpg"
+  },
+  {
+    "title": "Dế Mèn phiêu lưu ký",
+    "isbn": "9786041847521",
+    "author": "Tô Hoài",
+    "category": "Văn học thiếu nhi",
+    "publishYear": 2015,
+    "price": "65000",
+    "quantity": 60,
+    "description": "Tác phẩm văn học thiếu nhi nổi tiếng",
+    "image": "de-men-phieu-luu-ky.jpg"
+  },
+  {
+    "title": "Đắc nhân tâm",
+    "isbn": "9786047891245",
+    "author": "Dale Carnegie",
+    "category": "Kỹ năng sống",
+    "publishYear": 2016,
+    "price": "115000",
+    "quantity": 35,
+    "description": "Nghệ thuật đối nhân xử thế",
+    "image": "dac-nhan-tam.jpg"
+  },
+  {
+    "title": "1984",
+    "isbn": "9780451524935",
+    "author": "George Orwell",
+    "category": "Văn học nước ngoài",
+    "publishYear": 2019,
+    "price": "180000",
+    "quantity": 25,
+    "description": "Tiểu thuyết chính trị viễn tưởng",
+    "image": "1984.jpg"
+  },
+  {
+    "title": "Nhà giả kim",
+    "isbn": "9786041845632",
+    "author": "Paulo Coelho",
+    "category": "Văn học nước ngoài",
+    "publishYear": 2017,
+    "price": "95000",
+    "quantity": 55,
+    "description": "Câu chuyện về hành trình theo đuổi giấc mơ",
+    "image": "nha-gia-kim.jpg"
+  },
+  {
+    "title": "Sherlock Holmes Toàn Tập",
+    "isbn": "9786041847852",
+    "author": "Arthur Conan Doyle",
+    "category": "Trinh thám",
+    "publishYear": 2018,
+    "price": "450000",
+    "quantity": 20,
+    "description": "Tuyển tập truyện trinh thám nổi tiếng",
+    "image": "sherlock-holmes-toan-tap.jpg"
+  },
+  {
+    "title": "Số đỏ",
+    "isbn": "9786041843652",
+    "author": "Vũ Trọng Phụng",
+    "category": "Văn học Việt Nam",
+    "publishYear": 2020,
+    "price": "78000",
+    "quantity": 40,
+    "description": "Tác phẩm văn học phê phán xã hội",
+    "image": "so-do.jpg"
+  },
+  {
+    "title": "Bố già",
+    "isbn": "9786041849654",
+    "author": "Mario Puzo",
+    "category": "Văn học nước ngoài",
+    "publishYear": 2018,
+    "price": "195000",
+    "quantity": 30,
+    "description": "Tiểu thuyết về mafia Italy",
+    "image": "bo-gia.jpg"
+  },
+  {
+    "title": "Cô gái đến từ hôm qua",
+    "isbn": "9786041842569",
+    "author": "Nguyễn Nhật Ánh",
+    "category": "Văn học Việt Nam",
+    "publishYear": 2017,
+    "price": "82000",
+    "quantity": 45,
+    "description": "Câu chuyện tình học trò trong sáng",
+    "image": "co-gai-den-tu-hom-qua.jpg"
+  },
+  {
+    "title": "Hoàng tử bé",
+    "isbn": "9786041847963",
+    "author": "Antoine de Saint-Exupéry",
+    "category": "Văn học thiếu nhi",
+    "publishYear": 2019,
+    "price": "89000",
+    "quantity": 50,
+    "description": "Câu chuyện triết lý sâu sắc cho mọi lứa tuổi",
+    "image": "hoang-tu-be.jpg"
+  }
+]

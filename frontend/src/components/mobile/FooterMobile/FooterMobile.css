@@ -1,0 +1,31 @@
+.footer {
+  background: #f1c40f;
+  color: #ffffff;
+  padding: 2rem 0;
+  text-align: center;
+  position: relative;
+  font-family: var(--font-secondary);
+}
+.footer-title {
+  margin: 10px 0;
+  font-weight: 600;
+  padding: 20px auto;
+  font-size: larger;
+}
+.footer p {
+  font-size: 14px;
+  line-height: 1.5rem;
+}
+
+.footer-link {
+  display: flex;
+  margin: 1rem auto;
+  justify-content: center;
+  font-size: larger;
+  gap: 10px;
+}
+
+.footer-icon {
+  color: #ffffff;
+  font-size: 1.5rem;
+}

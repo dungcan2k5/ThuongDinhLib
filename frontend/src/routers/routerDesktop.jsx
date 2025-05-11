@@ -1,19 +1,20 @@
-import { createBrowserRouter } from 'react-router-dom';
-import App from '../App.jsx';
-import HomeDesktop from '../pages/desktop/HomeDesktop';
-import DashboardDesktop from '../pages/desktop/DashboardDesktop';
-import LoginDesktop from '../pages/desktop/LoginDesktop';
+import { createBrowserRouter } from "react-router-dom";
+import App from "../App.jsx";
+import HomeDesktop from "../pages/desktop/HomeDesktop";
+import DashboardDesktop from "../pages/desktop/DashboardDesktop";
+import LoginDesktop from "../pages/desktop/LoginDesktop";
+import MainLayoutDesktop from "../layouts/desktop/MainLayoutDesktop.jsx";
 
 const routerDesktop = createBrowserRouter([
   {
-    path: '/',
-    element: <App />,
+    path: "/",
+    element: <MainLayoutDesktop />,
     children: [
-      { path: '/', element: <HomeDesktop /> },
-      { path: '/dashboard', element: <DashboardDesktop /> },
-      { path: '/login', element: <LoginDesktop /> },
-    ]
-  }
+      { path: "/", element: <HomeDesktop /> },
+      { path: "/dashboard", element: <DashboardDesktop /> },
+      { path: "/login", element: <LoginDesktop /> },
+    ],
+  },
 ]);
 
 export default routerDesktop;

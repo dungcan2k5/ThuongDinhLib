@@ -1,6 +1,5 @@
 .main__mobile {
-    min-height: screen;
-    max-width: screen;
-    margin: auto;
-    padding: 10px 20px;
+  max-width: screen;
+  margin: 1rem 0.25rem;
+  min-height: screen;
 }
