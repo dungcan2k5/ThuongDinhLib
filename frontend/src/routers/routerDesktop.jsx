@@ -10,20 +10,12 @@ const routerDesktop = createBrowserRouter([
     path: '/',
     element: <LayoutDesktop />,
     children: [
-<<<<<<< HEAD
-      { path: "/", element: <HomeDesktop /> },
-      { path: "/dashboard", element: <DashboardDesktop /> },
-      { path: "/login", element: <LoginDesktop /> },
-    ],
-  },
-=======
       { path: '/', element: <HomeDesktop /> },
       { path: '/dashboard', element: <DashboardDesktop /> },
       { path: '/login', element: <LoginDesktop /> },
       { path: '/register', element: <RegisterDesktop />}
     ]
   }
->>>>>>> feature/hoangm1
 ]);
 
 export default routerDesktop;
