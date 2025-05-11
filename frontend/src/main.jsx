@@ -1,14 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { RouterProvider } from "react-router-dom";
-import routerMobile from "./routers/routerMobile";
-import routerDesktop from "./routers/routerDesktop";
-import "./styles/theme.css";
-function isMobile() {
-  return window.innerWidth <= 768;
-}
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
+import 'normalize.css'
 
-const router = isMobile() ? routerMobile : routerDesktop;
+import mobileCheck from './utils/mobileCheck'
+import './main.css'
+
+import routerMobile from './routers/routerMobile';
+import routerDesktop from './routers/routerDesktop';
+
+const router = mobileCheck() ? routerMobile : routerDesktop;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

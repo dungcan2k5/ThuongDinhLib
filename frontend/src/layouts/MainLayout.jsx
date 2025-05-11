@@ -1,5 +1,5 @@
 import useResponsive from '../hooks/useResponsive';
-import MainLayoutDesktop from './desktop/MainLayoutDesktop';
+import LayoutDesktop from './desktop/LayoutDesktop';
 import MainLayoutMobile from './mobile/MainLayoutMobile';
 
 export default function MainLayout() {
