@@ -2,6 +2,7 @@ import asyncHandler from "express-async-handler";
 import Customer from "../models/customerModel.js";
 import { generateToken } from "../utils/generateToken.js";
 import { hashPassword } from "../utils/hashPassword.js";
+import bcrypt from "bcryptjs";
 
 // @desc    Register a new customer
 // @route   POST /api/customers/register
