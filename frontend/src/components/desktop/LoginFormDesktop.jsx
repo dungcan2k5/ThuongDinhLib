@@ -9,22 +9,25 @@ import login from '../../services/loginService'
 
 const LoginFormDesktop = () => {
   const navigate = useNavigate();
-  const[message, setMessege] = useState('')
+  const[message, setMessage] = useState('')
   const useValidatorOption = {
     rules: [
       useValidator.isEmail('[name="email"]'),
       useValidator.minLength('[name="password"]', 6)
     ],
     onSubmit: async (values) => {
-      setMessege('')
+      setMessage('')
       const {email, password} = values;
-      const result = await login(email, password);
-      if (result.status === 'success') {
-        localStorage.setItem('token', result.token);
-        navigate('/');
-      }
-      else {
-        setMessege(result.message)
+      try {
+        const result = await login(email, password);
+        if (result.status === 'success') {
+          localStorage.setItem('token', result.token);
+          navigate('/');
+        } else {
+          setMessage(result.message || "Tên đăng nhập hoặc mật khẩu sai");
+        }
+      } catch (error) {
+        setMessage(error.message || "Đã xảy ra lỗi khi đăng nhập");
       }
     }
   };
