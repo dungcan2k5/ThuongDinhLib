@@ -1,6 +1,6 @@
 const getBaseURL = () => {
     const { protocol, hostname } = window.location;
-    const backendPort = '5000'; // FE chạy ở 3000, BE chạy ở 5000
+    const backendPort = '5001'; // FE chạy ở 3000, BE chạy ở 5000
 
     return `${protocol}//${hostname}:${backendPort}`;
 };
