@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import getCategory from "../../services/bookCategoryGet";
-import categorySearch from "../../services/categorySearch";
-import { getBaseURL } from "../../services/bookService";
+import getCategory from "../../../services/bookCategoryGet";
+import categorySearch from "../../../services/categorySearch";
+import { getBaseURL } from "../../../services/bookService";
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import BookInfor from "./BookInfor";
+import BookInfor from "../BookInfor";
 import './h.css';
 
 const HDesktop = () => {
@@ -13,18 +13,27 @@ const HDesktop = () => {
     const[currentPage, setCurrentPage] = useState(1);
 
     const[bookInforState, setBookInforState] = useState(false);
-    const[selectedBook, setSelectedBook] = useState('')
+    const[selectedBook, setSelectedBook] = useState('');
+    const [fade, setFade] = useState(false);
     const booksPerPage = 6;
 
     useEffect (() => {
         const fectCategory = async () => {
             const res = await getCategory();
             setCategories(res)
+
+            if (res && res.length > 0) {
+                setSelectedCategory(res[0]);
+                const booksRes = await categorySearch(res[0]);
+                setBooks(booksRes);
+            }
         };
+
         fectCategory();
     }, []);
 
     const handleCategoryChange = async(e) => {
+        setCurrentPage(1)
         const category = e.target.value;
         setSelectedCategory(category)
 
@@ -39,13 +48,21 @@ const HDesktop = () => {
 
     const nextPage = () => {
         if (currentPage < Math.ceil(books.length / booksPerPage)) {
-            setCurrentPage(currentPage + 1);
+            setFade(true);
+            setTimeout(() => {
+                setCurrentPage(currentPage + 1);
+                setFade(false);
+            }, 300); // Chờ 300ms cho fade-out
         }
     }
 
     const prePage = () => {
         if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
+            setFade(true);
+            setTimeout(() => {
+                setCurrentPage(currentPage - 1);
+                setFade(false);
+            }, 300); // Chờ 300ms cho fade-out
         }
     }
 
@@ -66,9 +83,6 @@ const HDesktop = () => {
                 <BookInfor book={selectedBook}></BookInfor>
             </div>
             }
-            <div className="banner">
-                <img src="https://img.freepik.com/free-vector/online-library-app-reading-banner_33099-1733.jpg" alt="" />
-            </div>
             <div className="bookCate">
             <h2 className="bookCate__title">Phổ biến:</h2>
             <select onChange={handleCategoryChange} value={selectedCategory} className="bookCate__select">
@@ -79,9 +93,9 @@ const HDesktop = () => {
                     </option>
                 ))}
                 </select>
-                <div className="bookCate__page">
+                <div className={`bookCate__page ${fade ? 'fade-out' : ''}`}>
                     {books.length === 0 && selectedCategory &&(
-                        <p>Khong co sach</p>
+                        <p className="bookCate__page-none">Không có sách cho thể loại này</p>
                     )}
                     {books.length > 0 && (
                         currentBooks.map((book) => (
@@ -91,8 +105,8 @@ const HDesktop = () => {
                                 </div>
                                 <div className="bookCate__des">
                                     <h2>{book.title}</h2>
+                                    <div className="des">{book.description}</div>
                                     <div className="cross"></div>
-                                     <div className="des">{book.description}</div>
                                     <h3>{book.author}</h3>
                                     <p>{book.publishYear}</p>
                                     <h4>{Number(book.price.$numberDecimal).toLocaleString('vi-VN')}đ</h4>

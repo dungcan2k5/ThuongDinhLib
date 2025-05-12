@@ -1,5 +1,5 @@
 import HeaderDesktop from '../../components/desktop/HeaderDesktop';
-// import FooterDesktop from '../../components/mobile/FooterDesktop';
+import FooterDesktop from '../../components/desktop/FooterDesktop';
 
 import './LayoutDesktop.css'
 import { Outlet } from 'react-router-dom';
@@ -12,7 +12,7 @@ const MainLayoutDesktop = () => {
       <main>
         <Outlet />
       </main>
-      {/* <Footer /> */}
+      {!hideHeader && <FooterDesktop/>}
     </div>
   );
 }

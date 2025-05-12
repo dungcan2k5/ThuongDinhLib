@@ -2,10 +2,6 @@ html {
     font-size: 62.5%;
 }
 
-.homePage {
-    width: 77%;
-}
-
 .bookCate {
     padding: 2rem;
 }
@@ -32,6 +28,15 @@ html {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
+    min-height: 61rem;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.bookCate__page.fade-out {
+  opacity: 0;
+  transform: translateY(2rem);
 }
 
 .bookCate__card {
@@ -42,6 +47,7 @@ html {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     display: flex;
+    transition: all 0.2s ease-in;
 }
 
 .bookCate__img {
@@ -102,7 +108,7 @@ html {
 .cross {
     width: 100%;
     display: block;
-    top: 67%;
+    top: 63%;
     position: absolute;
     height: 1px;
     background-color: #a0a0a0;
@@ -146,4 +152,16 @@ html {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+}
+
+.bookCate__page-none {
+    color: #A86523;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.bookCate__card:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+    cursor: pointer;
 }

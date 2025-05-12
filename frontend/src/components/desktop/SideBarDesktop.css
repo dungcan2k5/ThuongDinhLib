@@ -1,9 +1,11 @@
 html {
-    font-size: 62.5;
+    font-size: 62.5%;
 }
 
 .sideBar {
     width: 23%;
+    margin-bottom: 2rem;
+    margin-top: 4rem;
 }
 
 .sideBar__item {
@@ -22,6 +24,6 @@ html {
 }
 
 .sideBar {
-    border-right: #A86523 solid 1px;
+    border-right: #000000 solid 1px;
     box-sizing: border-box;
 }
