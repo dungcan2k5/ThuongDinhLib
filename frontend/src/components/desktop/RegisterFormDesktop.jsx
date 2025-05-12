@@ -8,7 +8,7 @@ import register from '../../services/registerService'
 const RegisterFormDesktop = () => {
  const[successMessage, setSuccessMessage] = useState('')
  const[membershipDate, setMembershipDate] = useState(new Date())
- const[message, setMessege] = useState('')
+ const[message, setMessage] = useState('')
  const[cPass, setCPass] = useState('')
  const useValidatorOption = {
     rules: [
@@ -28,15 +28,18 @@ const RegisterFormDesktop = () => {
         return
       }
       setSuccessMessage('')
-      setMessege('')
+      setMessage('')
       const {email, password, address, phone, name} = values;
-      const result = await register(name, email, password, phone, address, membershipDate);
-      console.log(result)
-      if (result._id) {
-        setSuccessMessage('Tài khoản đã được tạo thành công')
-      }
-      else {
-        setMessege(result.message)
+      try {
+        const result = await register(name, email, password, phone, address, membershipDate);
+
+        if (result._id) {
+          setSuccessMessage('Tài khoản đã được tạo thành công');
+        } else {
+          setMessage('Đăng ký không thành công');
+        }
+      } catch (error) {
+        setMessage(error.message || "Có lỗi xảy ra, vui lòng thử lại");
       }
     }
   };

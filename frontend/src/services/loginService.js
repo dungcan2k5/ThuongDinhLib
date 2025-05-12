@@ -11,12 +11,11 @@ const login = async(email, password) => {
             },
             body: JSON.stringify({email, password})
         });
-
-        if (!res.ok) {
-            const errorData = await res.json();
-            throw new Error('Đăng nhập thất bại');
-        }
         const data = await res.json();
+        if (!res.ok) {
+            const errorMessage = data.message;
+            throw new Error(errorMessage || 'Đăng nhập thất bại');
+        }
         return data;
     } catch (error) {
         console.error('Error Login:', error);

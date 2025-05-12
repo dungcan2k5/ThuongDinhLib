@@ -1,18 +1,19 @@
 import HeaderDesktop from '../../components/desktop/HeaderDesktop';
-// import FooterDesktop from '../../components/mobile/FooterDesktop';
+import FooterDesktop from '../../components/desktop/FooterDesktop';
 
 import './LayoutDesktop.css'
-import { Outlet } from 'react-router-dom';
+import { useLocation, Outlet } from 'react-router-dom';
 
 const MainLayoutDesktop = () => {
-  const hideHeader = location.pathname === '/login' || location.pathname ==='/register';
+  const location = useLocation();
+  const hideHeader = location.pathname === '/login' || location.pathname === '/register';
   return (
     <div className="layout">
       {!hideHeader && <HeaderDesktop/>}
       <main>
         <Outlet />
       </main>
-      {/* <Footer /> */}
+      {!hideHeader && <FooterDesktop/>}
     </div>
   );
 }
