@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import './FooterDesktop.css'
 import { FaFacebookF, FaInstagram, FaGoogle } from 'react-icons/fa';
 

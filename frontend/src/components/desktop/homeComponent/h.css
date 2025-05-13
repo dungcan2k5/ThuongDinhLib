@@ -51,23 +51,19 @@ html {
 }
 
 .bookCate__img {
-    flex-basis: 60%;
-    overflow: hidden;
+    flex-basis: 40%;
 }
 
 .bookCate__img > img {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
     width: auto;
-    max-width: 100%;
-    height: 300px; /* Hoặc chiều cao bạn muốn */
+    height: 100%; /* Hoặc chiều cao bạn muốn */
     object-fit: cover; /* hoặc cover nếu bạn muốn ảnh tràn */
     border-radius: 5px;
 }
 
 .bookCate__des {
-    flex-basis: 40%;
+    flex-basis: 60%;
     margin-left: 2rem;
     position: relative;
 }
@@ -76,11 +72,12 @@ html {
     font-size: 2.2rem;
     font-weight: bold;
     margin: 0;
+    color: #A86523;
 }
 
 .bookCate__des > h3 {
     position: absolute;
-    bottom: 20%;
+    bottom: 30%;
     margin: 0;
     font-size: 1.2rem;
     color: #999999  ;
@@ -93,7 +90,7 @@ html {
     font-size: 1rem;
     color: #999999;
     margin: 0;
-    bottom: 15%;
+    bottom: 25%;
 }
 
 .bookCate__des > h4 {
@@ -108,7 +105,7 @@ html {
 .cross {
     width: 100%;
     display: block;
-    top: 63%;
+    top: 55%;
     position: absolute;
     height: 1px;
     background-color: #a0a0a0;

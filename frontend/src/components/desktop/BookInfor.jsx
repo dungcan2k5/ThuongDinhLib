@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getBaseURL } from "../../services/bookService";
+import { getApiUrl } from "../../utils/apiUtils";
 import './BookInfor.css'
 
 const BookInfor = ({book}) => {
@@ -8,7 +8,7 @@ const BookInfor = ({book}) => {
     return (
         <div className="bookInfor" onClick={(e) => e.stopPropagation()} >
             <div className="bookInfor__img">
-                <img src={`${getBaseURL()}${image}`} alt="123123" />
+                <img src={`${getApiUrl()}${image}`} alt="123123" />
             </div>
             <div className="bookInfor__des">
                 <h2 className="bookInfor__title">{title}</h2>

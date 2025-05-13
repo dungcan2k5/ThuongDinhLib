@@ -1,9 +1,9 @@
 
-import { getBaseURL } from "./bookService";
+import { getApiUrl } from "../utils/apiUtils";
 
 const login = async(email, password) => {
     try {
-        const baseURL = getBaseURL();
+        const baseURL = getApiUrl();
         const res = await fetch(`${baseURL}/api/customers/login`, {
             method: 'POST',
             headers: {
