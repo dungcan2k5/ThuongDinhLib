@@ -12,12 +12,15 @@ const register = async(name, email, password, phone, address, membershipDate) =>
             body: JSON.stringify({name, email, password, phone, address, membershipDate})
         });
 
-        if (!res.ok) {
-        }
         const data = await res.json();
+
+        if (!res.ok) {
+            const errorMessage = data.message;
+            throw new Error(errorMessage || 'Đăng kí không thành công');
+        }
         return data;
     }  catch (error) {
-        console.error('Error Login:', error);
+        console.error('Error Register:', error);
         throw error;
     }
 }

@@ -1,13 +1,8 @@
-const getBaseURL = () => {
-    const { protocol, hostname } = window.location;
-    const backendPort = '5000'; // FE chạy ở 3000, BE chạy ở 5000
-
-    return `${protocol}//${hostname}:${backendPort}`;
-};
+import { getApiUrl } from '../utils/apiUtils';
 
 const searchBooks = async (searchTerm) => {
     try {
-        const baseURL = getBaseURL();
+        const baseURL = getApiUrl();
         const response = await fetch(`${baseURL}/api/books/search/book?q=${encodeURIComponent(searchTerm)}`);
         
         if (!response.ok) {
@@ -22,4 +17,4 @@ const searchBooks = async (searchTerm) => {
     }
 };
 
-export { searchBooks, getBaseURL };
+export { searchBooks };
