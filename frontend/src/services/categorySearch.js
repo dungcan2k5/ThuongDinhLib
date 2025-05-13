@@ -1,9 +1,8 @@
-
-import { getBaseURL } from "./bookService";
+import { getApiUrl } from '../utils/apiUtils';
 
 const categorySearch = async(category) => {
     try {
-        const baseURL = getBaseURL();
+        const baseURL = getApiUrl();
         const response = await fetch(`${baseURL}/api/books/search/category?category=${encodeURIComponent(category)}`, {
         });
 
@@ -18,4 +17,4 @@ const categorySearch = async(category) => {
     }
 }
 
-export default categorySearch
+export default categorySearch;

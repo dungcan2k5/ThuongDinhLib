@@ -1,8 +1,8 @@
-import { getBaseURL } from "./bookService";
+import { getApiUrl } from '../utils/apiUtils';
 
 const getCategory = async () => {
     try {
-        const baseURL = getBaseURL();
+        const baseURL = getApiUrl();
         const response = await fetch(`${baseURL}/api/books`)
 
         if (!response.ok) {
@@ -18,4 +18,4 @@ const getCategory = async () => {
     }
 }
 
-export default getCategory
+export default getCategory;

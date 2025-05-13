@@ -6,12 +6,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { getImgUrl } from "../../../utils/getImgUrl";
+import { getApiUrl } from "../../../utils/apiUtils";
 
 const RecommendMobile = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5001/api/books")
+    const baseURL = getApiUrl();
+    fetch(`${baseURL}/api/books`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch books");
@@ -28,7 +30,6 @@ const RecommendMobile = () => {
         setBooks(updatedBooks);
       })
       .catch((error) => {
-        // Bắt lỗi và xử lý nếu có lỗi
         console.error("Error fetching books:", error);
       });
   }, []);
