@@ -6,7 +6,7 @@
         "start": "node backend/server.js",
         "server": "nodemon backend/server.js",
         "client": "cd frontend && vite",
-        "dev": "concurrently \"npm run server\" \"npm run client -- --port 3000 --host\"",
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
         "build": "cd frontend && vite build"
     },
     "dependencies": {
@@ -19,6 +19,7 @@
         "express-async-handler": "^1.2.0",
         "jsonwebtoken": "^9.0.2",
         "mongoose": "^8.0.3",
+        "normalize.css": "^8.0.1",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "react-icons": "^5.5.0",
@@ -26,8 +27,7 @@
         "react-slideshow-image": "^4.3.2",
         "react-swipeable": "^7.0.2",
         "redux": "^5.0.1",
-        "swiper": "^11.2.6",
-        "normalize.css": "^8.0.1"
+        "swiper": "^11.2.6"
     },
     "devDependencies": {
         "@eslint/js": "^9.22.0",

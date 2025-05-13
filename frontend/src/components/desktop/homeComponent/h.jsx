@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import getCategory from "../../../services/bookCategoryGet";
 import categorySearch from "../../../services/categorySearch";
-import { getBaseURL } from "../../../services/bookService";
+import { getApiUrl } from "../../../utils/apiUtils";
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import BookInfor from "../BookInfor";
 import './h.css';
@@ -101,7 +101,7 @@ const HDesktop = () => {
                         currentBooks.map((book) => (
                             <div key={book.id} className="bookCate__card" onClick={() => popUp(book)}>
                                 <div className="bookCate__img">
-                                    <img src={`${getBaseURL()}${book.image}`} alt="" />
+                                    <img src={`${getApiUrl()}${book.image}`} alt="" />
                                 </div>
                                 <div className="bookCate__des">
                                     <h2>{book.title}</h2>

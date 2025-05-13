@@ -2,21 +2,21 @@ html {
     font-size: 62.5%;
 }
 
-.registerRecoment {
-    background-color: #A86523;
+.registerRecommend {
+    background-color: #E9A319;
     padding: 2rem;
     margin: 2rem;
     border-radius: 5px;
 }
 
-.registerRecoment__title > h2 {
+.registerRecommend__title > h2 {
     color: #FFFFFF;
     font-size: 4rem;
     text-align: center;
     font-weight: bold;
 }
 
-.registerRecoment__content > p {
+.registerRecommend__content > p {
     padding: 0rem 2rem;
     color: #FFFFFF;
     font-size: 2.1rem;
@@ -24,7 +24,7 @@ html {
     font-weight: 300;
 }
 
-.registerRecoment__button {
+.registerRecommend__button {
     background-color: #FAD59A;
     padding: 1rem 2.4rem;
     font-size: 2.5rem;
@@ -38,12 +38,12 @@ html {
     transition: all 0.2s ease;
 }
 
-.registerRecoment__link{
+.registerRecommend__link{
     display: flex;
     justify-content: center;
 }
 
-.registerRecoment__button:hover {
+.registerRecommend__button:hover {
     transform: scale(1.02);
     cursor: pointer;
 }

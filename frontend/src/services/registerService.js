@@ -1,9 +1,9 @@
 
-import { getBaseURL } from "./bookService";
+import { getApiUrl } from "../utils/apiUtils";
 
 const register = async(name, email, password, phone, address, membershipDate) => {
     try {
-        const baseURL = getBaseURL();
+        const baseURL = getApiUrl();
         const res = await fetch(`${baseURL}/api/customers/register`, {
             method: 'POST',
             headers: {
