@@ -82,3 +82,11 @@ export const addBook = asyncHandler(async (req, res) => {
   const createdBook = await book.save();
   res.status(201).json(createdBook);
 });
+
+
+// @desc    Get all unique categories
+// @route   GET /api/books/categories
+export const getAllCategories = asyncHandler(async (req, res) => {
+    const categories = await Book.distinct('category');
+    res.json(categories);
+});
