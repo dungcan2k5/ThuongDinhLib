@@ -1,13 +1,13 @@
 import asyncHandler from "express-async-handler";
 import Customer from "../models/customerModel.js";
 import { generateToken } from "../utils/generateToken.js";
-import e from "express";
+import { hashPassword } from "../utils/hashPassword.js";
+import bcrypt from "bcryptjs";
 
 // @desc    Register a new customer
 // @route   POST /api/customers/register
 export const registerCustomer = asyncHandler(async (req, res) => {
-    const { name, email, password } = req.body;
-    const userExists = await Customer.findOne({ email });
+    const userExists = await Customer.findOne({ email: req.body.email });
     if (userExists) {
         res.status(400).json({
             message: "Customer đã tồn tại",
@@ -15,7 +15,11 @@ export const registerCustomer = asyncHandler(async (req, res) => {
         return;
     }
 
-    const cus = await Customer.create(req.body);
+    const hashedPassword = await hashPassword(req.body.password);
+    const cus = await Customer.create({
+        ...req.body,
+        password: hashedPassword
+    });
 
     if (cus) {
         res.status(201).json({
@@ -37,7 +41,8 @@ export const loginCustomer = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     const cus = await Customer.findOne({ email });
 
-    if (cus && cus.password == password) {
+    const isMatch = bcrypt.compare(password, cus.password);
+    if (cus && isMatch) {
         res.json({
             status: "success",
             token: generateToken(cus._id),
@@ -60,7 +65,7 @@ export const updateCustomerProfile = asyncHandler(async (req, res) => {
         cus.phone = req.body.phone || cus.phone;
         cus.address = req.body.address || cus.address;
         cus.membershipDate = req.body.membershipDate || cus.membershipDate;
-        cus.password = req.body.password || cus.password;
+        cus.password = hashPassword(req.body.password) || cus.password;
 
         await cus.save();
         res.json({
@@ -97,4 +102,12 @@ export const deleteCustomerProfile = asyncHandler(async (req, res) => {
             message: "Không tìm thấy customer",
         });
     }
+});
+
+// @desc    Get all customers
+// @route   GET /api/customers
+// @access  Private/Admin
+export const getAllCustomers = asyncHandler(async (req, res) => {
+    const customers = await Customer.find({}).select("-password");
+    res.json(customers);
 });

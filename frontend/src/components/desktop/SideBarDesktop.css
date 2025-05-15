@@ -1,0 +1,70 @@
+html {
+    font-size: 62.5%;
+}
+
+.sideBar {
+    width: 5%;
+    margin-bottom: 2rem;
+    margin-top: 4rem;
+    transition: width 0.3s ease-in-out;
+}
+
+.sideBar.expanded, .sideBar:hover {
+    width: 15%;
+}
+
+.sideBar__item {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    color: #A86523;
+    font-size: 2rem;
+    height: 3rem;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 3rem;
+}
+
+.sideBar__text {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sideBar__toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #A86523;
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease;
+    width: 2rem;
+    height: 2rem;
+}
+
+.sideBar__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.sideBar__item:first-child {
+    margin-bottom: 5rem;
+}
+
+.SideBar__Toggle-icon, .SideBar__Home-icon, .SideBar__Account-icon, .SideBar__Cart-icon {
+    margin-right: 2rem;
+    flex-shrink: 0;
+    transform: none !important;
+    width: 2rem;
+    height: 2rem;
+}
+
+.sideBar {
+    border-right: #000000 solid 1px;
+    box-sizing: border-box;
+}

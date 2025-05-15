@@ -1,0 +1,46 @@
+html {
+    font-size: 62.5%;
+}
+
+.footer {
+    background-color: #A86523;
+    padding: 1rem;
+}
+
+.footer__title > h2 {
+    font-size: 3rem;
+    color: #FCEFCB;
+    font-weight: bold;
+    text-align: center;
+}
+
+.footer__contact > p{
+    text-align: center;
+    color: #FCEFCB;
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+
+.footer__contact > p > span {
+    font-weight: bold;
+}
+
+.footer__media-list {
+    display: flex;
+    justify-content: center;
+}
+
+.footer__media {
+    margin-top: 3rem;
+}
+
+.footer__media-item {
+    list-style: none;
+    font-size: 2.5rem;
+    color: #FCEFCB;
+}
+
+.footer__media-item + .footer__media-item {
+    margin-left: 5.5rem;
+}
+

@@ -24,8 +24,17 @@ export const searchBooks = asyncHandler(async (req, res) => {
     ],
   });
 
-  res.json(books);
+    const _books = books.map(book => {
+        const obj = book.toObject();
+        return {
+            ...obj,
+            price: parseFloat(book.price?.toString() || '0'), // fallback nếu null
+        };
+    });
+
+    res.json(_books);
 });
+
 
 // @desc    Search books by category
 // @route   GET /api/books/search/category
@@ -72,4 +81,12 @@ export const addBook = asyncHandler(async (req, res) => {
 
   const createdBook = await book.save();
   res.status(201).json(createdBook);
+});
+
+
+// @desc    Get all unique categories
+// @route   GET /api/books/categories
+export const getAllCategories = asyncHandler(async (req, res) => {
+    const categories = await Book.distinct('category');
+    res.json(categories);
 });

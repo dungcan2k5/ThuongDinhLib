@@ -13,11 +13,14 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.join(__dirname, '.env') });
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve images from the 'images' folder
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // Database connection
 connectDB();

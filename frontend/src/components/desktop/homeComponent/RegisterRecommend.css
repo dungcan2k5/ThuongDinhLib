@@ -1,0 +1,49 @@
+html {
+    font-size: 62.5%;
+}
+
+.registerRecommend {
+    background-color: #E9A319;
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 5px;
+}
+
+.registerRecommend__title > h2 {
+    color: #FFFFFF;
+    font-size: 4rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.registerRecommend__content > p {
+    padding: 0rem 2rem;
+    color: #FFFFFF;
+    font-size: 2.1rem;
+    text-align: center;
+    font-weight: 300;
+}
+
+.registerRecommend__button {
+    background-color: #FAD59A;
+    padding: 1rem 2.4rem;
+    font-size: 2.5rem;
+    color: #A86523;
+    font-weight: bold;
+    border: none;
+    border-radius: 40px;
+    border: #FCEFCB solid 1px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    margin-top: 2rem;
+    transition: all 0.2s ease;
+}
+
+.registerRecommend__link{
+    display: flex;
+    justify-content: center;
+}
+
+.registerRecommend__button:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}

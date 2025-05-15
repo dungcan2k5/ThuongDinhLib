@@ -1,0 +1,9 @@
+.Body {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.content {
+    flex-basis: 77%;
+}
