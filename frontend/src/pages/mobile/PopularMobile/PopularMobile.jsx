@@ -5,8 +5,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { getImgUrl } from "../../../utils/getImgUrl";
-
+import BookCard from "../BookPages/BookCard";
 const PopularMobile = () => {
   const categories = ["Thể loại", "Văn học Việt Nam", "Văn học nước ngoài"];
 
@@ -74,23 +73,7 @@ const PopularMobile = () => {
         >
           {filterBooks.map((book, index) => (
             <SwiperSlide key={index}>
-              <div className="book-card">
-                <div className="book-card_container">
-                  <div className="book-image">
-                    <img src={`${getImgUrl(book.image)}`} alt={book.title} />
-                  </div>
-                  <div className="book-details__gap">
-                    <div className="book-details">
-                      <h3>{book.title}</h3>
-                      <p>{book.description}</p>
-                      <div className="book-price">{book.price}₫</div>
-                      <div className="book-actions">
-                        <button className="add-to-cart">Mượn</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <BookCard book={book} />
             </SwiperSlide>
           ))}
         </Swiper>

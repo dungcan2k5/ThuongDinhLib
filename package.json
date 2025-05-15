@@ -10,6 +10,7 @@
         "build": "cd frontend && vite build"
     },
     "dependencies": {
+        "@reduxjs/toolkit": "^2.8.1",
         "bcryptjs": "^3.0.2",
         "cors": "^2.8.5",
         "dotenv": "^16.3.1",
@@ -20,6 +21,7 @@
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "react-icons": "^5.5.0",
+        "react-redux": "^9.2.0",
         "react-router-dom": "^7.5.3",
         "react-slideshow-image": "^4.3.2",
         "react-swipeable": "^7.0.2",

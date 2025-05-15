@@ -4,6 +4,9 @@ import { RouterProvider } from "react-router-dom";
 import routerMobile from "./routers/routerMobile";
 import routerDesktop from "./routers/routerDesktop";
 import "./styles/theme.css";
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
+
 function isMobile() {
   return window.innerWidth <= 768;
 }
@@ -11,7 +14,7 @@ function isMobile() {
 const router = isMobile() ? routerMobile : routerDesktop;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <Provider store={store}>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </Provider>
 );
