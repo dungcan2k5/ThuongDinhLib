@@ -227,7 +227,7 @@ db.staff.insertMany([
         isAdmin: true,
         salary: NumberDecimal("15000000"),
         password:
-            "$2a$10$XQkJz9vR8ZiX4YWj3TWGqODJ3ZtC8yF7U8p6VMjy4.XyI3vxdqgkS", // hash for "password123"
+            "$2a$10$1YaMUO6yKAmo3N1mPV7N0eYAqZDdRmSKYxrSDKM80o.R89z1yahWO", // hash for "password123"
     },
     {
         name: "Trần Thị Bình",
@@ -236,7 +236,7 @@ db.staff.insertMany([
         role: "Thủ thư",
         salary: NumberDecimal("8000000"),
         password:
-            "$2a$10$XQkJz9vR8ZiX4YWj3TWGqODJ3ZtC8yF7U8p6VMjy4.XyI3vxdqgkS", // hash for "password123"
+            "$2a$10$1YaMUO6yKAmo3N1mPV7N0eYAqZDdRmSKYxrSDKM80o.R89z1yahWO", // hash for "password123"
     },
 ]);
 

@@ -5,7 +5,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import bookRoutes from './routes/bookRoutes.js';
-import customerRoutes from './routes/customerRoutes.js'
+import customerRoutes from './routes/customerRoutes.js';
+import staffRoutes from './routes/staffRoutes.js';
 import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -27,7 +28,8 @@ connectDB();
 
 // Routes
 app.use('/api/books', bookRoutes);
-app.use('/api/customers', customerRoutes)
+app.use('/api/customers', customerRoutes);
+app.use('/api/staffs', staffRoutes);
 
 // Error Handling Middlewares
 app.use(notFound);
