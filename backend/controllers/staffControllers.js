@@ -42,19 +42,16 @@ export const registerStaff = asyncHandler(async (req, res) => {
 export const loginStaff = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     const staff = await Staff.findOne({ email });
-    
-    const isMatch = await bcrypt.compare(password, staff.password);
-    if (staff && isMatch) {
-        res.json({
+
+    if (staff && await bcrypt.compare(password, staff.password)) {
+        return res.json({
             status: "success",
             token: generateToken(staff._id),
-            isAdmin: staff.isAdmin
-        });
-    } else {
-        res.status(401).json({
-            message: "Email hoặc mật khẩu không đúng",
+            isAdmin: staff.isAdmin,
         });
     }
+
+    res.status(401).json({ message: "Email hoặc mật khẩu không đúng" });
 });
 
 // @desc    Update staff profile
