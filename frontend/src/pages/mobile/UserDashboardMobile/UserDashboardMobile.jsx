@@ -35,10 +35,7 @@ const UserDashboardMobile = () => {
     ],
 
     onSubmit: async (formValues) => {
-      console.log("Form Values:", formValues);
-
       const token = localStorage.getItem('token');
-
       const submitData = { ...formValues };
 
       // Nếu không đổi mật khẩu thì loại bỏ các trường mật khẩu

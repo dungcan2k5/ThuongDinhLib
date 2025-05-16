@@ -41,17 +41,14 @@ export const loginCustomer = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     const cus = await Customer.findOne({ email });
 
-    const isMatch = bcrypt.compare(password, cus.password);
-    if (cus && isMatch) {
-        res.json({
+    if (cus && await bcrypt.compare(password, cus.password)) {
+        return res.json({
             status: "success",
             token: generateToken(cus._id),
         });
-    } else {
-        res.status(401).json({
-            message: "Email hoặc mật khẩu không đúng",
-        });
     }
+
+    res.status(401).json({ message: "Email hoặc mật khẩu không đúng" });
 });
 
 // @desc    Update customer profile
