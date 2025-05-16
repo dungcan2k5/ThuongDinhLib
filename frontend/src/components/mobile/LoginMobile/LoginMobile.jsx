@@ -1,22 +1,51 @@
-import React from "react";
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import useValidator from "../../../hooks/useValidator";
 import "./LoginMobile.css";
 import { Link } from "react-router-dom";
+import login from '../../../services/loginService'
 
 const LoginForm = () => {
-  const validatorOptions = {
-    rules: [
-      useValidator.isEmail('[name="email"]'),
-      useValidator.minLength('[name="password"]', 6),
-    ],
-    onSubmit: (data) => {
-      console.log("Login data:", data);
-      // Gọi API đăng nhập ở đây
-    },
-  };
+    const navigate = useNavigate();
+    const[message, setMessage] = useState('')
+    const useValidatorOptions = {
+      rules: [
+        useValidator.isRequired('[name="email"]', 'Vui lòng nhập email'),
+        useValidator.isEmail('[name="email"]', 'Email không hợp lệ'),
+        useValidator.isRequired('[name="password"]', 'Vui lòng nhập mật khẩu'),
+        useValidator.minLength('[name="password"]', 6, 'Mật khẩu tối thiểu 6 ký tự')
+      ],
+      onSubmit: async (values) => {
+        setMessage('');
+        const { email, password } = values;
+        
+        try {
+          const result = await login(email, password);
+          
+          if (result.status === 'success') {
+            // Lưu token và thông tin user nếu cần
+            localStorage.setItem('token', result.token);
+            
+            // Chuyển hướng với state nếu cần
+            navigate('/', { state: { from: 'login' } });
+          } else {
+            setMessage(result.message || "Thông tin đăng nhập không chính xác");
+          }
+        } catch (error) {
+          console.error('Login error:', error);
+          setMessage(error.response?.data?.message || "Thông tin đăng nhập không chính xác");
+        }
+      }
+    };
 
-  const { values, errors, handleChange, handleSubmit, isSubmitting } =
-    useValidator(validatorOptions);
+  const {
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+    isSubmitting
+  } = useValidator(useValidatorOptions)
+
 
   return (
     <div className="login__mobile">
@@ -29,7 +58,6 @@ const LoginForm = () => {
               Email
             </label>
             <input
-              id="email"
               name="email"
               type="text"
               placeholder="Email@domain.com"
@@ -45,7 +73,6 @@ const LoginForm = () => {
               Mật khẩu
             </label>
             <input
-              id="password"
               name="password"
               type="password"
               placeholder="Mật khẩu"
@@ -64,7 +91,10 @@ const LoginForm = () => {
             </button>
           </div>
 
+          <p className="login__fail">{message}</p>
+          
           <div className="loginForm__register">
+            
             <p className="loginForm--register--title">Chưa có tài khoản?</p>
             <Link to="/register" className="loginForm__register--link">
               Đăng ký
