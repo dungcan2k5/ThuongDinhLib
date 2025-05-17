@@ -77,7 +77,7 @@ const HeaderMobile = () => {
                     <li>
                       <Link to="/" className="user-nav__item">
                         <button onClick={() => setCurrentUser(!currentUser)}>
-                          Logout
+                          Đăng xuất
                         </button>
                       </Link>
                     </li>

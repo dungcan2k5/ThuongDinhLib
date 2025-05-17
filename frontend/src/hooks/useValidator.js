@@ -64,7 +64,9 @@ const useValidator = (options) => {
     errors,
     handleChange,
     handleSubmit,
-    isSubmitting
+    isSubmitting,
+    setValues,
+    setErrors,
   };
 };
 
