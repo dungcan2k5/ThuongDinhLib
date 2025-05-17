@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import useValidator from "../../../hooks/useValidator";
 import './UserDashboardMobile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,6 +9,22 @@ const UserDashboardMobile = () => {
   const [editMode, setEditMode] = useState(false);
   const [changePasswordMode, setChangePasswordMode] = useState(false);
 
+  const rules = useMemo(() => [
+    useValidator.isRequired('[name="name"]', 'Vui lòng nhập tên của bạn'),
+    useValidator.isRequired('[name="phone"]', 'Vui lòng nhập số điện thoại'),
+    useValidator.isPhone('[name="phone"]'),
+    useValidator.isRequired('[name="address"]', 'Vui lòng nhập địa chỉ'),
+    ...(changePasswordMode ? [
+      useValidator.minLength('[name="currentPassword"]', 6),
+      useValidator.minLength('[name="newPassword"]', 6),
+      useValidator.isConfirmed(
+        '[name="confirmPassword"]',
+        () => document.querySelector('#userDashboardMobile [name="newPassword"]')?.value || "",
+        "Mật khẩu nhập lại không chính xác"
+      )
+    ] : [])
+  ], [changePasswordMode]);
+
   // useValidator
   const {
     values,
@@ -18,22 +34,7 @@ const UserDashboardMobile = () => {
     setValues,
     setErrors,
   } = useValidator({
-    rules: [
-      useValidator.isRequired('[name="name"]', 'Vui lòng nhập tên của bạn'),
-      useValidator.isRequired('[name="phone"]', 'Vui lòng nhập số điện thoại'),
-      useValidator.isPhone('[name="phone"]'),
-      useValidator.isRequired('[name="address"]', 'Vui lòng nhập địa chỉ'),
-      ...(changePasswordMode ? [
-        useValidator.minLength('[name="currentPassword"]', 6),
-        useValidator.minLength('[name="newPassword"]', 6),
-        useValidator.isConfirmed(
-          '[name="confirmPassword"]', () =>
-            document.querySelector('#userDashboardMobile [name="newPassword"]')?.value,
-          "Mật khẩu nhập lại không chính xác"
-        )
-      ] : [])
-    ],
-
+    rules,
     onSubmit: async (formValues) => {
       const token = localStorage.getItem('token');
       const submitData = { ...formValues };

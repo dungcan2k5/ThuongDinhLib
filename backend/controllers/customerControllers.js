@@ -55,32 +55,39 @@ export const loginCustomer = asyncHandler(async (req, res) => {
 // @route   PUT /api/customers/profile
 // @access  Private
 export const updateCustomerProfile = asyncHandler(async (req, res) => {
-  const customer = await Customer.findById(req.cus._id).select('+password');
-  if (!customer) {
-    return res.status(404).json({ message: 'Không tìm thấy người dùng' });
-  }
-  // So sánh mật khẩu hiện tại (có trim nếu cần)
-  const isMatch = await bcrypt.compare(req.body.currentPassword.trim(), customer.password);
-
-  if (!isMatch) {
-    return res.status(400).json({ message: 'Mật khẩu hiện tại không đúng' });
-  }
-
-  // Cập nhật mật khẩu mới (hash mới)
-  if (req.body.newPassword) {
-    const salt = await bcrypt.genSalt(10);
-    customer.password = await bcrypt.hash(req.body.newPassword, salt);
-  }
-
-  // Cập nhật các thông tin khác
-  if (req.body.name) customer.name = req.body.name;
-  if (req.body.phone) customer.phone = req.body.phone;
-  if (req.body.address) customer.address = req.body.address;
-
-  await customer.save();
-
-  res.status(200).json({ message: 'Cập nhật thông tin thành công' });
-});
+    const customer = await Customer.findById(req.cus._id).select('+password');
+    if (!customer) {
+      return res.status(404).json({ message: 'Không tìm thấy người dùng' });
+    }
+  
+    // Nếu có yêu cầu đổi mật khẩu thì kiểm tra mật khẩu hiện tại
+    if (req.body.newPassword) {
+      const currentPassword = (req.body.currentPassword || '').trim();
+  
+      if (!currentPassword) {
+        return res.status(400).json({ message: 'Vui lòng nhập mật khẩu hiện tại' });
+      }
+  
+      const isMatch = await bcrypt.compare(currentPassword, customer.password);
+  
+      if (!isMatch) {
+        return res.status(400).json({ message: 'Mật khẩu hiện tại không đúng' });
+      }
+  
+      const salt = await bcrypt.genSalt(10);
+      customer.password = await bcrypt.hash(req.body.newPassword, salt);
+    }
+  
+    // Cập nhật các thông tin khác
+    if (req.body.name) customer.name = req.body.name.trim();
+    if (req.body.phone) customer.phone = req.body.phone.trim();
+    if (req.body.address) customer.address = req.body.address.trim();
+  
+    await customer.save();
+  
+    res.status(200).json({ message: 'Cập nhật thông tin thành công' });
+  });
+  
 
 // @desc    Get customer profile
 // @route   GET /api/customers/profile
