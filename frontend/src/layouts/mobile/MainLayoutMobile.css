@@ -2,4 +2,5 @@
   max-width: screen;
   margin: 1rem 0.25rem;
   min-height: screen;
+  flex: 1;
 }

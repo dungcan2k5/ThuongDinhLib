@@ -10,10 +10,10 @@
         "build": "cd frontend && vite build"
     },
     "dependencies": {
-        "@reduxjs/toolkit": "^2.8.1",
-
         "@fortawesome/free-solid-svg-icons": "^6.7.2",
         "@fortawesome/react-fontawesome": "^0.2.2",
+        "@reduxjs/toolkit": "^2.8.1",
+        "axios": "^1.9.0",
         "bcryptjs": "^3.0.2",
         "cors": "^2.8.5",
         "dotenv": "^16.3.1",
@@ -30,6 +30,7 @@
         "react-slideshow-image": "^4.3.2",
         "react-swipeable": "^7.0.2",
         "redux": "^5.0.1",
+        "sweetalert2": "^11.21.0",
         "swiper": "^11.2.6"
     },
     "devDependencies": {

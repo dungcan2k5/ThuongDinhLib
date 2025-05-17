@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import Swal from "sweetalert2";
 const initialState = {
   cartItems: [],
 };
@@ -14,15 +14,32 @@ const cartSlice = createSlice({
       );
       if (!existingItem) {
         state.cartItems.push(action.payload);
-        alert("Item added successfully");
+
+        Swal.fire({
+          title: "Đã thêm vào giỏ hàng",
+          icon: "success",
+          draggable: true,
+        });
       } else {
-        alert("Item already exists");
+        Swal.fire({
+          title: "Sản phẩm đã tồn tại",
+          icon: "error",
+          draggable: true,
+        });
       }
+    },
+    removeFromCart: (state, action) => {
+      state.cartItems = state.cartItems.filter(
+        (item) => item.title !== action.payload.title
+      );
+    },
+    clearCart: (state) => {
+      state.cartItems = [];
     },
   },
 });
 
 // export action
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;

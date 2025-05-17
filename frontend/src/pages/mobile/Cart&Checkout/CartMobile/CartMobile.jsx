@@ -1,17 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getImgUrl } from "../../../../utils/getImgUrl";
 import { useDispatch, useSelector } from "react-redux";
-
+import { getApiUrl } from "../../../../utils/apiUtils";
 import "./CartMobile.css";
+import {
+  removeFromCart,
+  clearCart,
+} from "../../../../redux/features/cart/cartSlice";
 const CartMobile = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
-  const totalPrice = cartItems
-    .reduce((acc, item) => acc + item.price, 0)
-    .toFixed(3);
+  const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
   const handleRemoveFromCart = (product) => {
-    dispatch();
+    dispatch(removeFromCart(product));
+  };
+
+  const handleClearCart = () => {
+    dispatch(clearCart());
   };
   return (
     <>
@@ -19,7 +24,7 @@ const CartMobile = () => {
         <div className="cart-header">
           <div className="cart-header__title">Giỏ hàng</div>
           <div className="cart-header__button--remove">
-            <button>Xóa toàn bộ</button>
+            <button onClick={handleClearCart}>Xóa toàn bộ</button>
           </div>
         </div>
         <div className="cart-content">
@@ -32,7 +37,10 @@ const CartMobile = () => {
                     className="cart-content__products--card"
                   >
                     <div className="product-img">
-                      <img src={product?.image} alt="product-img" />
+                      <img
+                        src={`${getApiUrl()}${product.image}`}
+                        alt="product-img"
+                      />
                     </div>
                     <div className="product-des">
                       <div className="product-des__title">
@@ -50,7 +58,12 @@ const CartMobile = () => {
                           <strong>Số lượng: </strong>1
                         </p>
                         <div className="product-des__button--remove">
-                          <button type="button">Xóa</button>
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveFromCart(product)}
+                          >
+                            Xóa
+                          </button>
                         </div>
                       </div>
                     </div>

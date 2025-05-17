@@ -87,3 +87,16 @@
   text-decoration: none;
   font-weight: 600;
 }
+.registerForm--success {
+  color: green;
+  font-size: 16px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.registerForm--error {
+  color: red;
+  font-size: 16px;
+  margin-top: 5px;
+  text-align: center;
+}

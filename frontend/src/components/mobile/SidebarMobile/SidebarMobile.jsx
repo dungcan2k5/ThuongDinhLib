@@ -36,7 +36,9 @@ const SidebarMobile = ({ isOpen, toggleSidebar }) => {
       </div>
 
       {/* Overlay */}
-      {isOpen && <div className="overlay" onClick={toggleSidebar}></div>}
+      {isOpen && (
+        <div className="sidebar-overlay" onClick={toggleSidebar}></div>
+      )}
     </>
   );
 };

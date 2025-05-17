@@ -1,17 +1,35 @@
-import React from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useValidator from "../../../hooks/useValidator";
+import login from "../../../services/loginService";
 import "./LoginMobile.css";
 import { Link } from "react-router-dom";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+
   const validatorOptions = {
     rules: [
       useValidator.isEmail('[name="email"]'),
       useValidator.minLength('[name="password"]', 6),
     ],
-    onSubmit: (data) => {
-      console.log("Login data:", data);
-      // Gọi API đăng nhập ở đây
+    onSubmit: async (data) => {
+      setMessage("");
+      const { email, password } = data;
+      try {
+        const result = await login(email, password);
+        console.log("API response:", result); // Debug phản hồi API
+        if (result.status === "success") {
+          localStorage.setItem("token", result.token);
+          navigate("/");
+        } else {
+          setMessage(result.message || "Email hoặc mật khẩu không đúng");
+        }
+      } catch (error) {
+        console.error("Unexpected error:", error); // Debug lỗi bất ngờ
+        setMessage("Đã xảy ra lỗi khi đăng nhập");
+      }
     },
   };
 
@@ -62,6 +80,7 @@ const LoginForm = () => {
             <button type="submit" disabled={isSubmitting}>
               Đăng nhập
             </button>
+            {message && <p className="loginForm--message">{message}</p>}
           </div>
 
           <div className="loginForm__register">

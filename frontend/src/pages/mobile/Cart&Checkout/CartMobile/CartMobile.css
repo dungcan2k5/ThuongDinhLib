@@ -1,4 +1,8 @@
 .cart-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
   padding: 16px;
   background-color: #fff;
   border-radius: 8px;
@@ -35,7 +39,9 @@
 .cart-header__button--remove button:hover {
   background-color: #d4ac0d;
 }
-
+.cart-content {
+  flex: 1;
+}
 .cart-content__products {
   list-style: none;
   padding: 0;

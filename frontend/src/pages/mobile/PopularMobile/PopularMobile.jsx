@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
 import BookCard from "../BookPages/BookCard";
 const PopularMobile = () => {
   const categories = ["Thể loại", "Văn học Việt Nam", "Văn học nước ngoài"];

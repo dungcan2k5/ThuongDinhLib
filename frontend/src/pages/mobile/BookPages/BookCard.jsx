@@ -1,17 +1,20 @@
 import "../PopularMobile/PopularMobile.css";
-import { getImgUrl } from "../../../utils/getImgUrl";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/features/cart/cartSlice";
+import { getApiUrl } from "../../../utils/apiUtils.js";
 const BookCard = ({ book }) => {
   const dispatch = useDispatch();
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
+  const imageUrl = book.image.startsWith("http")
+    ? book.image
+    : `${getApiUrl()}${book.image}`;
   return (
     <div className="book-card">
       <div className="book-card_container">
         <div className="book-image">
-          <img src={`${getImgUrl(book?.image)}`} alt={book.title} />
+          <img src={imageUrl} alt={book.title} />
         </div>
         <div className="book-details__gap">
           <div className="book-details">
