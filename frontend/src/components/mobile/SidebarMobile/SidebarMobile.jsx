@@ -27,7 +27,7 @@ const SidebarMobile = ({ isOpen, toggleSidebar, setIsLoggedIn }) => {
             </Link>
           </li>
           <li>
-            <Link to="/dashboard" onClick={toggleSidebar}>
+            <Link to="/user-dashboard" onClick={toggleSidebar}>
               Tài khoản
             </Link>
           </li>

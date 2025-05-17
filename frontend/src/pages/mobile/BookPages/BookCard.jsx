@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/features/cart/cartSlice";
 import { getApiUrl } from "../../../utils/apiUtils.js";
-import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 const BookCard = ({ book }) => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
@@ -26,13 +26,21 @@ const BookCard = ({ book }) => {
     <div className="book-card">
       <div className="book-card_container">
         <div className="book-image">
-          <img src={imageUrl} alt={book.title} />
+          <Link to={`/book/${book._id?.$oid || book._id}`}>
+            <img src={imageUrl} alt={book.title} />
+          </Link>
         </div>
+
         <div className="book-details__gap">
-          <div className="book-details">
-            <h3>{book.title}</h3>
-            <p>{book.description}</p>
-            <div className="book-price">{book.price}₫</div>
+          <div className="bookcard-details">
+            <Link to={`/book/${book._id?.$oid || book._id}`}>
+              <div>
+                <h3>{book.title}</h3>
+                <p>{book.description}</p>
+                <div className="book-price">{book.price}₫</div>
+              </div>
+            </Link>
+
             <div className="book-actions">
               <button
                 className="add-to-cart"

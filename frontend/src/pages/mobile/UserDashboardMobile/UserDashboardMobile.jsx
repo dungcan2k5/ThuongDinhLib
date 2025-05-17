@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import useValidator from "../../../hooks/useValidator";
-import './UserDashboardMobile.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import "./UserDashboardMobile.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 const UserDashboardMobile = () => {
   const [customer, setCustomer] = useState(null);
@@ -10,66 +10,71 @@ const UserDashboardMobile = () => {
   const [changePasswordMode, setChangePasswordMode] = useState(false);
 
   // useValidator
-  const {
-    values,
-    errors,
-    handleChange,
-    handleSubmit,
-    setValues,
-    setErrors,
-  } = useValidator({
-    rules: [
-      useValidator.isRequired('[name="name"]', 'Vui lòng nhập tên của bạn'),
-      useValidator.isRequired('[name="phone"]', 'Vui lòng nhập số điện thoại'),
-      useValidator.isPhone('[name="phone"]'),
-      useValidator.isRequired('[name="address"]', 'Vui lòng nhập địa chỉ'),
-      ...(changePasswordMode ? [
-        useValidator.minLength('[name="currentPassword"]', 6),
-        useValidator.minLength('[name="newPassword"]', 6),
-        useValidator.isConfirmed(
-          '[name="confirmPassword"]', () =>
-            document.querySelector('#userDashboardMobile [name="newPassword"]')?.value,
-          "Mật khẩu nhập lại không chính xác"
-        )
-      ] : [])
-    ],
+  const { values, errors, handleChange, handleSubmit, setValues, setErrors } =
+    useValidator({
+      rules: [
+        useValidator.isRequired('[name="name"]', "Vui lòng nhập tên của bạn"),
+        useValidator.isRequired(
+          '[name="phone"]',
+          "Vui lòng nhập số điện thoại"
+        ),
+        useValidator.isPhone('[name="phone"]'),
+        useValidator.isRequired('[name="address"]', "Vui lòng nhập địa chỉ"),
+        ...(changePasswordMode
+          ? [
+              useValidator.minLength('[name="currentPassword"]', 6),
+              useValidator.minLength('[name="newPassword"]', 6),
+              useValidator.isConfirmed(
+                '[name="confirmPassword"]',
+                () =>
+                  document.querySelector(
+                    '#userDashboardMobile [name="newPassword"]'
+                  )?.value,
+                "Mật khẩu nhập lại không chính xác"
+              ),
+            ]
+          : []),
+      ],
 
-    onSubmit: async (formValues) => {
-      const token = localStorage.getItem('token');
-      const submitData = { ...formValues };
+      onSubmit: async (formValues) => {
+        const token = localStorage.getItem("token");
+        const submitData = { ...formValues };
 
-      // Nếu không đổi mật khẩu thì loại bỏ các trường mật khẩu
-      if (!changePasswordMode) {
-        delete submitData.currentPassword;
-        delete submitData.newPassword;
-        delete submitData.confirmPassword;
-      }
-
-      try {
-        const res = await fetch("http://localhost:5001/api/customers/profile", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(submitData),
-        });
-
-        if (!res.ok) {
-          const errorData = await res.json(); // lấy message từ backend
-          throw new Error(errorData.message || "Cập nhật thất bại");
+        // Nếu không đổi mật khẩu thì loại bỏ các trường mật khẩu
+        if (!changePasswordMode) {
+          delete submitData.currentPassword;
+          delete submitData.newPassword;
+          delete submitData.confirmPassword;
         }
-        
-        alert("Cập nhật thành công");
 
-        fetchCustomerProfile(); // Load lại thông tin
-        setEditMode(false);
-        setChangePasswordMode(false);
-      } catch (err) {
-        alert("Lỗi khi cập nhật: " + err.message);
-      }
-    }
-  });
+        try {
+          const res = await fetch(
+            "http://localhost:5001/api/customers/profile",
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify(submitData),
+            }
+          );
+
+          if (!res.ok) {
+            const errorData = await res.json(); // lấy message từ backend
+            throw new Error(errorData.message || "Cập nhật thất bại");
+          }
+
+          alert("Cập nhật thành công");
+
+          fetchCustomerProfile(); // Load lại thông tin
+          setEditMode(false);
+          setChangePasswordMode(false);
+        } catch (err) {
+          alert("Lỗi khi cập nhật: " + err.message);
+        }
+      },
+    });
 
   const fetchCustomerProfile = async () => {
     try {
@@ -120,7 +125,7 @@ const UserDashboardMobile = () => {
   };
 
   const handleCancelChangePassword = () => {
-    setValues(prev => ({
+    setValues((prev) => ({
       ...prev,
       currentPassword: "",
       newPassword: "",
@@ -179,7 +184,9 @@ const UserDashboardMobile = () => {
             <div className="info-divider"></div>
 
             <div className="userDashboardMobile__infor">
-              <h6 className="userDashboardMobile__infor--label">Số điện thoại</h6>
+              <h6 className="userDashboardMobile__infor--label">
+                Số điện thoại
+              </h6>
               {editMode ? (
                 <div className="input--wrapper">
                   <input
@@ -189,7 +196,9 @@ const UserDashboardMobile = () => {
                     value={values.phone || ""}
                     onChange={handleChange}
                   />
-                  {errors.phone && <p className="error--text">{errors.phone}</p>}
+                  {errors.phone && (
+                    <p className="error--text">{errors.phone}</p>
+                  )}
                 </div>
               ) : (
                 <p>{customer.phone}</p>
@@ -209,7 +218,9 @@ const UserDashboardMobile = () => {
                     value={values.address || ""}
                     onChange={handleChange}
                   />
-                  {errors.address && <p className="error--text">{errors.address}</p>}
+                  {errors.address && (
+                    <p className="error--text">{errors.address}</p>
+                  )}
                 </div>
               ) : (
                 <p>{customer.address}</p>
@@ -227,7 +238,11 @@ const UserDashboardMobile = () => {
             </button>
           ) : (
             <div className="infor__btn__group">
-              <button type="button" className="cancel__infor__btn" onClick={handleCancelChangeInfor}>
+              <button
+                type="button"
+                className="cancel__infor__btn"
+                onClick={handleCancelChangeInfor}
+              >
                 Quay lại
               </button>
               <button type="submit" className="save__infor__btn">
@@ -274,7 +289,9 @@ const UserDashboardMobile = () => {
                       value={values.currentPassword || ""}
                       onChange={handleChange}
                     />
-                    {errors.currentPassword && <p className="error--text">{errors.currentPassword}</p>}
+                    {errors.currentPassword && (
+                      <p className="error--text">{errors.currentPassword}</p>
+                    )}
                   </div>
 
                   <div className="input--wrapper margining">
@@ -286,7 +303,9 @@ const UserDashboardMobile = () => {
                       value={values.newPassword || ""}
                       onChange={handleChange}
                     />
-                    {errors.newPassword && <p className="error--text">{errors.newPassword}</p>}
+                    {errors.newPassword && (
+                      <p className="error--text">{errors.newPassword}</p>
+                    )}
                   </div>
 
                   <div className="input--wrapper">
@@ -298,11 +317,17 @@ const UserDashboardMobile = () => {
                       value={values.confirmPassword || ""}
                       onChange={handleChange}
                     />
-                    {errors.confirmPassword && <p className="error--text">{errors.confirmPassword}</p>}
+                    {errors.confirmPassword && (
+                      <p className="error--text">{errors.confirmPassword}</p>
+                    )}
                   </div>
 
                   <div className="btn__password__group">
-                    <button type="button" className="cancel__password__btn" onClick={handleCancelChangePassword}>
+                    <button
+                      type="button"
+                      className="cancel__password__btn"
+                      onClick={handleCancelChangePassword}
+                    >
                       Quay lại
                     </button>
                     <button type="submit" className="save__password__btn">

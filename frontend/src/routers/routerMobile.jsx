@@ -8,6 +8,7 @@ import UserDashboardMobile from "../pages/mobile/UserDashboardMobile/UserDashboa
 import CartMobile from "../pages/mobile/Cart&Checkout/CartMobile/CartMobile.jsx";
 import CheckoutMobile from "../pages/mobile/Cart&Checkout/CheckoutMobile/CheckoutMobile.jsx";
 import OrderMobile from "../pages/mobile/Cart&Checkout/OrderMobile/OrderMobile.jsx";
+import BookDetails from "../pages/mobile/BookPages/BookDetails.jsx";
 const routerMobile = createBrowserRouter([
   {
     path: "/",
@@ -40,6 +41,10 @@ const routerMobile = createBrowserRouter([
       {
         path: "/orders",
         element: <OrderMobile />,
+      },
+      {
+        path: "/book/:id",
+        element: <BookDetails />,
       },
     ],
   },

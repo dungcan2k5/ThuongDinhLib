@@ -3,7 +3,12 @@ import "./OrderMobile.css";
 import { getApiUrl } from "../../../../utils/apiUtils";
 const OrderMobile = () => {
   const order = useSelector((state) => state.order.currentOrder);
-
+  const formatPrice = (priceObj) => {
+    if (typeof priceObj === "object" && "$numberDecimal" in priceObj) {
+      return parseFloat(priceObj.$numberDecimal);
+    }
+    return priceObj;
+  };
   if (!order) {
     return (
       <p style={{ fontSize: "1.5rem" }}>Không có đơn hàng nào được đặt.</p>
@@ -26,7 +31,7 @@ const OrderMobile = () => {
         <strong>Số điện thoại:</strong> {order.phone}
       </p>
       <p>
-        <strong>Tổng tiền:</strong> {order.totalPrice}₫
+        <strong>Tổng tiền:</strong> {order.totalPrice.toLocaleString()}₫
       </p>
 
       <h3>Sản phẩm đã đặt:</h3>

@@ -20,7 +20,7 @@ const CartMobile = () => {
   }, [isLoggedIn]);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
-  const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
+
   const handleRemoveFromCart = (product) => {
     dispatch(removeFromCart(product));
   };
@@ -28,6 +28,16 @@ const CartMobile = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+  const formatPrice = (priceObj) => {
+    if (typeof priceObj === "object" && "$numberDecimal" in priceObj) {
+      return parseFloat(priceObj.$numberDecimal);
+    }
+    return priceObj;
+  };
+  const totalPrice = cartItems.reduce(
+    (acc, item) => acc + formatPrice(item.price),
+    0
+  );
 
   return (
     <>
@@ -58,7 +68,7 @@ const CartMobile = () => {
                         <h3>
                           <Link to="/">{product?.title}</Link>
                         </h3>
-                        <p>{product?.price}</p>
+                        <p>{formatPrice(product.price).toLocaleString()}</p>
                         <p>
                           <strong>Thể loại: </strong>
                           {product?.category}
@@ -98,7 +108,7 @@ const CartMobile = () => {
           <div className="total-price">
             <div className="total-price-title">
               <p>Tổng tiền: </p>
-              <p>{totalPrice ? totalPrice : 0}₫</p>
+              <p>{totalPrice ? totalPrice.toLocaleString() : 0}₫</p>
             </div>
           </div>
           <div className="cart-footer__checkout">

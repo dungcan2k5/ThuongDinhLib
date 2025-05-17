@@ -64,14 +64,14 @@
   align-items: center;
 }
 
-.book-details h3 {
+.bookcard-details h3 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
   color: #2c3e50;
   font-weight: 500;
 }
 
-.book-details p {
+.bookcard-details p {
   font-size: 1.2rem;
   color: #7f8c8d;
   margin-bottom: 0.5rem;
@@ -93,7 +93,6 @@
   border: none;
   border-radius: 0.25rem;
   font-size: 1rem;
-  cursor: pointer;
   background-color: #f1c40f;
   color: #fff;
   display: flex;

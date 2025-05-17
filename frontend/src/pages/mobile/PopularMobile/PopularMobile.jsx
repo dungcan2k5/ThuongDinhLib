@@ -6,7 +6,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import BookCard from "../BookPages/BookCard";
 const PopularMobile = () => {
-  const categories = ["Thể loại", "Văn học Việt Nam", "Văn học nước ngoài"];
+  const categories = [
+    "Thể loại",
+    "Văn học Việt Nam",
+    "Văn học nước ngoài",
+    "Văn học thiếu nhi",
+    "Kỹ năng sống",
+    "Trinh thám",
+  ];
 
   const [books, setBooks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("Thể loại");

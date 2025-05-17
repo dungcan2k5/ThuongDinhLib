@@ -8,7 +8,7 @@ import "./CheckoutMobile.css";
 
 const CheckoutPage = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -46,16 +46,25 @@ const CheckoutPage = () => {
       navigate("/orders");
     });
   };
-
+  const formatPrice = (priceObj) => {
+    if (typeof priceObj === "object" && "$numberDecimal" in priceObj) {
+      return parseFloat(priceObj.$numberDecimal);
+    }
+    return priceObj;
+  };
+  const totalPrice = cartItems.reduce(
+    (acc, item) => acc + formatPrice(item.price),
+    0
+  );
   return (
     <section className="checkout">
       <div className="checkout__container">
         <div className="checkout__summary">
           <h2 className="checkout__title">Tiền hàng</h2>
           <p className="checkout__text">
-            Tổng tiền: {totalPrice ? totalPrice : 0}₫
+            Tổng tiền: {totalPrice ? totalPrice.toLocaleString() : 0}₫
           </p>
-          <p className="checkout__text">Items: {cartItems.length}</p>
+          <p className="checkout__text">Số lượng: {cartItems.length}</p>
         </div>
 
         <div className="checkout__form-container">
@@ -63,7 +72,7 @@ const CheckoutPage = () => {
             <div className="checkout__section">
               <p className="checkout__section-title">Thông tin cá nhân</p>
               <p className="checkout__section-subtitle">
-                Điền đầy đủ thông tin.
+                Vui lòng điền đầy đủ thông tin.
               </p>
             </div>
 

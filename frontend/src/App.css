@@ -44,3 +44,10 @@ body,
 .html {
   scroll-behavior: smooth;
 }
+a {
+  text-decoration: none;
+  color: black;
+}
+li {
+  list-style: none;
+}
