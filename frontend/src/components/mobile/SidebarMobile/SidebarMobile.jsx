@@ -1,10 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./SidebarMobile.css";
 import Logo from "../../../../public/ThuongDinhLib.png";
-const SidebarMobile = ({ isOpen, toggleSidebar }) => {
+import { useAuth } from "../../../context/AuthContext";
+const SidebarMobile = ({ isOpen, toggleSidebar, setIsLoggedIn }) => {
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
+  const { logout } = useAuth();
+
   return (
     <>
-      {/* Sidebar */}
       <div className={`sidebar ${isOpen ? "open" : ""}`}>
         <ul>
           <li>
@@ -28,14 +32,31 @@ const SidebarMobile = ({ isOpen, toggleSidebar }) => {
             </Link>
           </li>
           <li>
-            <Link to="/" onClick={toggleSidebar}>
-              Đăng xuất
-            </Link>
+            {isLoggedIn ? (
+              <button
+                onClick={() => {
+                  logout();
+                  toggleSidebar();
+                }}
+                className="logout-btn"
+              >
+                Đăng xuất
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  navigate("/login");
+                  toggleSidebar();
+                }}
+                className="logout-btn"
+              >
+                Đăng nhập
+              </button>
+            )}
           </li>
         </ul>
       </div>
 
-      {/* Overlay */}
       {isOpen && (
         <div className="sidebar-overlay" onClick={toggleSidebar}></div>
       )}

@@ -1,54 +1,51 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-// import { useAuth } from "../../context/AuthContext";
+import { createOrder } from "../../../../redux/features/cart/orderSlice";
+import { clearCart } from "../../../../redux/features/cart/cartSlice";
 import Swal from "sweetalert2";
-// import { useCreateOrderMutation } from "../../redux/features/orders/ordersApi";
 import "./CheckoutMobile.css";
 
 const CheckoutPage = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
-  //   const { currentUser } = useAuth();
-  //   const navigate = useNavigate();
-  //   const [createOrder, { isLoading }] = useCreateOrderMutation();
-  const [isChecked, setIsChecked] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  //   const {
-  //     register,
-  //     handleSubmit,
-  //     formState: { errors },
-  //   } = useForm();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    city: "",
+  });
 
-  //   const onSubmit = async (data) => {
-  // const newOrder = {
-  //   name: data.name,
-  //   email: currentUser?.email,
-  //   address: {
-  //     city: data.city,
-  //   },
-  //   phone: data.phone,
-  //   productIds: cartItems.map((item) => item?._id),
-  //   totalPrice: totalPrice,
-  // };
-  // try {
-  //   await createOrder(newOrder).unwrap();
-  //   Swal.fire({
-  //     title: "Confirmed Order",
-  //     text: "Your order placed successfully!",
-  //     icon: "success",
-  //     confirmButtonColor: "#3085d6",
-  //     confirmButtonText: "Yes, It's Okay!",
-  //   });
-  //   navigate("/orders");
-  // } catch (error) {
-  //   console.error("Error placing order", error);
-  //   alert("Failed to place an order");
-  // }
-  //   };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
 
-  //   if (isLoading) return <div>Loading....</div>;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { name, email, phone, address, city } = formData;
+
+    if (!name || !email || !phone || !address || !city) {
+      Swal.fire("Lỗi", "Vui lòng điền đầy đủ thông tin!", "error");
+      return;
+    }
+
+    const order = {
+      ...formData,
+      products: cartItems,
+      totalPrice,
+      createdAt: new Date().toISOString(),
+    };
+
+    dispatch(createOrder(order));
+    Swal.fire("Thành công", "Đơn hàng đã được đặt!", "success").then(() => {
+      dispatch(clearCart());
+      navigate("/orders");
+    });
+  };
 
   return (
     <section className="checkout">
@@ -62,7 +59,7 @@ const CheckoutPage = () => {
         </div>
 
         <div className="checkout__form-container">
-          <form className="checkout__form">
+          <form className="checkout__form" onSubmit={handleSubmit}>
             <div className="checkout__section">
               <p className="checkout__section-title">Thông tin cá nhân</p>
               <p className="checkout__section-subtitle">
@@ -75,10 +72,11 @@ const CheckoutPage = () => {
                 Họ và tên
               </label>
               <input
-                // {...register("name", { required: true })}
                 type="text"
                 id="name"
                 className="checkout__input"
+                onChange={handleChange}
+                value={formData.name}
               />
             </div>
 
@@ -90,8 +88,8 @@ const CheckoutPage = () => {
                 type="text"
                 id="email"
                 className="checkout__input"
-                disabled
-                // defaultValue={currentUser?.email}
+                onChange={handleChange}
+                value={formData.email}
               />
             </div>
 
@@ -100,10 +98,11 @@ const CheckoutPage = () => {
                 Số điện thoại
               </label>
               <input
-                // {...register("phone", { required: true })}
                 type="number"
                 id="phone"
                 className="checkout__input"
+                onChange={handleChange}
+                value={formData.phone}
               />
             </div>
 
@@ -112,10 +111,11 @@ const CheckoutPage = () => {
                 địa chỉ
               </label>
               <input
-                // {...register("address", { required: true })}
                 type="text"
                 id="address"
                 className="checkout__input"
+                onChange={handleChange}
+                value={formData.address}
               />
             </div>
 
@@ -124,10 +124,11 @@ const CheckoutPage = () => {
                 Thành phố
               </label>
               <input
-                // {...register("city", { required: true })}
-                // type="text"
+                type="text"
                 id="city"
                 className="checkout__input"
+                onChange={handleChange}
+                value={formData.city}
               />
             </div>
 

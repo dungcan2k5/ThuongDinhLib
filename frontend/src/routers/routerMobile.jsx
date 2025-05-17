@@ -7,6 +7,7 @@ import MainLayoutMobile from "../layouts/mobile/MainLayoutMobile.jsx";
 import UserDashboardMobile from "../pages/mobile/UserDashboardMobile/UserDashboardMobile.jsx";
 import CartMobile from "../pages/mobile/Cart&Checkout/CartMobile/CartMobile.jsx";
 import CheckoutMobile from "../pages/mobile/Cart&Checkout/CheckoutMobile/CheckoutMobile.jsx";
+import OrderMobile from "../pages/mobile/Cart&Checkout/OrderMobile/OrderMobile.jsx";
 const routerMobile = createBrowserRouter([
   {
     path: "/",
@@ -35,6 +36,10 @@ const routerMobile = createBrowserRouter([
       {
         path: "/checkout",
         element: <CheckoutMobile />,
+      },
+      {
+        path: "/orders",
+        element: <OrderMobile />,
       },
     ],
   },

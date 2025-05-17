@@ -1,5 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useAuth } from "../../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getApiUrl } from "../../../../utils/apiUtils";
 import "./CartMobile.css";
@@ -8,6 +10,14 @@ import {
   clearCart,
 } from "../../../../redux/features/cart/cartSlice";
 const CartMobile = () => {
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [isLoggedIn]);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
   const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
@@ -18,6 +28,7 @@ const CartMobile = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+
   return (
     <>
       <div className="cart-container">

@@ -49,3 +49,12 @@
   width: 100%;
   box-sizing: border-box;
 }
+.logout-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  width: 100%;
+  text-align: left;
+  font-size: 18px;
+}

@@ -1,19 +1,28 @@
-// src/context/AuthContext.jsx
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return !!localStorage.getItem("token");
+  });
 
-  const login = (userData) => setCurrentUser(userData);
-  const logout = () => setCurrentUser(null);
+  const logout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  };
+
+  const login = (token) => {
+    localStorage.setItem("token", token);
+    setIsLoggedIn(true);
+  };
 
   return (
-    <AuthContext.Provider value={{ currentUser, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
+// Hook để dùng trong các component
 export const useAuth = () => useContext(AuthContext);

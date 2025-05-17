@@ -1,27 +1,31 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./HeaderMobile.css";
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaRegCircleUser } from "react-icons/fa6";
 import SidebarMobile from "../SidebarMobile/SidebarMobile";
 import avatarImg from "../../../../public/avatar.png";
-
+import { useAuth } from "../../../context/AuthContext";
 const navigation = [
   { name: "Tài khoản", href: "/user-dashboard" },
-  { name: "Đơn mua", href: "/cart" },
+  { name: "Đơn mua", href: "/orders" },
   { name: "Thanh toán", href: "/checkout" },
 ];
 
 const HeaderMobile = () => {
+  const { isLoggedIn, logout } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-  const [currentUser, setCurrentUser] = useState(true);
+
+  const dropdownRef = useRef(null);
+  const navigate = useNavigate();
+
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-  const dropdownRef = useRef(null);
 
+  // Đóng dropdown khi click ngoài
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -41,6 +45,7 @@ const HeaderMobile = () => {
         <div className="header-mobile__nav" onClick={toggleSidebar}>
           <HiMiniBars3CenterLeft />
         </div>
+
         <div className="header-mobile__search">
           <div className="header-mobile__search--icon">
             <IoSearchOutline />
@@ -53,9 +58,10 @@ const HeaderMobile = () => {
             />
           </div>
         </div>
+
         <div className="header-mobile__user" ref={dropdownRef}>
           <div>
-            {currentUser ? (
+            {isLoggedIn ? (
               <>
                 <button onClick={() => setIsDropDownOpen(!isDropDownOpen)}>
                   <img src={avatarImg} alt="avatarImg" />
@@ -73,13 +79,19 @@ const HeaderMobile = () => {
                         </Link>
                       </li>
                     ))}
-
                     <li>
-                      <Link to="/" className="user-nav__item">
-                        <button onClick={() => setCurrentUser(!currentUser)}>
+                      <div className="user-nav__item">
+                        {" "}
+                        <button
+                          onClick={() => {
+                            logout();
+                            setIsLoggedIn(false);
+                            setIsDropDownOpen(false);
+                          }}
+                        >
                           Đăng xuất
                         </button>
-                      </Link>
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -92,6 +104,7 @@ const HeaderMobile = () => {
           </div>
         </div>
       </div>
+
       <SidebarMobile isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
     </>
   );

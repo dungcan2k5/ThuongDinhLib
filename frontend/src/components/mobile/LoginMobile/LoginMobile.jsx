@@ -1,84 +1,52 @@
-
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-
 import useValidator from "../../../hooks/useValidator";
-import login from "../../../services/loginService";
 import "./LoginMobile.css";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import login from '../../../services/loginService'
-
+import loginService from "../../../services/loginService";
+import { useAuth } from "../../../context/AuthContext";
 const LoginForm = () => {
+  const { login: authLogin } = useAuth();
 
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
-
-  const validatorOptions = {
+  const useValidatorOptions = {
     rules: [
-      useValidator.isEmail('[name="email"]'),
-      useValidator.minLength('[name="password"]', 6),
+      useValidator.isRequired('[name="email"]', "Vui lòng nhập email"),
+      useValidator.isEmail('[name="email"]', "Email không hợp lệ"),
+      useValidator.isRequired('[name="password"]', "Vui lòng nhập mật khẩu"),
+      useValidator.minLength(
+        '[name="password"]',
+        6,
+        "Mật khẩu tối thiểu 6 ký tự"
+      ),
     ],
-    onSubmit: async (data) => {
+    onSubmit: async (values) => {
       setMessage("");
-      const { email, password } = data;
+      const { email, password } = values;
+
       try {
-        const result = await login(email, password);
-        console.log("API response:", result); // Debug phản hồi API
+        const result = await loginService(email, password);
+
         if (result.status === "success") {
           localStorage.setItem("token", result.token);
-          navigate("/");
+          setMessage("");
+          authLogin(result.token);
+          navigate("/", { replace: true });
         } else {
-          setMessage(result.message || "Email hoặc mật khẩu không đúng");
+          setMessage(result.message || "Thông tin đăng nhập không chính xác");
         }
       } catch (error) {
-        console.error("Unexpected error:", error); // Debug lỗi bất ngờ
-        setMessage("Đã xảy ra lỗi khi đăng nhập");
+        console.error("Login error:", error);
+        setMessage(
+          error.response?.data?.message || "Thông tin đăng nhập không chính xác"
+        );
       }
     },
   };
 
-    const useValidatorOptions = {
-      rules: [
-        useValidator.isRequired('[name="email"]', 'Vui lòng nhập email'),
-        useValidator.isEmail('[name="email"]', 'Email không hợp lệ'),
-        useValidator.isRequired('[name="password"]', 'Vui lòng nhập mật khẩu'),
-        useValidator.minLength('[name="password"]', 6, 'Mật khẩu tối thiểu 6 ký tự')
-      ],
-      onSubmit: async (values) => {
-        setMessage('');
-        const { email, password } = values;
-        
-        try {
-          const result = await login(email, password);
-          
-          if (result.status === 'success') {
-            // Lưu token và thông tin user nếu cần
-            localStorage.setItem('token', result.token);
-            
-            // Chuyển hướng với state nếu cần
-            navigate('/', { state: { from: 'login' } });
-          } else {
-            setMessage(result.message || "Thông tin đăng nhập không chính xác");
-          }
-        } catch (error) {
-          console.error('Login error:', error);
-          setMessage(error.response?.data?.message || "Thông tin đăng nhập không chính xác");
-        }
-      }
-    };
-
-  const {
-    values,
-    errors,
-    handleChange,
-    handleSubmit,
-    isSubmitting
-  } = useValidator(useValidatorOptions)
-
-
+  const { values, errors, handleChange, handleSubmit, isSubmitting } =
+    useValidator(useValidatorOptions);
 
   return (
     <div className="login__mobile">
@@ -122,13 +90,11 @@ const LoginForm = () => {
             <button type="submit" disabled={isSubmitting}>
               Đăng nhập
             </button>
-            {message && <p className="loginForm--message">{message}</p>}
           </div>
 
           <p className="login__fail">{message}</p>
-          
+
           <div className="loginForm__register">
-            
             <p className="loginForm--register--title">Chưa có tài khoản?</p>
             <Link to="/register" className="loginForm__register--link">
               Đăng ký
