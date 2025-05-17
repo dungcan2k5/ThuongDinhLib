@@ -31,7 +31,8 @@ const OrderMobile = () => {
         <strong>Số điện thoại:</strong> {order.phone}
       </p>
       <p>
-        <strong>Tổng tiền:</strong> {order.totalPrice.toLocaleString()}₫
+        <strong>Tổng tiền:</strong>{" "}
+        {formatPrice(order.totalPrice).toLocaleString()}₫
       </p>
 
       <h3>Sản phẩm đã đặt:</h3>
@@ -45,7 +46,9 @@ const OrderMobile = () => {
             />
             <div className="product-info">
               <p className="product-title">{product.title}</p>
-              <p className="product-price">{product.price}₫</p>
+              <p className="product-price">
+                {formatPrice(product.price).toLocaleString()}₫
+              </p>
             </div>
           </li>
         ))}
