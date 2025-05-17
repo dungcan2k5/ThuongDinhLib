@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './LoginFormDesktop.css'
 import { Link } from 'react-router-dom'
-import logo from '../../assets/logo/logo_trang.png'
-import useValidator from '../../hooks/useValidator'
-import login from '../../services/loginService'
+import logo from '../../../assets/logo/logo_trang.png'
+import useValidator from '../../../hooks/useValidator'
+import login from '../../../services/loginService'
 
 
 const LoginFormDesktop = () => {

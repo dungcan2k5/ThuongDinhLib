@@ -3,7 +3,7 @@ import getCategory from "../../../services/bookCategoryGet";
 import categorySearch from "../../../services/categorySearch";
 import { getApiUrl } from "../../../utils/apiUtils";
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import BookInfor from "../BookInfor";
+import BookInfor from "../BookInfor/BookInfor";
 import './h.css';
 
 const HDesktop = () => {

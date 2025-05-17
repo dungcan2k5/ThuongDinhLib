@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import './record.css';
-import { getApiUrl } from "../../utils/apiUtils";
-import getUserIdFromToken from "../../../../backend/utils/decodeId";
+import { getApiUrl } from "../../../utils/apiUtils";
+import getUserIdFromToken from "../../../../../backend/utils/decodeId";
 
 const Record = ({ book, onCLose, onBorrowSuccess }) => {
     const [formData, setFormData] = useState({
@@ -65,7 +65,7 @@ const Record = ({ book, onCLose, onBorrowSuccess }) => {
         localStorage.setItem(`orders_${userId}`, JSON.stringify(updatedOrders));
 
         alert("Đơn hàng đã được lưu vào localStorage!");
-        onBorrowSuccess(); // gọi sau khi xác nhận thành công
+        onBorrowSuccess();
     };
 
     return (
@@ -84,8 +84,6 @@ const Record = ({ book, onCLose, onBorrowSuccess }) => {
                                         <div className="record__bookinfor">
                                             <h3>{item.title}</h3>
                                             <h4>{item.author}</h4>
-                                            <p><span className="Record__date">Ngày mượn: </span>{formatDate(borrowDate)}</p>
-                                            <p><span className="Record__date">Đến hạn: </span>{formatDate(dueDate)}</p>
                                         </div>
                                         <div className="record__price">
                                             <p>
@@ -102,7 +100,9 @@ const Record = ({ book, onCLose, onBorrowSuccess }) => {
                                 <p>Không có sách nào để hiển thị.</p>
                             )}
                             <div className="record__total">
-                                <p>Tổng tiền: {totalPrice.toLocaleString("vi-VN")}đ</p>
+                                <p className="Record__day"><span className="Record__date">Ngày mượn: </span>{formatDate(borrowDate)}</p>
+                                <p className="Record__day"><span className="Record__date">Đến hạn: </span>{formatDate(dueDate)}</p>
+                                <p><span className="Record__date">Tổng tiền: </span>{totalPrice.toLocaleString("vi-VN")}đ</p>
                             </div>
                         </div>
 

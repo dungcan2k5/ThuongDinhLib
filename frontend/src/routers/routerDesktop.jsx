@@ -7,6 +7,7 @@ import DashboardDesktop from '../pages/desktop/DashboardDesktop';
 import LoginDesktop from '../pages/desktop/LoginDesktop';
 import RegisterDesktop from '../pages/desktop/RegisterDesktop';
 import CartDesktop from '../pages/desktop/CartDesktop';
+import HistoryDesktop from '../pages/desktop/HistoryDesktop';
 
 import ManageAccounts from '../pages/admin/ManageAccounts';
 import ManageBooks from '../pages/admin/ManageBooks';
@@ -26,7 +27,7 @@ const routerDesktop = createBrowserRouter([
       { path: 'login', element: <LoginDesktop /> },
       { path: 'register', element: <RegisterDesktop /> },
       { path: 'cart', element: <CartDesktop /> },
-      { path: 'oh', element: <OrderHistory /> },
+      { path: 'history', element: <HistoryDesktop /> },
 
     ],
   },

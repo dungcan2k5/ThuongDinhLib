@@ -3,7 +3,7 @@ import getUserIdFromToken from "../../../../../backend/utils/decodeId";
 import { getApiUrl } from "../../../utils/apiUtils";
 import { FaTimes } from "react-icons/fa";
 import './Cart.css';
-import Record from "../record";
+import Record from "../record/record";
 
 const getCartForCurrentUser = () => {
     const userId = getUserIdFromToken();

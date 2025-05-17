@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import fetchProfile from "../../../services/userService";
 import './UserDashboard.css'
 import { FaUser } from "react-icons/fa";
-import ChangeInforForm from "../changeInforForm";
+import ChangeInforForm from "../changeInforForm/changeInforForm";
 import PasswordChange from "../passwordChange/passwordChange";
 import { faL } from "@fortawesome/free-solid-svg-icons";
 
@@ -69,7 +69,7 @@ const UserDashboard = () => {
     };
 
     if (!logined) {
-      return <div style={{ color: "red", padding: "1rem" }}>Bạn chưa đăng nhập. Vui lòng đăng nhập để xem thông tin tài khoản.</div>;
+      return <div style={{ color: "red", padding: "2rem", fontSize: "2rem", textAlign: "center" }}>Bạn chưa đăng nhập. Vui lòng đăng nhập để xem thông tin tài khoản.</div>;
     }
 
       return (

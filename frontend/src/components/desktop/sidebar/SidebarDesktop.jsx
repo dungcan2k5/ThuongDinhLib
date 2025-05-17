@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaHome, FaUser, FaShoppingCart, FaThList } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { FaHistory } from "react-icons/fa";
 import './SideBarDesktop.css'
 
 const SlideBar = () => {
@@ -23,6 +24,9 @@ const SlideBar = () => {
     const toCart = () => {
         navigate('/cart')
     }    //
+    const toOrderHistory = () => {
+        navigate('/history')
+    }    //
     return (
         <div 
             className={`sideBar ${isExpanded || isHovered ? 'expanded' : ''}`}
@@ -41,6 +45,10 @@ const SlideBar = () => {
                 <li className="sideBar__item" onClick={() => toCart()}>
                     <FaShoppingCart className="SideBar__Cart-icon"/>
                     <span className="sideBar__text">{(isExpanded || isHovered) && 'Giỏ hàng'}</span>
+                </li>
+                <li className="sideBar__item" onClick={() => toOrderHistory()}>
+                    <FaHistory className="SideBar__Account-icon"/>
+                    <span className="sideBar__text">{(isExpanded || isHovered) && 'Đơn mua'}</span>
                 </li>
                 <li className="sideBar__item" onClick={() => toDashboard()}>
                     <FaUser className="SideBar__Account-icon"/>

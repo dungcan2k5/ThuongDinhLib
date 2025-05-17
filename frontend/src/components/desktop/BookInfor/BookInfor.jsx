@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getApiUrl } from "../../utils/apiUtils";
+import { getApiUrl } from "../../../utils/apiUtils";
 import './BookInfor.css'
-import loginCheck from "../../utils/loginCheck";
-import LoginAlertPopup from "../../utils/loginAlertPopup";
-import getUserIdFromToken from "../../../../backend/utils/decodeId";
+import loginCheck from "../../../utils/loginCheck";
+import LoginAlertPopup from "../../../utils/loginAlertPopup";
+import getUserIdFromToken from "../../../../../backend/utils/decodeId";
 
 const BookInfor = ({book}) => {
     const [popUpAlert, setPopUpAlert] = useState(false)

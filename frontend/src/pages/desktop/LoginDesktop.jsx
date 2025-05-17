@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginFormDesktop from '../../components/desktop/LoginFormDesktop'
+import LoginFormDesktop from '../../components/desktop/loginForm/LoginFormDesktop'
 import './LoginDesktop.css'
 
 const LoginDesktop = () => {

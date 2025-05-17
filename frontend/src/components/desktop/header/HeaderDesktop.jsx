@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { searchBooks } from "../../services/bookService"; // Đảm bảo import đúng đường dẫn
-import { getApiUrl } from "../../utils/apiUtils";
+import { searchBooks } from "../../../services/bookService"; // Đảm bảo import đúng đường dẫn
+import { getApiUrl } from "../../../utils/apiUtils";
 import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import "./HeaderDesktop.css"
-import loginCheck from "../../utils/loginCheck";
-import BookInfor from "./BookInfor"
+import loginCheck from "../../../utils/loginCheck";
+import BookInfor from "../BookInfor/BookInfor";
 
 const HeaderDesktop = () => {
     const [logined, setLogined] = useState(true)
@@ -47,6 +47,7 @@ const HeaderDesktop = () => {
             <li className="header__right-item"><Link to="/">Home</Link></li>
             <li className="header__right-item"><Link to="/cart">Giỏ hàng</Link></li>
             <li className="header__right-item"><Link to="/dashboard">Tài khoản</Link></li>
+            <li className="header__right-item"><Link to="/history">Đơn mua</Link></li>
             <li className="header__right-item"><Link to="/login" onClick={logout}>Đăng xuất</Link></li>
         </ul>
     );

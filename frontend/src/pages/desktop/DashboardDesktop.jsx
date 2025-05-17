@@ -1,6 +1,6 @@
 import React from 'react'
 import UserDashboard from '../../components/desktop/userDashboard/UserDashboard'
-import SlideBar from '../../components/desktop/SidebarDesktop'
+import SlideBar from '../../components/desktop/sidebar/SidebarDesktop'
 import './DashBoardDesktop.css'
 const DashboardDesktop = () => {
   return (

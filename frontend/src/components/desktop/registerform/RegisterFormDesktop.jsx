@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import './RegisterFormDesktop.css'
-import logo from '../../assets/logo/logo_trang.png'
+import logo from '../../../assets/logo/logo_trang.png'
 import { Link } from 'react-router-dom'
-import useValidator from '../../hooks/useValidator'
-import register from '../../services/registerService'
+import useValidator from '../../../hooks/useValidator'
+import register from '../../../services/registerService'
 
 const RegisterFormDesktop = () => {
  const[successMessage, setSuccessMessage] = useState('')

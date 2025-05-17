@@ -1,5 +1,5 @@
 import React from "react";
-import changeInfor from "../../services/changeInfor";
+import changeInfor from "../../../services/changeInfor";
 import { useState, useEffect, useRef } from "react";
 import './changeInforForm.css'
 
