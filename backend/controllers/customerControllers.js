@@ -55,26 +55,31 @@ export const loginCustomer = asyncHandler(async (req, res) => {
 // @route   PUT /api/customers/profile
 // @access  Private
 export const updateCustomerProfile = asyncHandler(async (req, res) => {
-    const cus = req.cus;
-    if (cus) {
-        cus.name = req.body.name || cus.name;
-        cus.email = req.body.email || cus.email;
-        cus.phone = req.body.phone || cus.phone;
-        cus.address = req.body.address || cus.address;
-        cus.membershipDate = req.body.membershipDate || cus.membershipDate;
-        if (req.body.password) {
-            cus.password = hashPassword(req.body.password);
-}
-
-        await cus.save();
-        res.json({
-            message: "Cập nhật thông tin thành công",
-        });
-    } else {
-        res.status(404).json({
-            message: "Không tìm thấy customer",
-        });
+  const customer = await Customer.findById(req.cus._id).select('+password');
+  if (!customer) {
+    return res.status(404).json({ message: 'Không tìm thấy người dùng' });
+  }
+  if (req.body.currentPassword) {
+    const isMatch = await bcrypt.compare(req.body.currentPassword.trim(), customer.password);
+    if (!isMatch) {
+        return res.status(400).json({ message: 'Mật khẩu hiện tại không đúng' });
     }
+
+  // Cập nhật mật khẩu mới (hash mới)
+    if (req.body.newPassword) {
+        const salt = await bcrypt.genSalt(10);
+        customer.password = await bcrypt.hash(req.body.newPassword, salt);
+    }
+  }
+  // So sánh mật khẩu hiện tại (có trim nếu cần)
+  // Cập nhật các thông tin khác
+  if (req.body.name) customer.name = req.body.name;
+  if (req.body.phone) customer.phone = req.body.phone;
+  if (req.body.address) customer.address = req.body.address;
+
+  await customer.save();
+
+  res.status(200).json({ message: 'Cập nhật thông tin thành công' });
 });
 
 // @desc    Get customer profile

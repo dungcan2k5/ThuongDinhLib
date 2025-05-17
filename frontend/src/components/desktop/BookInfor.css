@@ -10,6 +10,9 @@ html {
     width: 45%;
     height: 40rem;
     border-radius: 8px;
+
+    z-index: 10000;      /* để nổi trên overlay */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* tùy chọn: hiệu ứng nổi */
 }
 
 .bookInfor__img > img {

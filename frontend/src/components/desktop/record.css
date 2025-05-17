@@ -12,18 +12,27 @@
 
 .Record__content {
     background-color: #ffff;
-    width: 60rem;
+    width: 80rem;
     padding: 2rem;
     border-radius: 5px;
 }
 
 .Record__content > h2 {
     font-size: 2rem;
+    border-bottom: #999 solid 1px;
+    padding-bottom: 1rem;
 }
 
 .record__item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    border-bottom: #999 1px solid;
+    margin-bottom: 1rem;
+}
+
+.record_price {
+    display: flex;
     align-items: center;
 }
 
@@ -39,7 +48,7 @@
     margin-top: 0.6rem;
 }
 
-.record_price > p {
+.record__price > p {
     color: #A86523;
     font-size: 1.6rem;
 }
@@ -74,4 +83,40 @@
 .record__total > p {
     font-size: 1.5rem;
     color: #A86523;
+}
+
+.record__container {
+      display: flex;
+      justify-content: space-between;
+}
+
+.record__form {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5rem;
+}
+
+.record__form > label {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.record__form > h3 {
+    font-size: 2rem;
+}
+
+.record__form > input {
+    border: none;
+    border-bottom: #999 solid 1px;
+    margin-bottom: 2rem;
+    outline: none;
+}
+
+.Record__button {
+    align-self: flex-end;
+}
+
+.record__img > img {
+    width: 5rem;
+    margin-right: 2rem;
 }

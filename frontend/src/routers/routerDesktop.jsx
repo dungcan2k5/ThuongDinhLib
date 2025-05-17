@@ -14,6 +14,7 @@ import Statistics from '../pages/admin/Statistics';
 import ProtectedAdminRoute from "../components/admin/ProtectedAdminRoute";
 import AdminLogin from '../pages/admin/AdminLogin';
 import Logout from '../pages/admin/Logout';
+import OrderHistory from '../components/desktop/orderHistory/orderHistory';
 
 const routerDesktop = createBrowserRouter([
   {
@@ -24,6 +25,9 @@ const routerDesktop = createBrowserRouter([
       { path: 'dashboard', element: <DashboardDesktop /> },
       { path: 'login', element: <LoginDesktop /> },
       { path: 'register', element: <RegisterDesktop /> },
+      { path: 'cart', element: <CartDesktop /> },
+      { path: 'oh', element: <OrderHistory /> },
+
     ],
   },
   {

@@ -12,14 +12,15 @@ const RegisterFormDesktop = () => {
  const[cPass, setCPass] = useState('')
  const useValidatorOption = {
     rules: [
-      useValidator.isRequired('[name="password"]'),
-      useValidator.isRequired('[name="cPassword"]'),
+      useValidator.isRequired('[name="password"]', 'Vui lòng không để trống mật khẩu'),
+      useValidator.isRequired('[name="cPassword"]', 'Vui lòng xác nhận mật khẩu'),
       useValidator.isEmail('[name="email"]'),
-      useValidator.isRequired('[name="name"]'),
-      useValidator.isRequired('[name="email"]'),
-      useValidator.minLength('[name="password"]', 6),
+      useValidator.isRequired('[name="name"]', 'Vui lòng nhập tên người dùng'),
+      useValidator.isRequired('[name="email"]', 'vui lòng nhập email'),
       useValidator.isPhone('[name="phone"]'),
-      useValidator.isRequired('[name="phone"]'),
+      useValidator.minLength('[name="password"]', 6),
+      useValidator.minLength('[name="name"]', 5),
+      useValidator.isRequired('[name="phone"]', 'Vui lòng nhập số điện thoại'),
     ],
     onSubmit: async (values) => {
       setCPass('')
@@ -58,22 +59,28 @@ const RegisterFormDesktop = () => {
           <p className="register__des">Thư viện sách Thượng Đình</p>
           <form onSubmit = {handleSubmit} action="" className="register__form">
 
-            <input type="text" name = 'name' className="register__input" placeholder='Tên người dùng*' value={values.name || ''} onChange={handleChange}/>
+            <label htmlFor="" className='register__label'>Họ tên <span>*</span></label>
+            <input type="text" name = 'name' className="register__input" value={values.name || ''} onChange={handleChange}/>
             <p className="register__error">{errors.name}</p>
 
-            <input type="password" name = 'password' className="register__input" placeholder='Mật khẩu*' value={values.password || ''} onChange={handleChange}/>
+            <label htmlFor="" className='register__label'>Mật khẩu <span>*</span></label>
+            <input type="password" name = 'password' className="register__input" value={values.password || ''} onChange={handleChange}/>
             <p className="register__error">{errors.password}</p>
 
-            <input type="password" name = 'cPassword' className="register__input" placeholder='Xác nhận mật khẩu*' value={values.cPassword || ''} onChange={handleChange}/>
+            <label htmlFor="" className='register__label'>Xác nhận mật khẩu <span>*</span></label>
+            <input type="password" name = 'cPassword' className="register__input" value={values.cPassword || ''} onChange={handleChange}/>
             <p className="register__error">{cPass}</p>
 
-            <input type="text" name = 'email'  className="register__input" placeholder='Email*' value={values.email || ''} onChange={handleChange}/>
+            <label htmlFor="" className='register__label'>Email <span>*</span></label>
+            <input type="text" name = 'email'  className="register__input" value={values.email || ''} onChange={handleChange}/>
             <p className="register__error">{errors.email}</p>
 
-            <input type="text" name = 'phone' className="register__input" placeholder='Số điện thoại' value={values.phone || ''} onChange={handleChange}/>
+            <label htmlFor="" className='register__label'>Số điện thoại <span>*</span></label>
+            <input type="text" name = 'phone' className="register__input" value={values.phone || ''} onChange={handleChange}/>
             <p className="register__error">{errors.phone}</p>
 
-            <input type="text" name = 'address' className="register__input" placeholder='Địa chỉ' value={values.address || ''} onChange={handleChange}/>
+            <label htmlFor="" className='register__label'>Địa chỉ</label>
+            <input type="text" name = 'address' className="register__input" value={values.address || ''} onChange={handleChange}/>
 
             <div className="register__feature">
               <button type = 'submit'  className="register__confirm">Đăng kí</button>

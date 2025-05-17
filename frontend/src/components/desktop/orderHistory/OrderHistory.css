@@ -1,0 +1,105 @@
+.orderhistory {
+  padding: 20px;
+}
+
+.order-list {
+  list-style: none;
+  padding: 0;
+}
+
+
+.order-popup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.order-popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 100rem;
+  width: 90%;
+}
+
+.orderhistory > h2 {
+    font-size: 3rem;
+    margin-top: 0;
+}
+
+.orderhistory {
+    background-color: #fff;
+    margin: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.orderhistory__des {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.orderhistory__item {
+    border: #999 solid 1px;
+    padding: 2rem;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.orderhistory__item:hover {
+    background-color: #e0dede;
+    cursor: pointer;
+}
+
+.order-popup-content {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.order__data > p {
+    font-size: 1.4rem;
+}
+
+.order__book-data > h2 {
+    font-size: 1.4rem;
+}
+
+.order__data-item > span {
+    display: inline-block;
+    font-weight: bold;
+    min-width: 10rem;
+}
+
+.order__book-list > li {
+    list-style: none;
+    font-size: 1.3rem;
+    margin-top: 0.5rem;
+    margin-left: 3rem;
+}
+
+.order__book-list {
+    margin-left: 0;
+    padding: 0;
+}
+
+.order__book-data > p {
+    font-size: 1.5rem;
+    color: #A86523;
+    margin-left: 3rem;
+}
+
+.order__button {
+    align-self: flex-end;
+    padding: 0.5rem 2rem;
+    background-color: #A86523;
+    border: none;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    color: #fff;
+}

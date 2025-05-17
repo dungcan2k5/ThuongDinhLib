@@ -75,15 +75,22 @@ body {
     margin-top: 1rem;
 }
 
-.login__forgot {
+.login__regis {
     color: #4B5563;
     font-size: 1.4rem;
+    margin-bottom: 0;
 }
 
-.login__forgot > a {
+.login__regis > a {
     color: #A86523;
     text-decoration: none;
     margin-left: 1rem;
+}
+
+.login__forgot {
+    color: #4B5563;
+    font-size: 1,4rem;
+    cursor: pointer;
 }
 
 .login__des {
@@ -111,4 +118,8 @@ body {
 .login__confirm:hover {
     cursor: pointer;
     background-color: rgba(168, 101, 35, 0.9);
+}
+
+.login__label {
+    font-size: 1.4rem;
 }

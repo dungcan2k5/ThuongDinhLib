@@ -25,8 +25,18 @@ const ChangeInforForm = ({currentInfor, closeChangeInfor, onUpdateSuccess}) => {
     const changeInforSubmit = async (e) => {
         e.preventDefault();
         let flag = false
-        if (name.length < 5) {
+        if (!name.length) {
+            setNameMessage('Vui lòng không để trống họ tên')
+            flag = true
+        }
+
+        if (name && name.length < 5) {
             setNameMessage('Họ tên phải tối thiểu 5 kí tự')
+            flag = true
+        }
+
+        if (!phone) {
+            setPhoneMessage('Vui lòng không bỏ trống số điện thoại')
             flag = true
         }
         if (phone && !isValidPhoneNumber(phone)) {

@@ -12,5 +12,7 @@
 }
 
 .loginAlert__popup {
-
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 5px;
 }

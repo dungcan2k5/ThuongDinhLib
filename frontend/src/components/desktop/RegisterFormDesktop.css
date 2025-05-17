@@ -140,3 +140,11 @@ body {
 .register--a {
     min-height: 1.5rem;
 }
+
+.register__label {
+    font-size: 1.4rem;
+}
+
+.register__label > span {
+    color: red;
+}

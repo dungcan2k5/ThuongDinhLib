@@ -1,5 +1,5 @@
 import React from 'react'
-import Cart from '../../components/desktop/Cart/CartDesktop'
+import Cart from '../../components/desktop/Cart/Cart'
 import SlideBar from '../../components/desktop/SidebarDesktop'
 import './DashBoardDesktop.css'
 const CartDesktop = () => {

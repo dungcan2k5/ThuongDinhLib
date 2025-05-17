@@ -48,19 +48,19 @@ const LoginFormDesktop = () => {
           <h2 className="login__title">Đăng Nhập</h2>
           <p className="login__des">Thư viện sách Thượng Đình</p>
           <form onSubmit={handleSubmit} className="login__form">
+            <label htmlFor="" className='login__label'>Email</label>
             <input type="text"
               className="login__input" 
-              placeholder='Email'
               name='email'
               value={values.email || ''} 
               onChange={handleChange}
             />
             <p className="login__error">{errors.email}</p>
 
+            <label htmlFor="" className='login__label'>Mật khẩu</label>
             <input 
               type="password" 
               className="login__input"
-              placeholder='Mật khẩu' 
               value={values.password || ''} 
               onChange={handleChange}
               name='password'
@@ -70,7 +70,8 @@ const LoginFormDesktop = () => {
             <div className="login__feature">
               <button type='submit' className="login__confirm">Đăng nhập</button>
               <p className='login__abort'>{message}</p>
-              <p className="login__forgot">Chưa có tài khoản?<Link to="/register" className="login__forgot">Đăng ký ngay</Link></p>
+              <p className="login__regis">Chưa có tài khoản?<Link to="/register" className="login__forgot">Đăng ký ngay</Link></p>
+              <p className="login__forgot">Quên mật khẩu</p>
             </div>
           </form>
         </div>

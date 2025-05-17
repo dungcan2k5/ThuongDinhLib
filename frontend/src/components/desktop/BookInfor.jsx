@@ -10,7 +10,6 @@ const BookInfor = ({book}) => {
     const [logined, setLogined] = useState(true)
 
     useEffect(() => {
-        // localStorage.removeItem("token");
         if (!loginCheck()) {
             setLogined(false)
         }    
@@ -33,11 +32,15 @@ const BookInfor = ({book}) => {
         const cartKey = `cart_${userId}`;
         const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
 
-        const alreadyExists = cart.some(item => item._id === book._id);
-        if (!alreadyExists) {
-            cart.push(book);
-            localStorage.setItem(cartKey, JSON.stringify(cart));
+        const existingIndex = cart.findIndex(item => item._id === book._id);
+
+        if (existingIndex !== -1) {
+            cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+        } else {
+            cart.push({ ...book, quantity: 1 });
         }
+
+        localStorage.setItem(cartKey, JSON.stringify(cart));
     };
 
 
@@ -59,7 +62,18 @@ const BookInfor = ({book}) => {
                 <div className="bookInfor__author">Tác giả: {author}</div>
                 <div className="bookInfor__publishYear">Năm xuất bản: {publishYear}</div>
                 <div className="Cross"></div>
-                <div className="bookInfor__price">{Number(price.$numberDecimal).toLocaleString('vi-VN')}đ</div>
+                <div className="bookInfor__price">
+                    {(() => {
+                        const value =
+                        typeof price === 'object' && price.$numberDecimal
+                            ? Number(price.$numberDecimal)
+                            : typeof price === 'number'
+                            ? price
+                            : null;
+
+                        return value !== null ? `${value.toLocaleString('vi-VN')}đ` : 'Không rõ giá';
+                    })()}
+                </div>
                 <p className="bookInfor__description">{description}</p>
                 <button className="bookInfor__borrow" onClick={() => borrowBook(book)}>Mượn sách</button>
             </div>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import "./HeaderDesktop.css"
 import loginCheck from "../../utils/loginCheck";
+import BookInfor from "./BookInfor"
 
 const HeaderDesktop = () => {
     const [logined, setLogined] = useState(true)
@@ -12,6 +13,7 @@ const HeaderDesktop = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [results, setResults] = useState([]);
     const [isFocused, setIsFocused] = useState(false);
+    const [selectedBook, setSelectedBook] = useState(null);
     const timeoutRef = useRef(null);
 
     useEffect(() => {
@@ -51,6 +53,11 @@ const HeaderDesktop = () => {
 
     return (
         <div className="header">
+            {selectedBook && (
+                <div className="header__overlay" onClick={() => setSelectedBook(null)}>
+                    <BookInfor book={selectedBook} />
+                </div>
+            )}
             <div className="header__left">
                 <a href="/"><img className='header__logo' src="/ThuongDinhLib.png" alt="Logo"/></a>
             </div>
@@ -79,7 +86,7 @@ const HeaderDesktop = () => {
                                 <div className="header__search-item" style={{height: "100%", padding: "0"}}>Không tìm thấy kết quả nào</div>
                             ) : (
                                 results.map((book) => (
-                                    <div key={book._id} className="header__search-item">
+                                    <div key={book._id} className="header__search-item" tabIndex={0} onClick={() => {console.log("Clicked book:", book); setSelectedBook(book)}}>
                                         <div>
                                             <img src={`${getApiUrl()}${book.image}`} alt={book.title} width={50} height={75} />
                                             <div className="header__search-item-info">

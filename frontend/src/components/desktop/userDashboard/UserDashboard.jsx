@@ -4,7 +4,8 @@ import fetchProfile from "../../../services/userService";
 import './UserDashboard.css'
 import { FaUser } from "react-icons/fa";
 import ChangeInforForm from "../changeInforForm";
-import changeInfor from "../../../services/changeInfor";
+import PasswordChange from "../passwordChange/passwordChange";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const UserDashboard = () => {
 
@@ -18,6 +19,7 @@ const UserDashboard = () => {
 
   const [logined, setLogined] = useState(true)
   const [inforChange, setInforChange] = useState(false)
+  const [passwordshow, setPasswordShow] = useState(false)
   const [trigger, setTrigger] = useState(false)
 
   useEffect(() => {
@@ -62,6 +64,9 @@ const UserDashboard = () => {
       setInforChange(false);
     };
 
+    const closepasswordChange = () => {
+      setPasswordShow(false);
+    };
 
     if (!logined) {
       return <div style={{ color: "red", padding: "1rem" }}>Bạn chưa đăng nhập. Vui lòng đăng nhập để xem thông tin tài khoản.</div>;
@@ -92,12 +97,16 @@ const UserDashboard = () => {
                     <div className="UserDashBoard__infor UserDashBoard__email"><span>Email: </span>{userData.email}</div>
                     <div className="UserDashBoard__infor UserDashBoard__membershipDate"><span>Thời gian hội viên: </span>{userData.membershipDate}</div>
                   </div>
-                  <button>Đổi mật khẩu</button>
+                  <button onClick={() => {setPasswordShow(true)}}>Đổi mật khẩu</button>
                 </div>
               </div>
               {inforChange && (
-              <ChangeInforForm currentInfor={userData} closeChangeInfor={closeChangeInfor} onUpdateSuccess={() => setTrigger(prev => !prev)}/>
-)}
+                <ChangeInforForm currentInfor={userData} closeChangeInfor={closeChangeInfor} onUpdateSuccess={() => setTrigger(prev => !prev)}/>
+              )}
+              {passwordshow && (
+                <PasswordChange closepasswordChange={closepasswordChange} onUpdateSuccess={() => setTrigger(prev => !prev)}/>
+              )
+              }
           </div>
     )
 }
