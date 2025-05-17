@@ -145,3 +145,69 @@
     flex-direction: column;
     height: 90%;
 }
+
+.header__right-icon {
+    color: #e9a319;
+    font-size: 3rem;
+}
+
+.header__right-nav {
+  position: absolute;
+  background-color: #A45B1D;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 100;
+  top: 108%;
+  left: 15%;
+  width: 15rem;
+  padding: 0.5rem 0rem;
+
+  /* Hiệu ứng trượt và ẩn mặc định */
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+
+  /* Hiệu ứng mượt */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.header__right {
+    position: relative;
+    margin-right: 2rem;
+}
+
+.header__right-list > li{
+    list-style: none;
+}
+
+.header__right-list {
+    padding: 0;
+}
+
+.header__login-text {
+    color: #A86523;
+    font-size: 1.7rem;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.header__right-item {
+    font-size: 1.8rem;
+    margin-left: 3.3rem;
+}
+
+.header__right-item + .header__right-item {
+    margin-top: 1rem;
+}
+
+.header__right-item > a {    
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.header__right-nav.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}

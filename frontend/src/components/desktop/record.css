@@ -1,0 +1,77 @@
+.Record__overlay {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Record__content {
+    background-color: #ffff;
+    width: 60rem;
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+.Record__content > h2 {
+    font-size: 2rem;
+}
+
+.record__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.record__bookinfor > h3 {
+    font-size: 1.4rem;
+    color: #A86523;
+    margin: 0;
+}
+
+.record__bookinfor > h4 {
+    font-size: 1.1rem;
+    color: #999;
+    margin-top: 0.6rem;
+}
+
+.record_price > p {
+    color: #A86523;
+    font-size: 1.6rem;
+}
+
+.Record__date {
+    display: inline-block;
+    min-width: 10rem;
+}
+
+.Record__button {
+    border: none;
+    background-color: #A86523;
+    padding: 0.6rem 0rem;
+    width: 10rem;
+    font-size: 1.5rem;
+    color: #ffff;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.record__data {
+    display: flex;
+    flex-direction: column;
+}
+
+.record__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.record__total > p {
+    font-size: 1.5rem;
+    color: #A86523;
+}

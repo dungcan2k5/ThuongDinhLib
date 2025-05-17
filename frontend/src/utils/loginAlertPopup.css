@@ -1,0 +1,16 @@
+.loginAlert__popup-overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* lớp mờ đen */
+    position: fixed;                      /* phủ toàn màn hình */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;                        /* căn giữa nội dung */
+    align-items: center;
+    justify-content: center;
+    z-index: 999;                         /* đảm bảo nằm trên cùng */
+}
+
+.loginAlert__popup {
+
+}

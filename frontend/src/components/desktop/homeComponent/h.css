@@ -48,6 +48,7 @@ html {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     display: flex;
     transition: all 0.2s ease-in;
+    position: relative;
 }
 
 .bookCate__img {
@@ -65,7 +66,6 @@ html {
 .bookCate__des {
     flex-basis: 60%;
     margin-left: 2rem;
-    position: relative;
 }
 
 .bookCate__des > h2 {
@@ -73,10 +73,10 @@ html {
     font-weight: bold;
     margin: 0;
     color: #A86523;
+    margin-bottom: 1rem;
 }
 
 .bookCate__des > h3 {
-    position: absolute;
     bottom: 30%;
     margin: 0;
     font-size: 1.2rem;
@@ -85,7 +85,6 @@ html {
 }
 
 .bookCate__des > p {
-    position: absolute;
     margin-top: 0.5rem;
     font-size: 1rem;
     color: #999999;
@@ -99,16 +98,16 @@ html {
     text-align: right;
     position: absolute;
     right: 5%;
-    bottom: -10%;
+    bottom: -5%;
 }
 
-.cross {
+.bookCate__cross {
     width: 100%;
     display: block;
-    top: 55%;
-    position: absolute;
     height: 1px;
     background-color: #a0a0a0;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 .des {

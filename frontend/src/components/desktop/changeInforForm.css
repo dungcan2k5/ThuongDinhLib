@@ -1,0 +1,71 @@
+.changeInforForm__overlay {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.changeInforForm__content {
+    background-color: #fff;
+    padding: 5rem;
+    border-radius: 5px;
+    width: 50rem;
+    min-height: 50%;
+}
+
+.changeInforForm__title > h2 {
+    margin-top: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 5rem;
+}
+
+.changeInforForm__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.changeInforForm__item > h4 {
+    color: #A86523;
+    font-size: 2rem;
+    margin: 0;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.changeInforForm__item > input {
+    border: none;
+    border-bottom: #999 1px solid;
+    outline: none;
+    width: 70%;
+    font-size: 1.7rem;
+    padding-bottom: 0.5rem;
+}
+
+.changeInforForm__item {
+    margin-bottom: 3rem;
+}
+
+.changeInforForm__submit {
+    margin-top: 2rem;
+    background-color: #A86523;
+    color: #ffff;
+    width: 15rem;
+    align-self: flex-end;
+    font-size: 1.7rem;
+    padding: 1rem 0rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.changeInforForm__abort {
+    color: red;
+    min-height: 1.5rem;
+}

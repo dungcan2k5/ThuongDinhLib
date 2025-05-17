@@ -105,10 +105,10 @@ const HDesktop = () => {
                                 </div>
                                 <div className="bookCate__des">
                                     <h2>{book.title}</h2>
-                                    <div className="des">{book.description}</div>
-                                    <div className="cross"></div>
                                     <h3>{book.author}</h3>
                                     <p>{book.publishYear}</p>
+                                    <div className="bookCate__cross"></div>
+                                    <div className="des">{book.description}</div>
                                     <h4>{Number(book.price.$numberDecimal).toLocaleString('vi-VN')}đ</h4>
                                 </div>
                             </div>

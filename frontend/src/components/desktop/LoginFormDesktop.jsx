@@ -21,7 +21,9 @@ const LoginFormDesktop = () => {
       try {
         const result = await login(email, password);
         if (result.status === 'success') {
+          console.log(result.status)
           localStorage.setItem('token', result.token);
+          localStorage.setItem('id', result.id)
           navigate('/');
         } else {
           setMessage(result.message || "Tên đăng nhập hoặc mật khẩu sai");

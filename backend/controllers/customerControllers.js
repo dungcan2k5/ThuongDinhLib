@@ -65,7 +65,9 @@ export const updateCustomerProfile = asyncHandler(async (req, res) => {
         cus.phone = req.body.phone || cus.phone;
         cus.address = req.body.address || cus.address;
         cus.membershipDate = req.body.membershipDate || cus.membershipDate;
-        cus.password = hashPassword(req.body.password) || cus.password;
+        if (req.body.password) {
+            cus.password = hashPassword(req.body.password);
+}
 
         await cus.save();
         res.json({

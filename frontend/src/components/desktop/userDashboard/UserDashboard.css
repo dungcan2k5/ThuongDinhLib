@@ -1,0 +1,109 @@
+.UserDashBoard {
+    background-color: #FFFFFF;
+    padding: 2rem;
+    padding-top: 1rem;
+    margin: 3rem;
+    flex: 1;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.UserDashBoard__title > h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.UserDashBoard__infor {
+    font-size: 2rem;
+    margin-top: 2rem;
+}
+
+.UserDashBoard__title {
+    border-bottom: 1px #999999 solid;
+    margin-bottom: 3.5rem;
+    margin-top: 2rem;
+
+}
+
+.UserDashBoard__content {
+    display: flex;
+}
+
+.UserDashBoard__pre, .UserDashBoard__personal, .UserDashBoard__account {
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.UserDashBoard__personal, .UserDashBoard__account {
+    flex: 1;
+}
+
+.UserDashBoard__pre {
+    width: 25%;
+}
+
+.UserDashBoard__pre > h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: #A86523;
+    font-weight: bold;
+}
+
+.UserDashBoard__personal > h2, .UserDashBoard__account > h2 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: #A86523;
+    font-weight: bold;
+}
+
+.UserDashBoard__infor {
+    display: flex;
+    padding: 1rem 0rem;
+}
+
+.UserDashBoard__infor > span {
+    min-width: 20rem;
+    font-size: 2rem;
+    color: #000;
+    font-weight: 300;
+}
+
+.UserDashBoard__infor {
+    font-size: 2.1rem;
+    color: #A86523;
+    font-weight: 500;
+}
+
+.UserDashBoard__personal > button, .UserDashBoard__account > button {
+    width: 25rem;
+    padding: 1rem 0rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #A86523;
+    color: #FFFFFF;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    align-self: flex-start;
+}
+
+.UserDashBoard__personal-content, .UserDashBoard_account-content {
+    min-height: 20rem;
+}
+
+.UserDashBoard__icon {
+    font-size: 18rem;
+    margin-bottom: 2rem;
+}
+
+.UserDashBoard__pre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

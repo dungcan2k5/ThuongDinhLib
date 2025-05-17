@@ -1,8 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { searchBooks } from "../../services/bookService"; // Đảm bảo import đúng đường dẫn
 import { getApiUrl } from "../../utils/apiUtils";
+import { Link } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
 import "./HeaderDesktop.css"
+import loginCheck from "../../utils/loginCheck";
+
 const HeaderDesktop = () => {
+    const [logined, setLogined] = useState(true)
+    const [userFocus, setUserFocus] = useState(false)
     const [searchTerm, setSearchTerm] = useState("");
     const [results, setResults] = useState([]);
     const [isFocused, setIsFocused] = useState(false);
@@ -25,6 +31,23 @@ const HeaderDesktop = () => {
         const debounce = setTimeout(() => fetchResults(), 500);
         return () => clearTimeout(debounce);
     }, [searchTerm]);
+
+    useEffect(() => {
+        if (!loginCheck()) {setLogined(false)}
+    }, [])
+
+    const logout = () => {
+        localStorage.removeItem("token");
+    }
+
+    const userNav = () => (
+        <ul className="header__right-list">
+            <li className="header__right-item"><Link to="/">Home</Link></li>
+            <li className="header__right-item"><Link to="/cart">Giỏ hàng</Link></li>
+            <li className="header__right-item"><Link to="/dashboard">Tài khoản</Link></li>
+            <li className="header__right-item"><Link to="/login" onClick={logout}>Đăng xuất</Link></li>
+        </ul>
+    );
 
     return (
         <div className="header">
@@ -75,8 +98,19 @@ const HeaderDesktop = () => {
                     </div>
                 </div>
             </div>
-            <div className="header__right">
-                USER
+            <div className="header__right" onMouseEnter={() => setUserFocus(true)} onMouseLeave={() => setUserFocus(false)}>
+                {logined ? (
+                    <>
+                        <FaUser className="header__right-icon" />
+                        {userFocus && (
+                            <div className={`header__right-nav ${userFocus ? "show" : ""}`}>
+                                {userNav()}
+                            </div>
+                        )}
+                    </>
+                ) : (
+                    <a href="/login" className="header__login-text">Đăng nhập</a>
+                )}
             </div>
         </div>
     );
