@@ -19,12 +19,14 @@ const cartSlice = createSlice({
           title: "Đã thêm vào giỏ hàng",
           icon: "success",
           draggable: true,
+          confirmButtonColor: "#28a745",
         });
       } else {
         Swal.fire({
           title: "Sản phẩm đã tồn tại",
           icon: "error",
           draggable: true,
+          confirmButtonColor: "#dc3545",
         });
       }
     },

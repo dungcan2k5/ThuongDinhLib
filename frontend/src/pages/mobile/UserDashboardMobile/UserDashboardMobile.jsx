@@ -3,11 +3,14 @@ import useValidator from "../../../hooks/useValidator";
 import "./UserDashboardMobile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { showSuccess, showError } from "../../../redux/features/cart/notificationSlice";
 
 const UserDashboardMobile = () => {
   const [customer, setCustomer] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [changePasswordMode, setChangePasswordMode] = useState(false);
+  const dispatch = useDispatch();
 
   const rules = useMemo(() => [
     useValidator.isRequired('[name="name"]', 'Vui lòng nhập tên của bạn'),
@@ -63,13 +66,14 @@ const UserDashboardMobile = () => {
             throw new Error(errorData.message || "Cập nhật thất bại");
           }
 
-          alert("Cập nhật thành công");
+          dispatch(showSuccess("Cập nhật thành công"));
 
           fetchCustomerProfile(); // Load lại thông tin
           setEditMode(false);
           setChangePasswordMode(false);
         } catch (err) {
-          alert("Lỗi khi cập nhật: " + err.message);
+          dispatch(showError(err.message));
+
         }
       },
     });
@@ -224,7 +228,11 @@ const UserDashboardMobile = () => {
                 <p>{customer.address}</p>
               )}
             </div>
+
+            <div className="info-divider"></div>
+
           </div>
+
 
           {!editMode ? (
             <button

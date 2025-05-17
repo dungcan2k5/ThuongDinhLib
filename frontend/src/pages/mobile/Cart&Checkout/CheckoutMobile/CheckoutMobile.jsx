@@ -117,7 +117,7 @@ const CheckoutPage = () => {
 
             <div className="checkout__field-group">
               <label htmlFor="address" className="checkout__label">
-                địa chỉ
+                Địa chỉ
               </label>
               <input
                 type="text"
