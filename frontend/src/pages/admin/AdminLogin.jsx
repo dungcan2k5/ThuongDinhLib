@@ -25,7 +25,7 @@ const AdminLogin = () => {
 
       const data = await res.json();
 
-      if (data.status === "success" && data.isAdmin) {
+      if (data.status === "success") {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify({ isAdmin: data.isAdmin }));
         navigate("/admin");
