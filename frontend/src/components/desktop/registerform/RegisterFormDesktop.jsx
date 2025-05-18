@@ -35,7 +35,7 @@ const RegisterFormDesktop = () => {
         const result = await register(name, email, password, phone, address, membershipDate);
 
         if (result._id) {
-          setSuccessMessage('Tài khoản đã được tạo thành công');
+          alert("Đăng kí tài khoản thành công")
         } else {
           setMessage('Đăng ký không thành công');
         }

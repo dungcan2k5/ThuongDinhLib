@@ -89,7 +89,7 @@ const Cart = () => {
                             className="cart__bookBorrow"
                             onClick={() => setRecordShow(true)}
                         >
-                            Mượn sách
+                            Thanh Toán
                         </button>
                     </div>
                 </div>

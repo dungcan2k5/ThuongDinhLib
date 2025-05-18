@@ -13,7 +13,7 @@ const PasswordChange = ({closepasswordChange, onUpdateSuccess}) => {
     const[passwordConfirmMessage, setPasswordConfirmMessage] = useState('')
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Ngăn reload form
+        e.preventDefault();
 
         let flag = false
         if (!currentPassword) {
@@ -39,9 +39,10 @@ const PasswordChange = ({closepasswordChange, onUpdateSuccess}) => {
         if (flag) return
         try {
             await changePassword(currentPassword, newPassword);
+            closepasswordChange();
             alert('Mật khẩu đã được đổi')
         } catch (err) {
-            alert('Mật khẩu xác nhận không trùng khớp')
+            alert('Mật khẩu cũ không đúng')
         }
     };
 

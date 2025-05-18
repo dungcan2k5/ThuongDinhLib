@@ -2,11 +2,12 @@ import { useState, useEffect, useRef } from "react";
 import { searchBooks } from "../../../services/bookService"; // Đảm bảo import đúng đường dẫn
 import { getApiUrl } from "../../../utils/apiUtils";
 import { Link } from "react-router-dom";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import "./HeaderDesktop.css"
 import loginCheck from "../../../utils/loginCheck";
 import BookInfor from "../BookInfor/BookInfor";
-
+import { Navigate } from "react-router-dom";
 const HeaderDesktop = () => {
     const [logined, setLogined] = useState(true)
     const [userFocus, setUserFocus] = useState(false)
@@ -15,6 +16,7 @@ const HeaderDesktop = () => {
     const [isFocused, setIsFocused] = useState(false);
     const [selectedBook, setSelectedBook] = useState(null);
     const timeoutRef = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchResults = async () => {
@@ -101,12 +103,19 @@ const HeaderDesktop = () => {
                             )}
                         </div>
                     )}
-                    <div className='header__search-button'>
-                    <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#FFFFFF"><path d="M792-120.67 532.67-380q-30 25.33-69.64 39.67Q423.39-326 378.67-326q-108.44 0-183.56-75.17Q120-476.33 120-583.33t75.17-182.17q75.16-75.17 182.5-75.17 107.33 0 182.16 75.17 74.84 75.17 74.84 182.27 0 43.23-14 82.9-14 39.66-40.67 73l260 258.66-48 48Zm-414-272q79.17 0 134.58-55.83Q568-504.33 568-583.33q0-79-55.42-134.84Q457.17-774 378-774q-79.72 0-135.53 55.83-55.8 55.84-55.8 134.84t55.8 134.83q55.81 55.83 135.53 55.83Z"/></svg>
+                    <div
+                className="header__search-button"
+                onClick={() => {
+                    if (searchTerm.trim() !== "") {
+                    navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
+                    }
+                    }}
+                        >
+                            <FaSearch className="header__search-icon"/>
                     </div>
                 </div>
             </div>
-            <div className="header__right" onMouseEnter={() => setUserFocus(true)} onMouseLeave={() => setUserFocus(false)}>
+            <div className="header__right" onClick={() => setUserFocus(true)} onMouseLeave={() => setUserFocus(false)}>
                 {logined ? (
                     <>
                         <FaUser className="header__right-icon" />

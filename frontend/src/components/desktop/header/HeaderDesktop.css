@@ -224,3 +224,8 @@
     align-items: center;
     z-index: 9999;
 }
+
+.header__search-icon {
+    color: #fff;
+    font-size: 2rem;
+}

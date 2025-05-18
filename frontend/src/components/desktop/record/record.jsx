@@ -64,7 +64,7 @@ const Record = ({ book, onCLose, onBorrowSuccess }) => {
         const updatedOrders = [...existingOrders, order];
         localStorage.setItem(`orders_${userId}`, JSON.stringify(updatedOrders));
 
-        alert("Đơn hàng đã được lưu vào localStorage!");
+        alert("Đặt hàng thành công");
         onBorrowSuccess();
     };
 
@@ -72,7 +72,7 @@ const Record = ({ book, onCLose, onBorrowSuccess }) => {
         <div className="Record">
             <div className="Record__overlay" onClick={onCLose}>
                 <div className="Record__content" onClick={e => e.stopPropagation()}>
-                    <h2>Mượn sách thành công</h2>
+                    <h2>Thanh Toán</h2>
                     <div className="record__container">
                         <div className="record__data">
                             {book && book.length > 0 ? (
