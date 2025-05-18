@@ -1,16 +1,16 @@
 import React from 'react'
-import UserDashboard from '../../components/desktop/userDashboard/UserDashboard'
+import Cart from '../../components/desktop/Cart/Cart'
 import SlideBar from '../../components/desktop/sidebar/SidebarDesktop'
 import './DashBoardDesktop.css'
-const DashboardDesktop = () => {
+const CartDesktop = () => {
   return (
     <div className='Body'>
         <SlideBar></SlideBar>
         <div className='content'>
-          <UserDashboard></UserDashboard>
+          <Cart></Cart>
         </div>
       </div>
   )
 }
 
-export default DashboardDesktop
+export default CartDesktop

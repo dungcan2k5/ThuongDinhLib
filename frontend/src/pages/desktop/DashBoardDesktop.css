@@ -1,0 +1,8 @@
+.Body {
+    width: 100%;
+    display: flex;
+}
+
+.content {
+    flex: 1;
+}

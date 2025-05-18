@@ -1,16 +1,15 @@
 import React from 'react'
-import UserDashboard from '../../components/desktop/userDashboard/UserDashboard'
+import OrderHistory from '../../components/desktop/orderHistory/orderHistory'
 import SlideBar from '../../components/desktop/sidebar/SidebarDesktop'
-import './DashBoardDesktop.css'
-const DashboardDesktop = () => {
+const HistoryDesktop = () => {
   return (
     <div className='Body'>
         <SlideBar></SlideBar>
         <div className='content'>
-          <UserDashboard></UserDashboard>
+          <OrderHistory></OrderHistory>
         </div>
       </div>
   )
 }
 
-export default DashboardDesktop
+export default HistoryDesktop

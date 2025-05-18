@@ -1,16 +1,16 @@
 import React from 'react'
-import UserDashboard from '../../components/desktop/userDashboard/UserDashboard'
+import SearchPage from '../../components/searchPage/searchPage'
 import SlideBar from '../../components/desktop/sidebar/SidebarDesktop'
 import './DashBoardDesktop.css'
-const DashboardDesktop = () => {
+const SearchDesktop = () => {
   return (
     <div className='Body'>
         <SlideBar></SlideBar>
         <div className='content'>
-          <UserDashboard></UserDashboard>
+          <SearchPage></SearchPage>
         </div>
       </div>
   )
 }
 
-export default DashboardDesktop
+export default SearchDesktop

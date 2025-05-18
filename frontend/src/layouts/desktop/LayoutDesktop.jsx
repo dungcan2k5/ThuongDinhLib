@@ -1,6 +1,5 @@
-import HeaderDesktop from '../../components/desktop/HeaderDesktop';
-import FooterDesktop from '../../components/desktop/FooterDesktop';
-
+import HeaderDesktop from '../../components/desktop/header/HeaderDesktop';
+import FooterDesktop from '../../components/desktop/footer/FooterDesktop';
 import './LayoutDesktop.css'
 import { useLocation, Outlet } from 'react-router-dom';
 
