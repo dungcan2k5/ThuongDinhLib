@@ -45,7 +45,16 @@
   border-color: rgb(255, 0, 0);
   background-color: #ffebee;
 }
-
+.login__fail {
+  font-size: 14px;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20px;
+  color: #ff4d4f;
+  margin-top: 10px;
+}
 .loginForm--message {
   font-size: 14px;
   font-style: italic;
@@ -69,8 +78,7 @@
   border: none;
   font-size: 18px;
   border-radius: 20px;
-  cursor: pointer;
-  width: 80%;
+  width: 256px;
   font-family: var(--font-secondary);
 }
 .loginForm__register {
@@ -88,4 +96,10 @@
   color: #e9a319;
   text-decoration: none;
   font-weight: 600;
+}
+.loginForm--error {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
 }

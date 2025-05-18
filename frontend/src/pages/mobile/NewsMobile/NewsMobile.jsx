@@ -46,7 +46,7 @@ const news = [
 const NewsMobile = () => {
   return (
     <div className="news-mobile">
-      <h2>Sách Mới</h2>
+      <h2>Sắp ra mắt</h2>
       <Swiper
         centeredSlides={true}
         autoplay={{

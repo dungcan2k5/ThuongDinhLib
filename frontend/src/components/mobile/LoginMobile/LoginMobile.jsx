@@ -1,22 +1,52 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import useValidator from "../../../hooks/useValidator";
 import "./LoginMobile.css";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import loginService from "../../../services/loginService";
+import { useAuth } from "../../../context/AuthContext";
 const LoginForm = () => {
-  const validatorOptions = {
+  const { login: authLogin } = useAuth();
+
+  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+  const useValidatorOptions = {
     rules: [
-      useValidator.isEmail('[name="email"]'),
-      useValidator.minLength('[name="password"]', 6),
+      useValidator.isRequired('[name="email"]', "Vui lòng nhập email"),
+      useValidator.isEmail('[name="email"]', "Email không hợp lệ"),
+      useValidator.isRequired('[name="password"]', "Vui lòng nhập mật khẩu"),
+      useValidator.minLength(
+        '[name="password"]',
+        6,
+        "Mật khẩu tối thiểu 6 ký tự"
+      ),
     ],
-    onSubmit: (data) => {
-      console.log("Login data:", data);
-      // Gọi API đăng nhập ở đây
+    onSubmit: async (values) => {
+      setMessage("");
+      const { email, password } = values;
+
+      try {
+        const result = await loginService(email, password);
+
+        if (result.status === "success") {
+          localStorage.setItem("token", result.token);
+          setMessage("");
+          authLogin(result.token);
+          navigate("/", { replace: true });
+        } else {
+          setMessage(result.message || "Thông tin đăng nhập không chính xác");
+        }
+      } catch (error) {
+        console.error("Login error:", error);
+        setMessage(
+          error.response?.data?.message || "Thông tin đăng nhập không chính xác"
+        );
+      }
     },
   };
 
   const { values, errors, handleChange, handleSubmit, isSubmitting } =
-    useValidator(validatorOptions);
+    useValidator(useValidatorOptions);
 
   return (
     <div className="login__mobile">
@@ -29,7 +59,6 @@ const LoginForm = () => {
               Email
             </label>
             <input
-              id="email"
               name="email"
               type="text"
               placeholder="Email@domain.com"
@@ -45,7 +74,6 @@ const LoginForm = () => {
               Mật khẩu
             </label>
             <input
-              id="password"
               name="password"
               type="password"
               placeholder="Mật khẩu"
@@ -63,6 +91,8 @@ const LoginForm = () => {
               Đăng nhập
             </button>
           </div>
+
+          <p className="login__fail">{message}</p>
 
           <div className="loginForm__register">
             <p className="loginForm--register--title">Chưa có tài khoản?</p>

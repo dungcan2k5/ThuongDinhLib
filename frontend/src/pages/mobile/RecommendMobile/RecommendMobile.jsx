@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "../PopularMobile/PopularMobile.css";
+import BookCard from "../BookPages/BookCard.jsx";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { getImgUrl } from "../../../utils/getImgUrl";
-import { getApiUrl } from "../../../utils/apiUtils";
-
+import { getApiUrl } from "../../../utils/apiUtils.js";
 const RecommendMobile = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    const baseURL = getApiUrl();
-    fetch(`${baseURL}/api/books`)
+    fetch(`${getApiUrl()}/api/books`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch books");
@@ -37,7 +35,6 @@ const RecommendMobile = () => {
   return (
     <div className="popular-mobile">
       <h2>Đề xuất cho bạn</h2>
-      {/* Hiển thị book-card bằng Swiper */}
       {books.length > 0 ? (
         <Swiper
           modules={[Navigation]}
@@ -49,23 +46,7 @@ const RecommendMobile = () => {
         >
           {books.slice(4, 10).map((book, index) => (
             <SwiperSlide key={index}>
-              <div className="book-card">
-                <div className="book-card_container">
-                  <div className="book-image">
-                    <img src={`${getImgUrl(book?.image)}`} alt={book.title} />
-                  </div>
-                  <div className="book-details__gap">
-                    <div className="book-details">
-                      <h3>{book.title}</h3>
-                      <p>{book.description}</p>
-                      <div className="book-price">{book.price}₫</div>
-                      <div className="book-actions">
-                        <button className="add-to-cart">Mượn</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <BookCard book={book} />
             </SwiperSlide>
           ))}
         </Swiper>

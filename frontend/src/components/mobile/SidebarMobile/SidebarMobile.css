@@ -36,7 +36,7 @@
 }
 
 /* Overlay */
-.overlay {
+.sidebar-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -48,4 +48,13 @@
 .sidebar img {
   width: 100%;
   box-sizing: border-box;
+}
+.logout-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  width: 100%;
+  text-align: left;
+  font-size: 18px;
 }

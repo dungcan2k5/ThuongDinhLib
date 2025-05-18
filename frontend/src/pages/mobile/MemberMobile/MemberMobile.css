@@ -1,14 +1,16 @@
 .member-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 100%;
-  height: 400px;
+  height: 320px;
   text-align: center;
   box-sizing: border-box;
+  position: relative;
 }
 
 .member-title {
-  font-size: larger;
+  font-size: 1.5rem;
   font-family: var(--font-primary);
   font-weight: bold;
 }
@@ -17,6 +19,7 @@
   margin: 1rem auto;
   padding: 1.3rem;
   line-height: 1.5rem;
+  font-size: 1.3rem;
 }
 .member-submit button {
   padding: 0.5rem 2rem;
@@ -33,6 +36,12 @@
   background-color: #0047a3;
   transition: 10ms;
 }
+.member-footer {
+  margin-top: 25px;
+  width: 100%;
+}
 .member-footer img {
   width: 100%;
+  height: auto;
+  display: block;
 }

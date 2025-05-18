@@ -1,0 +1,153 @@
+.userDashboardMobile {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.userDashboardMobile__title p {
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.spacer{
+    margin: 10px 0 15px 0;
+    background-color: #e0e0e0;
+    height: 1px;
+}
+.userDashboardMobile__avatar {
+    border: 1px solid #ddd;
+    justify-items: center;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.userDashboardMobile__avatar--icon {
+    font-size: 70px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #afadad;
+}
+.userDashboardMobile__avatar--nameUser {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+.userDashboardMobile__inforUser {
+    margin-top: 5%;
+    padding-bottom: 20px;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.userDashboardMobile__infor--title {
+    font-size: 12px;
+    margin: 15px 0 15px 15px;
+    font-weight: 300;
+}
+.userDashboardMobile__infor--grid {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 12px 16px;
+}
+.userDashboardMobile__infor {
+    display: contents;
+    font-size: 14px;
+}
+.input--wrapper {
+    display: flex;
+    flex-direction: column;
+}
+.error--text {  
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+    margin-left: 5px;
+}
+.userDashboardMobile__infor--label {
+    display: flex;
+    text-align: left;
+    align-items: center;
+    color: black;
+    font-size: 14px;
+    margin-left: 15px;
+}
+.userDashboardMobile__infor--value {
+    color: black;
+    font-size: 14px;
+}
+.change__infor__input, 
+.change__password__input {
+    outline: none;
+    border: 1px solid #afadad;
+    padding: 10px 0 10px 10px;
+    border-radius: 10px;
+    margin-right: 20px;
+    background-color: #f9fafb;
+}
+.info-divider {
+    grid-column: 1 / -1;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 5px 0;
+}
+.change__infor__btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 15px;
+    padding: 8px 16px;
+    background: #e9a319;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: var(--font-secondary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.userDashboardMobile__inforAccount {
+    margin-top: 5%;
+    margin-bottom: 15%;
+    padding-bottom: 20px;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.change__password__btn {
+    max-width: 150px;
+    padding: 8px 16px;
+    background: #e9a319;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #ffffff;
+    font-family: var(--font-secondary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.infor__btn__group {
+    display:flex;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+}
+.btn__password__group {
+    display:flex;
+    gap: 30px;
+    align-items: center;
+    justify-content:start;
+    padding-left: 10px;
+}
+.cancel__infor__btn,
+.save__infor__btn,
+.cancel__password__btn,
+.save__password__btn {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background: #e9a319;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: var(--font-secondary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.margining {
+    margin-bottom: 15px;
+}

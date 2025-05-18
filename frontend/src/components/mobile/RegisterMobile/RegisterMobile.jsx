@@ -1,22 +1,27 @@
 // components/RegisterForm.js
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useValidator from "../../../hooks/useValidator";
 import "./RegisterMobile.css";
 import { Link } from "react-router-dom";
-
+import register from "../../../services/registerService";
 const RegisterForm = () => {
-  const validatorOptions = {
+  const [successMessage, setSuccessMessage] = useState("");
+  const [membershipDate, setMembershipDate] = useState(new Date());
+  const [message, setMessage] = useState("");
+  const [cPass, setCPass] = useState("");
+
+  const useValidatorOptions = {
     rules: [
       useValidator.isRequired(
-        '[name="fullname"]',
+        '[name="name"]',
         "Vui lòng nhập tên đầy đủ của bạn"
       ),
       useValidator.isEmail('[name="email"]'),
       useValidator.isRequired(
-        '[name="phone__number"]',
+        '[name="phone"]',
         "Vui lòng nhập số điện thoại của bạn"
       ),
-      useValidator.isPhone('[name="phone__number"]'),
+      useValidator.isPhone('[name="phone"]'),
       useValidator.isRequired(
         '[name="address"]',
         "Vui lòng nhập địa chỉ của bạn"
@@ -30,14 +35,39 @@ const RegisterForm = () => {
         "Mật khẩu nhập lại không chính xác"
       ),
     ],
-    onSubmit: (data) => {
-      console.log("Register data:", data);
-      // Gọi API đăng ký ở đây
+
+    onSubmit: async (values) => {
+      setCPass("");
+      if (values.password != values.password__confirmation) {
+        setCPass("Mật khẩu xác nhận không trùng khớp");
+        return;
+      }
+      setSuccessMessage("");
+      setMessage("");
+      const { email, password, address, phone, name } = values;
+      try {
+        const result = await register(
+          name,
+          email,
+          password,
+          phone,
+          address,
+          membershipDate
+        );
+
+        if (result._id) {
+          setSuccessMessage("Tài khoản đã được tạo thành công");
+        } else {
+          setMessage("Đăng ký không thành công");
+        }
+      } catch (error) {
+        setMessage(error.message || "Có lỗi xảy ra, vui lòng thử lại");
+      }
     },
   };
 
   const { values, errors, handleChange, handleSubmit, isSubmitting } =
-    useValidator(validatorOptions);
+    useValidator(useValidatorOptions);
 
   return (
     <div className="register__mobile">
@@ -55,17 +85,17 @@ const RegisterForm = () => {
                 Họ và tên
               </label>
               <input
-                id="fullname"
-                name="fullname"
+                id="name"
+                name="name"
                 type="text"
-                placeholder="Ngo Hoang"
+                placeholder="Nguyen Van A"
                 className={`registerForm--control ${
-                  errors.fullname ? "invalid" : ""
+                  errors.name ? "invalid" : ""
                 }`}
-                value={values.fullname || ""}
+                value={values.name || ""}
                 onChange={handleChange}
               />
-              <span className="registerForm--message">{errors.fullname}</span>
+              <span className="registerForm--message">{errors.name}</span>
             </div>
 
             <div className="registerForm__group">
@@ -87,26 +117,21 @@ const RegisterForm = () => {
             </div>
 
             <div className="registerForm__group">
-              <label
-                htmlFor="phone__number"
-                className="registerForm__group__label"
-              >
+              <label htmlFor="phone" className="registerForm__group__label">
                 Số điện thoại
               </label>
               <input
-                id="phone__number"
-                name="phone__number"
+                id="phone"
+                name="phone"
                 type="number"
                 placeholder="Số điện thoại"
                 className={`registerForm--control ${
-                  errors.phone__number ? "invalid" : ""
+                  errors.phone ? "invalid" : ""
                 }`}
-                value={values.phone__number || ""}
+                value={values.phone || ""}
                 onChange={handleChange}
               />
-              <span className="registerForm--message">
-                {errors.phone__number}
-              </span>
+              <span className="registerForm--message">{errors.phone}</span>
             </div>
 
             <div className="registerForm__group">
@@ -172,6 +197,11 @@ const RegisterForm = () => {
               <button type="submit" disabled={isSubmitting}>
                 Đăng ký
               </button>
+            </div>
+
+            <div className="register__notify">
+              <p className="register--success">{successMessage}</p>
+              <p className="register--fail">{message}</p>
             </div>
 
             <div className="registerForm__login">

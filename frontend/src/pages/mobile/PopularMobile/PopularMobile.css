@@ -9,9 +9,10 @@
 }
 
 .popular-mobile h2 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin-bottom: 0.5rem;
   font-family: var(--font-primary);
+  font-weight: 600;
 }
 
 .genre-select {
@@ -23,10 +24,9 @@
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 1.3rem;
   color: #555;
   background-color: #fff;
-  cursor: pointer;
 }
 
 .genre-select select:focus {
@@ -37,7 +37,7 @@
   justify-content: space-between;
 }
 .book-details__gap {
-  line-height: 1.5rem;
+  line-height: 2.5rem;
   margin: auto 0;
 }
 .book-card {
@@ -64,20 +64,21 @@
   align-items: center;
 }
 
-.book-details h3 {
-  font-size: 1.1rem;
+.bookcard-details h3 {
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
   color: #2c3e50;
+  font-weight: 500;
 }
 
-.book-details p {
-  font-size: 0.85rem;
+.bookcard-details p {
+  font-size: 1.2rem;
   color: #7f8c8d;
   margin-bottom: 0.5rem;
 }
 
 .book-price {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #2c3e50;
   font-weight: bold;
   margin-bottom: 0.5rem;
@@ -88,16 +89,14 @@
 }
 
 .book-actions button {
-  padding: 0.3rem 0.7rem;
+  padding: 0.5rem 1rem;
   border: none;
   border-radius: 0.25rem;
   font-size: 1rem;
-  cursor: pointer;
   background-color: #f1c40f;
   color: #fff;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
 }
 
 .add-to-cart:hover {
@@ -106,5 +105,5 @@
 .book-card_container {
   display: flex;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 3rem;
 }
