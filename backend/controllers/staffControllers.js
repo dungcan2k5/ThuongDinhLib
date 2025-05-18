@@ -42,7 +42,8 @@ export const registerStaff = asyncHandler(async (req, res) => {
 export const loginStaff = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     const staff = await Staff.findOne({ email });
-
+    console.log(staff);
+    
     if (staff && await bcrypt.compare(password, staff.password)) {
         return res.json({
             status: "success",
@@ -119,4 +120,38 @@ export const deleteStaffProfile = asyncHandler(async (req, res) => {
 export const getAllStaffs = asyncHandler(async (req, res) => {
     const staffs = await Staff.find({}).select("-password");
     res.json(staffs);
+});
+
+// @desc    Update staff by ID
+// @route   PUT /api/staffs/:id
+// @access  Private/Admin
+export const updateStaffById = asyncHandler(async (req, res) => {
+    const staff = await Staff.findById(req.params.id);
+
+    if (!staff) {
+        res.status(404).json({
+            message: "Không tìm thấy nhân viên",
+        });
+        return;
+    }
+
+    const { name, email, phone, role, salary } = req.body;
+
+    staff.name = name || staff.name;
+    staff.email = email || staff.email;
+    staff.phone = phone || staff.phone;
+    staff.role = role || staff.role;
+    staff.salary = salary || staff.salary;
+
+    const updatedStaff = await staff.save();
+
+    res.json({
+        _id: updatedStaff._id,
+        name: updatedStaff.name,
+        email: updatedStaff.email,
+        phone: updatedStaff.phone,
+        role: updatedStaff.role,
+        salary: updatedStaff.salary,
+        isAdmin: updatedStaff.isAdmin,
+    });
 });

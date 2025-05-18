@@ -90,3 +90,50 @@ export const getAllCategories = asyncHandler(async (req, res) => {
     const categories = await Book.distinct('category');
     res.json(categories);
 });
+
+// @desc    Get book by ID
+// @route   GET /api/books/:id
+export const getBookById = asyncHandler(async (req, res) => {
+  const book = await Book.findById(req.params.id);
+  if (book) {
+    res.json(book);
+  } else {
+    res.status(404).json({ message: 'Không tìm thấy sách' });
+  }
+});
+
+// @desc    Update book
+// @route   PUT /api/books/:id
+export const updateBook = asyncHandler(async (req, res) => {
+  const book = await Book.findById(req.params.id);
+
+  if (book) {
+    book.title = req.body.title || book.title;
+    book.isbn = req.body.isbn || book.isbn;
+    book.author = req.body.author || book.author;
+    book.category = req.body.category || book.category;
+    book.publishYear = req.body.publishYear || book.publishYear;
+    book.price = req.body.price || book.price;
+    book.quantity = req.body.quantity || book.quantity;
+    book.description = req.body.description || book.description;
+    book.image = req.body.image || book.image;
+
+    const updatedBook = await book.save();
+    res.json(updatedBook);
+  } else {
+    res.status(404).json({ message: 'Không tìm thấy sách' });
+  }
+});
+
+// @desc    Delete book
+// @route   DELETE /api/books/:id
+export const deleteBook = asyncHandler(async (req, res) => {
+  const book = await Book.findById(req.params.id);
+
+  if (book) {
+    await Book.deleteOne({ _id: book._id });
+    res.json({ message: 'Xóa sách thành công' });
+  } else {
+    res.status(404).json({ message: 'Không tìm thấy sách' });
+  }
+});

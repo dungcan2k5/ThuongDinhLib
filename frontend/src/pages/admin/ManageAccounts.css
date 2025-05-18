@@ -1,0 +1,138 @@
+.acc-manage-accounts {
+  padding: 20px;
+}
+
+.acc-table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.acc-edit-btn {
+  background: none;
+  border: none;
+  color: #0066cc;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.acc-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.acc-modal {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  width: 500px;
+}
+
+.acc-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.acc-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.acc-form-group {
+  margin-bottom: 15px;
+}
+
+.acc-form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.acc-form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.acc-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.acc-cancel-btn, .acc-save-btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.acc-cancel-btn {
+  background: none;
+  border: 1px solid #ddd;
+}
+
+.acc-save-btn {
+  background: #0066cc;
+  border: none;
+  color: white;
+}
+
+.acc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.acc-add-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.acc-add-btn:hover {
+  background: #218838;
+}
+
+.acc-delete-btn {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 8px;
+}
+
+.acc-delete-btn:hover {
+  color: #c82333;
+}

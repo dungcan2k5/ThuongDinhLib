@@ -4,8 +4,12 @@ import {
     searchBooks,
     searchByCategory,
     addBook,
-    getAllCategories
+    getAllCategories,
+    getBookById,
+    updateBook,
+    deleteBook
 } from "../controllers/bookControllers.js";
+import { protect } from '../middlewares/authStaff.js';
 
 const router = express.Router();
 
@@ -19,4 +23,10 @@ router.get("/search/book", searchBooks);
 router.get("/search/category", searchByCategory);
 // GET /api/books/categories
 router.get("/categories", getAllCategories);
+// Add these new routes
+router.route('/:id')
+    .get(getBookById)
+    .put(protect, updateBook)
+    .delete(protect, deleteBook);
+
 export default router;
