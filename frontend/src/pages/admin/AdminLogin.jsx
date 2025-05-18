@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getApiUrl } from "../../utils/apiUtils";
+import "./AdminLogin.css";
 
 const AdminLogin = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -39,33 +40,31 @@ const AdminLogin = () => {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "2rem auto" }}>
-      <h2>Đăng nhập Admin</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email:</label>
+    <div className="admin-login-container">
+      <form className="admin-login-form" onSubmit={handleLogin}>
+        <h2 className="admin-login-title">Đăng nhập Admin</h2>
+        <div className="admin-login-group">
+          <label>Email</label>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             required
-            style={{ width: "100%", padding: "8px", marginTop: "4px", marginBottom: "12px" }}
           />
         </div>
-        <div>
-          <label>Mật khẩu:</label>
+        <div className="admin-login-group">
+          <label>Mật khẩu</label>
           <input
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
             required
-            style={{ width: "100%", padding: "8px", marginTop: "4px", marginBottom: "12px" }}
           />
         </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit" style={{ padding: "10px 20px" }}>Đăng nhập</button>
+        {error && <p className="admin-login-error">{error}</p>}
+        <button type="submit" className="admin-login-button">Đăng nhập</button>
       </form>
     </div>
   );
