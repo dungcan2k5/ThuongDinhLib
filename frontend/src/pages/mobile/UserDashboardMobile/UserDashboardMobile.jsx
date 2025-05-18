@@ -142,7 +142,7 @@ const UserDashboardMobile = () => {
   return (
     <div className="userDashboardMobile">
       <div className="userDashboardMobile__title">
-        <h2>Thông tin đăng nhập</h2>
+        <p>Thông tin đăng nhập</p>
       </div>
 
       <div className="spacer"></div>

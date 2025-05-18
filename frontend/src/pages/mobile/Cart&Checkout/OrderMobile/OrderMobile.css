@@ -1,28 +1,100 @@
 .orders {
-  max-width: 600px;
-  margin: 0 auto;
+  margin: 0 10px 0 10px;
   padding: 20px;
   font-family: var(--font-secondary);
   background-color: #ffffff;
   color: #000000;
   border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   font-size: 1.5rem;
 }
 
-.orders h2,
+.noOrder {
+  margin: 0 10px 0 10px;
+  font-family: var(--font-secondary);
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 16px; 
+}
+
+.noOrder__content {
+  justify-items: center;
+  margin-top: 7rem;
+  margin-bottom: 12rem;
+}
+
+.noOrder h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-family: var(--font-primary);
+  text-transform: uppercase;
+}
+
+.noOrder__liner {
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 10px 0;
+}
+
+.noOrder__content__icon {
+  font-size: 10rem;
+  color: #e9a319;
+}
+
+.noOrder__content p {
+  font-size: 1.7rem;
+  margin-top: 10px;
+}
+
+.noOrder__content button {
+  font-weight: 600;
+  padding: 12px 24px;
+  margin-top: 10rem;
+  border-radius: 10px;
+  background: #e9a319;
+  color: white;
+  border: none;
+  font-size: 15px;
+  font-family: var(--font-secondary);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.orders h2 {
+  font-weight: 600;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
 .orders h3 {
   font-weight: 600;
   margin-bottom: 12px;
   border-bottom: 1px solid #ccc;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
 }
 
-.orders p {
+.orders__nameCus,
+.orders__emailCus,
+.orders__addressCus,
+.orders__phoneCus {
   margin: 6px 0;
   line-height: 1.4;
 }
 
+.orders__sumPrice {
+  display:flex;
+  gap: 4px;
+  margin: 6px 0;
+  line-height: 1.4;
+}
+
+.orders__sumPrice p {
+  color: red;
+  font-weight: 600;
+}
 .orders ul {
   list-style: none;
   padding-left: 0;
@@ -60,10 +132,16 @@
 
 .product-title {
   font-weight: 500;
-  margin: 0;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.product-quantity {
+  margin-bottom: 10px;
+
 }
 
 .product-price {
-  margin: 2px 0 0;
-  color: #333;
+  font-size: 14px;
+  color: red;
 }

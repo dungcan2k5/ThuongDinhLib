@@ -11,8 +11,8 @@ import { getApiUrl } from "../../../utils/apiUtils";
 import { searchBooks } from "../../../services/bookService";
 const navigation = [
   { name: "Tài khoản", href: "/user-dashboard" },
-  { name: "Đơn mua", href: "/orders" },
-  { name: "Thanh toán", href: "/checkout" },
+  { name: "Giỏ hàng", href: "/cart" },
+  { name: "Đơn hàng", href: "/orders" },
 ];
 
 const HeaderMobile = () => {
@@ -120,7 +120,7 @@ const HeaderMobile = () => {
                       <div className="suggestion-info">
                         <strong>{book.title}</strong>
                         <p>{book.author}</p>
-                        <p style={{ color: "green" }}>
+                        <p style={{ color: "red", fontWeight:"bolder"}}>
                           {parseFloat(
                             book.price?.$numberDecimal || book.price
                           ).toLocaleString()}
@@ -150,7 +150,13 @@ const HeaderMobile = () => {
                   <ul>
                     {navigation.map((item) => (
                       <li key={item.name}>
-                        <Link to={item.href} className="user-nav__item">
+                        <Link
+                          to={item.href} 
+                          className="user-nav__item"
+                          onClick={() => {
+                            setIsDropDownOpen(false);
+                          }}
+                        >
                           {item.name}
                         </Link>
                       </li>

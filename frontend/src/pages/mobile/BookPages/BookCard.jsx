@@ -37,7 +37,7 @@ const BookCard = ({ book }) => {
               <div>
                 <h3>{book.title}</h3>
                 <p>{book.description}</p>
-                <div className="book-price">{book.price}₫</div>
+                <div className="book-price" style={{ color:"red" }}>{book.price}₫</div>
               </div>
             </Link>
 

@@ -2,10 +2,10 @@
     margin-left: 20px;
     margin-right: 20px;
 }
-.userDashboardMobile__title {
-    font-size: 14px;
+.userDashboardMobile__title p {
+    font-size: 2.2rem;
     text-transform: uppercase;
-    margin-top: 10%;
+    font-weight: 600;
 }
 .spacer{
     margin: 10px 0 15px 0;
@@ -54,7 +54,6 @@
 .input--wrapper {
     display: flex;
     flex-direction: column;
-
 }
 .error--text {  
     color: red;
@@ -81,6 +80,7 @@
     padding: 10px 0 10px 10px;
     border-radius: 10px;
     margin-right: 20px;
+    background-color: #f9fafb;
 }
 .info-divider {
     grid-column: 1 / -1;
