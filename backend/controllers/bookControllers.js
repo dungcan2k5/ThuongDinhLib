@@ -1,5 +1,11 @@
 import Book from "../models/bookModel.js";
 import asyncHandler from "express-async-handler";
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // @desc    Get all books
 // @route   GET /api/books
@@ -125,12 +131,27 @@ export const updateBook = asyncHandler(async (req, res) => {
   }
 });
 
+// Add utility function to delete image
+const deleteImage = (imagePath) => {
+  if (!imagePath) return;
+  
+  const fullPath = path.join(__dirname, '..', imagePath);
+  if (fs.existsSync(fullPath)) {
+    fs.unlinkSync(fullPath);
+  }
+};
+
 // @desc    Delete book
 // @route   DELETE /api/books/:id
 export const deleteBook = asyncHandler(async (req, res) => {
   const book = await Book.findById(req.params.id);
 
   if (book) {
+    // Delete image file if exists
+    if (book.image) {
+      deleteImage(book.image);
+    }
+    
     await Book.deleteOne({ _id: book._id });
     res.json({ message: 'Xóa sách thành công' });
   } else {
