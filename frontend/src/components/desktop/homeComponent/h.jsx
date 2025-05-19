@@ -2,127 +2,123 @@ import React, { useEffect, useState } from "react";
 import getCategory from "../../../services/bookCategoryGet";
 import categorySearch from "../../../services/categorySearch";
 import { getApiUrl } from "../../../utils/apiUtils";
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import BookInfor from "../BookInfor";
+import BookInfor from "../BookInfor/BookInfor";
 import './h.css';
 
 const HDesktop = () => {
-    const[categories, setCategories] = useState([]);
-    const[books, setBooks] = useState([]);
-    const[selectedCategory, setSelectedCategory] = useState('');
-    const[currentPage, setCurrentPage] = useState(1);
+    const [categories, setCategories] = useState([]);
+    const [books, setBooks] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [animating, setAnimating] = useState(false);
+    const [animationClass, setAnimationClass] = useState("");
 
-    const[bookInforState, setBookInforState] = useState(false);
-    const[selectedBook, setSelectedBook] = useState('');
-    const [fade, setFade] = useState(false);
-    const booksPerPage = 6;
+    const [bookInforState, setBookInforState] = useState(false);
+    const [selectedBook, setSelectedBook] = useState(null);
 
-    useEffect (() => {
-        const fectCategory = async () => {
+    const booksPerPage = 8;
+
+    useEffect(() => {
+        const fetchCategory = async () => {
             const res = await getCategory();
-            setCategories(res)
+            setCategories(res);
 
             if (res && res.length > 0) {
                 setSelectedCategory(res[0]);
                 const booksRes = await categorySearch(res[0]);
                 setBooks(booksRes);
+                setCurrentPage(1);
             }
         };
 
-        fectCategory();
+        fetchCategory();
     }, []);
 
-    const handleCategoryChange = async(e) => {
-        setCurrentPage(1)
+    const handleCategoryChange = async (e) => {
+        setCurrentPage(1);
         const category = e.target.value;
-        setSelectedCategory(category)
+        setSelectedCategory(category);
+        const res = await categorySearch(category);
+        setBooks(res);
+    };
 
-        const res = await categorySearch(category)
-        setBooks(res)
-        console.log(res)
-    }
+    const getBooksForPage = (page) => {
+        const start = (page - 1) * booksPerPage;
+        return books.slice(start, start + booksPerPage);
+    };
 
-    const indexOfLastBook = currentPage * booksPerPage;
-    const indexOfFirstBook = indexOfLastBook - booksPerPage;
-    const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook)
+    const handlePageChange = (page) => {
+        if (page === currentPage || animating) return;
 
-    const nextPage = () => {
-        if (currentPage < Math.ceil(books.length / booksPerPage)) {
-            setFade(true);
-            setTimeout(() => {
-                setCurrentPage(currentPage + 1);
-                setFade(false);
-            }, 300); // Chờ 300ms cho fade-out
-        }
-    }
+        const direction = page > currentPage ? 'right' : 'left';
+        setAnimationClass(`slide-out-${direction}`);
+        setAnimating(true);
 
-    const prePage = () => {
-        if (currentPage > 1) {
-            setFade(true);
-            setTimeout(() => {
-                setCurrentPage(currentPage - 1);
-                setFade(false);
-            }, 300); // Chờ 300ms cho fade-out
-        }
-    }
+        setTimeout(() => {
+            setCurrentPage(page);
+            setAnimationClass(`slide-in-${direction}`);
+        }, 300);
 
-    const popUp = (book) => {
-        setBookInforState(true)
-        setSelectedBook(book)
-    }
-
-    const popOut = () => {
-        setBookInforState(false)
-        setSelectedBook('')
-    }
+        setTimeout(() => {
+            setAnimationClass('');
+            setAnimating(false);
+        }, 600);
+    };
 
     return (
-        <div className="homePage">
-            {bookInforState &&
-            <div className="overlay" onClick={popOut}>
-                <BookInfor book={selectedBook}></BookInfor>
-            </div>
-            }
-            <div className="bookCate">
-            <h2 className="bookCate__title">Phổ biến:</h2>
-            <select onChange={handleCategoryChange} value={selectedCategory} className="bookCate__select">
-                <option value="">Chọn thể loại</option>
-                {categories.map((category) => (
-                    <option key={category} value={category}>
-                        {category}
-                    </option>
-                ))}
+        <div className="categoryPage">
+            {bookInforState && selectedBook && (
+                <div className="overlay" onClick={() => setBookInforState(false)}>
+                    <BookInfor book={selectedBook} />
+                </div>
+            )}
+
+            <div className="categoryPage__header">
+                <h2 className="categoryPage__title">Thể Loại</h2>
+                <select value={selectedCategory} onChange={handleCategoryChange} className="categoryPage__select">
+                    {categories.map((cat) => (
+                        <option key={cat} value={cat}>{cat}</option>
+                    ))}
                 </select>
-                <div className={`bookCate__page ${fade ? 'fade-out' : ''}`}>
-                    {books.length === 0 && selectedCategory &&(
-                        <p className="bookCate__page-none">Không có sách cho thể loại này</p>
-                    )}
-                    {books.length > 0 && (
-                        currentBooks.map((book) => (
-                            <div key={book.id} className="bookCate__card" onClick={() => popUp(book)}>
-                                <div className="bookCate__img">
-                                    <img src={`${getApiUrl()}${book.image}`} alt="" />
-                                </div>
-                                <div className="bookCate__des">
-                                    <h2>{book.title}</h2>
-                                    <div className="des">{book.description}</div>
-                                    <div className="cross"></div>
-                                    <h3>{book.author}</h3>
-                                    <p>{book.publishYear}</p>
-                                    <h4>{Number(book.price.$numberDecimal).toLocaleString('vi-VN')}đ</h4>
-                                </div>
+            </div>
+
+            {books.length === 0 ? (
+                <p className="categoryPage__empty">Không có sách trong thể loại này</p>
+            ) : (
+                <div className={`categoryPage__list ${animationClass}`}>
+                    {getBooksForPage(currentPage).map((book) => (
+                        <div
+                            key={book._id}
+                            className="categoryPage__card"
+                            onClick={() => {
+                                setBookInforState(true);
+                                setSelectedBook(book);
+                            }}
+                        >
+                            <img src={`${getApiUrl()}${book.image}`} alt={book.title} />
+                            <div className="categoryPage__info">
+                                <h3>{book.title}</h3>
+                                <p>{book.author}</p>
+                                <p>{Number(book.price?.$numberDecimal || 0).toLocaleString('vi-VN')} đ</p>
                             </div>
-                        ))
-                    )}
+                        </div>
+                    ))}
                 </div>
-                <div className="bookCate__flow">
-                    <button onClick={prePage} disabled={currentPage === 1} className="bookCate__pre"><FaArrowLeft /></button>
-                    <div className="bookCate_status">{currentPage} / {Math.ceil(books.length / booksPerPage)}</div>
-                    <button onClick={nextPage} disabled={currentPage === Math.ceil(books.length / booksPerPage)} className="bookCate__next"><FaArrowRight /></button>
-                </div>
+            )}
+
+            <div className="categoryPage__pagination">
+                {Array.from({ length: Math.ceil(books.length / booksPerPage) }, (_, i) => i + 1).map((num) => (
+                    <button
+                        key={num}
+                        className={`categoryPage__pageBtn ${num === currentPage ? 'active' : ''}`}
+                        onClick={() => handlePageChange(num)}
+                    >
+                        {num}
+                    </button>
+                ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default HDesktop
+export default HDesktop;

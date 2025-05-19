@@ -1,5 +1,5 @@
 import React from 'react'
-import RegisterFormDesktop from '../../components/desktop/RegisterFormDesktop'
+import RegisterFormDesktop from '../../components/desktop/registerform/RegisterFormDesktop'
 import './RegisterDesktop.css'
 
 const RegisterDesktop = () => {

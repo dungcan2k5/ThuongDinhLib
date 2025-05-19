@@ -1,5 +1,11 @@
 import Book from "../models/bookModel.js";
 import asyncHandler from "express-async-handler";
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // @desc    Get all books
 // @route   GET /api/books
@@ -89,4 +95,66 @@ export const addBook = asyncHandler(async (req, res) => {
 export const getAllCategories = asyncHandler(async (req, res) => {
     const categories = await Book.distinct('category');
     res.json(categories);
+});
+
+// @desc    Get book by ID
+// @route   GET /api/books/:id
+export const getBookById = asyncHandler(async (req, res) => {
+  const book = await Book.findById(req.params.id);
+  if (book) {
+    res.json(book);
+  } else {
+    res.status(404).json({ message: 'Không tìm thấy sách' });
+  }
+});
+
+// @desc    Update book
+// @route   PUT /api/books/:id
+export const updateBook = asyncHandler(async (req, res) => {
+  const book = await Book.findById(req.params.id);
+
+  if (book) {
+    book.title = req.body.title || book.title;
+    book.isbn = req.body.isbn || book.isbn;
+    book.author = req.body.author || book.author;
+    book.category = req.body.category || book.category;
+    book.publishYear = req.body.publishYear || book.publishYear;
+    book.price = req.body.price || book.price;
+    book.quantity = req.body.quantity || book.quantity;
+    book.description = req.body.description || book.description;
+    book.image = req.body.image || book.image;
+
+    const updatedBook = await book.save();
+    res.json(updatedBook);
+  } else {
+    res.status(404).json({ message: 'Không tìm thấy sách' });
+  }
+});
+
+// Add utility function to delete image
+const deleteImage = (imagePath) => {
+  if (!imagePath) return;
+  
+  const fullPath = path.join(__dirname, '..', imagePath);
+  if (fs.existsSync(fullPath)) {
+    fs.unlinkSync(fullPath);
+  }
+};
+
+// @desc    Delete book
+// @route   DELETE /api/books/:id
+export const deleteBook = asyncHandler(async (req, res) => {
+  const book = await Book.findById(req.params.id);
+
+  if (book) {
+    // Delete image file if exists
+    if (book.image) {
+      deleteImage(book.image);
+    }
+    
+    await Book.deleteOne({ _id: book._id });
+    res.json({ message: 'Xóa sách thành công' });
+  } else {
+    res.status(404).json({ message: 'Không tìm thấy sách' });
+  }
 });

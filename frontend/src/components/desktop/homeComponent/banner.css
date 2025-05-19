@@ -12,6 +12,8 @@ html {
     transition: all 0.8s ease;
     opacity: 1;
     transform: translateY(0);
+    width: 80%;
+    margin: auto;
 }
 
 .banner_des > h2 {

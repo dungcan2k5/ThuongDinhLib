@@ -59,19 +59,19 @@ export const updateCustomerProfile = asyncHandler(async (req, res) => {
   if (!customer) {
     return res.status(404).json({ message: 'Không tìm thấy người dùng' });
   }
-  // So sánh mật khẩu hiện tại (có trim nếu cần)
-  const isMatch = await bcrypt.compare(req.body.currentPassword.trim(), customer.password);
-
-  if (!isMatch) {
-    return res.status(400).json({ message: 'Mật khẩu hiện tại không đúng' });
-  }
+  if (req.body.currentPassword) {
+    const isMatch = await bcrypt.compare(req.body.currentPassword.trim(), customer.password);
+    if (!isMatch) {
+        return res.status(400).json({ message: 'Mật khẩu hiện tại không đúng' });
+    }
 
   // Cập nhật mật khẩu mới (hash mới)
-  if (req.body.newPassword) {
-    const salt = await bcrypt.genSalt(10);
-    customer.password = await bcrypt.hash(req.body.newPassword, salt);
+    if (req.body.newPassword) {
+        const salt = await bcrypt.genSalt(10);
+        customer.password = await bcrypt.hash(req.body.newPassword, salt);
+    }
   }
-
+  // So sánh mật khẩu hiện tại (có trim nếu cần)
   // Cập nhật các thông tin khác
   if (req.body.name) customer.name = req.body.name;
   if (req.body.phone) customer.phone = req.body.phone;

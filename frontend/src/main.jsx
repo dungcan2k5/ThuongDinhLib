@@ -8,6 +8,8 @@ import "sweetalert2/dist/sweetalert2.js";
 import mobileCheck from "./utils/mobileCheck";
 import "./main.css";
 
+import "normalize.css"
+
 const App = () => {
   const [router, setRouter] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
