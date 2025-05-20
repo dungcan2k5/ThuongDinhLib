@@ -5,10 +5,14 @@ import {
     loginCustomer,
     updateCustomerProfile,
     deleteCustomerProfile,
+    getAllCustomers
 } from "../controllers/customerControllers.js";
 import { protect } from "../middlewares/authCustomerMiddleware.js";
 
 const router = express.Router();
+
+//GET /api/customers
+router.get("/", protect, getAllCustomers);
 
 // GET /api/customers/profile
 router.get("/profile", protect, getCustomerProfile);
