@@ -7,40 +7,18 @@ import BookInfor from "../BookInfor/BookInfor";
 import "./h.css";
 
 const HDesktop = () => {
-<<<<<<< HEAD
-  const [categories, setCategories] = useState([]);
-  const [books, setBooks] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [animating, setAnimating] = useState(false);
-  const [animationClass, setAnimationClass] = useState("");
-=======
     const [categories, setCategories] = useState([]);
     const [books, setBooks] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("Tất cả");
     const [currentPage, setCurrentPage] = useState(1);
     const [animating, setAnimating] = useState(false);
     const [animationClass, setAnimationClass] = useState("");
->>>>>>> origin/new-desktop
 
   const [bookInforState, setBookInforState] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
 
   const booksPerPage = 8;
 
-<<<<<<< HEAD
-  useEffect(() => {
-    const fetchCategory = async () => {
-      const res = await getCategory();
-      setCategories(res);
-
-      if (res && res.length > 0) {
-        setSelectedCategory(res[0]);
-        const booksRes = await categorySearch(res[0]);
-        setBooks(booksRes);
-        setCurrentPage(1);
-      }
-=======
     useEffect(() => {
         const fetchInitial = async () => {
             const res = await getCategory();
@@ -65,7 +43,6 @@ const HDesktop = () => {
             const res = await categorySearch(category);
             setBooks(res);
         }
->>>>>>> origin/new-desktop
     };
 
     fetchCategory();
@@ -91,41 +68,6 @@ const HDesktop = () => {
     setAnimationClass(`slide-out-${direction}`);
     setAnimating(true);
 
-<<<<<<< HEAD
-    setTimeout(() => {
-      setCurrentPage(page);
-      setAnimationClass(`slide-in-${direction}`);
-    }, 300);
-
-    setTimeout(() => {
-      setAnimationClass("");
-      setAnimating(false);
-    }, 600);
-  };
-
-  return (
-    <>
-      <div className="categoryPage">
-        {bookInforState && selectedBook && (
-          <div className="overlay" onClick={() => setBookInforState(false)}>
-            <BookInfor book={selectedBook} />
-          </div>
-        )}
-
-        <div className="categoryPage__header">
-          <h2 className="categoryPage__title">Thể Loại</h2>
-          <select
-            value={selectedCategory}
-            onChange={handleCategoryChange}
-            className="categoryPage__select"
-          >
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-=======
     const totalPages = Math.ceil(books.length / booksPerPage);
 
     // Tạo danh sách số trang hiển thị gọn (trong khoảng 5 nút)
@@ -219,7 +161,6 @@ const HDesktop = () => {
                     </button>
                 </div>
             )}
->>>>>>> origin/new-desktop
         </div>
 
         {books.length === 0 ? (
