@@ -97,15 +97,17 @@ const Record = ({ book, onCLose, onBorrowSuccess }) => {
                     <div className="record__bookinfor">
                       <h3>{item.title}</h3>
                       <h4>{item.author}</h4>
+                      <p>số lượng: {item.quantity}</p>
                     </div>
                     <div className="record__price">
                       <p>
-                        {typeof item.price === "object"
-                          ? Number(
-                              item.price?.$numberDecimal ?? 0
-                            ).toLocaleString("vi-VN")
-                          : Number(item.price ?? 0).toLocaleString("vi-VN")}
-                        đ
+                        {(() => {
+                          const price = typeof item.price === "object"
+                            ? Number(item.price?.$numberDecimal || 0)
+                            : Number(item.price || 0);
+                          const quantity = item.quantity || 1;
+                          return (price * quantity).toLocaleString("vi-VN");
+                        })()} đ
                       </p>
                     </div>
                   </div>

@@ -16,29 +16,30 @@ const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
     const [recordShow, setRecordShow] = useState(false);
 
-    const total = cartItems.reduce((sum, item) => {
-        const price = typeof item.price === "object"
-            ? Number(item.price?.$numberDecimal || 0)
-            : Number(item.price || 0);
-        const quantity = item.quantity || 1;
-        return sum + price * quantity;
-    }, 0);
-
     useEffect(() => {
         const items = getCartForCurrentUser();
         setCartItems(items);
     }, []);
 
-    if (cartItems.length === 0) {
-        return <p className="cart__empty">Giỏ hàng của bạn đang trống.</p>;
-    }
-
-    const removeFromCart = (indexToRemove) => {
+    const updateCartStorage = (updatedCart) => {
         const userId = getUserIdFromToken();
         const cartKey = `cart_${userId}`;
-        const updatedCart = cartItems.filter((_, index) => index !== indexToRemove);
         setCartItems(updatedCart);
         localStorage.setItem(cartKey, JSON.stringify(updatedCart));
+    };
+
+    const removeFromCart = (indexToRemove) => {
+        const updatedCart = cartItems.filter((_, index) => index !== indexToRemove);
+        updateCartStorage(updatedCart);
+    };
+
+    const handleQuantityChange = (index, change) => {
+        const updatedCart = [...cartItems];
+        const currentQty = updatedCart[index].quantity || 1;
+        const newQty = currentQty + change;
+        if (newQty < 1) return;
+        updatedCart[index].quantity = newQty;
+        updateCartStorage(updatedCart);
     };
 
     const afterBorrow = () => {
@@ -47,6 +48,18 @@ const Cart = () => {
         localStorage.removeItem(cartKey);
         setCartItems([]);
     };
+
+    const total = cartItems.reduce((sum, item) => {
+        const price = typeof item.price === "object"
+            ? Number(item.price?.$numberDecimal || 0)
+            : Number(item.price || 0);
+        const quantity = item.quantity || 1;
+        return sum + price * quantity;
+    }, 0);
+
+    if (cartItems.length === 0) {
+        return <p className="cart__empty">Giỏ hàng của bạn đang trống.</p>;
+    }
 
     return (
         <div className="cart">
@@ -70,7 +83,12 @@ const Cart = () => {
                                 <div className="card__item-content">
                                     <h3>{book.title}</h3>
                                     <p className="cart__item-author">Tác giả: {book.author}</p>
-                                    <p className="cart__item-quantity">Số lượng: {quantity}</p>
+                                    <div className="cart__item-quantity">
+                                        <span>Số lượng: </span>
+                                        <button onClick={() => handleQuantityChange(index, -1)} className="qty--btn">−</button>
+                                        <span className="qty--number">{quantity}</span>
+                                        <button onClick={() => handleQuantityChange(index, 1)} className="qty--btn">+</button>
+                                    </div>
                                     <p className="cart__item-price">
                                         Giá: {totalItemPrice.toLocaleString("vi-VN")}đ
                                     </p>
@@ -98,9 +116,9 @@ const Cart = () => {
             {recordShow && (
                 <Record
                     book={cartItems}
-                    onCLose={() => setRecordShow(false)} // chỉ đóng popup
+                    onCLose={() => setRecordShow(false)}
                     onBorrowSuccess={() => {
-                        afterBorrow();                  // xoá giỏ khi xác nhận thành công
+                        afterBorrow();        
                         setRecordShow(false);
                     }}
                 />

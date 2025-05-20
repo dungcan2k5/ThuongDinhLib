@@ -25,15 +25,14 @@
 
 .record__item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     border-bottom: #999 1px solid;
     margin-bottom: 1rem;
 }
 
-.record_price {
-    display: flex;
-    align-items: center;
+.record__price {
+    flex: 1;
+    text-align: right;
 }
 
 .record__bookinfor > h3 {
@@ -72,6 +71,7 @@
 .record__data {
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
 
 .record__total {
@@ -92,10 +92,13 @@
       justify-content: space-between;
 }
 
+
+
 .record__form {
     display: flex;
     flex-direction: column;
-    margin-right: 5rem;
+    margin: 0rem 5rem;
+    width: 30rem;
 }
 
 .record__form > label {
@@ -127,3 +130,4 @@
     color: #000000 !important;
     font-size: 1.2rem !important;
 }
+

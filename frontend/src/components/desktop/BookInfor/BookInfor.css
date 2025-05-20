@@ -16,12 +16,13 @@ html {
 }
 
 .bookInfor__img > img {
-    width: 100%;
+    height: 100%;
+    width: auto;
     object-fit: cover;
 }
 
 .bookInfor__img {
-    flex-basis: 45%;
+    /* flex-basis: 20%; */
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -29,7 +30,7 @@ html {
 }
 
 .bookInfor__des {
-    flex-basis: 55%;
+    flex-basis: 70%;
     margin-left: 3rem;
     position: relative;
 }
