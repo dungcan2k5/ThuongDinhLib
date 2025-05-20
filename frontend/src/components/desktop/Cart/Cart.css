@@ -99,3 +99,8 @@
     margin-top: 4rem;
     margin-left: 2rem;
 }
+
+.qty--number {
+    font-size: 1.3rem;
+    margin: 0 1rem;
+}

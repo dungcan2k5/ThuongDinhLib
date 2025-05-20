@@ -42,6 +42,7 @@ const HeaderDesktop = () => {
 
     const logout = () => {
         localStorage.removeItem("token");
+        setLogined(false)
     }
 
     const userNav = () => (
@@ -50,7 +51,7 @@ const HeaderDesktop = () => {
             <li className="header__right-item"><Link to="/cart">Giỏ hàng</Link></li>
             <li className="header__right-item"><Link to="/dashboard">Tài khoản</Link></li>
             <li className="header__right-item"><Link to="/history">Đơn mua</Link></li>
-            <li className="header__right-item"><Link to="/login" onClick={logout}>Đăng xuất</Link></li>
+            <li className="header__right-item"><Link to="/" onClick={logout}>Đăng xuất</Link></li>
         </ul>
     );
 

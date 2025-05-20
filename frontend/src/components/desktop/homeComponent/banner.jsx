@@ -1,56 +1,75 @@
 import React, { useEffect, useState } from "react";
-import tatdenImg from "../../../assets/bannerHome/tatden.jpg";
-import orangeImg from "../../../assets/bannerHome/orange.jpg";
-import chamberImg from "../../../assets/bannerHome/champerofs.jpg";
-import './banner.css'
+import GetBook from "../../../services/GetBook";
+import './banner.css';
+import BookInfor from "../BookInfor/BookInfor";
+import { getApiUrl } from "../../../utils/apiUtils";
 
 const Banner = () => {
-
-    const banners = [
-        {title: "Tắt đèn", author: "Ngô Tất Tố",
-        des: "Tắt Đèn là câu chuyện đầy đau thương về chị Dậu – người phụ nữ nông dân kiên cường, chống chọi với sưu cao thuế nặng dưới xã hội phong kiến mục nát, phản ánh sâu sắc thân phận con người nghèo khổ đầu thế kỷ XX",
-        img: tatdenImg},
-        {title: "Cây cam ngọt của tôi", author: "Jose Mauro De Vasconcelos",
-        des: "My Sweet Orange Tree theo chân Zezé – cậu bé nghèo nhưng giàu tình cảm, với trí tưởng tượng phong phú. Qua những biến cố gia đình, Zezé dần trưởng thành trong nỗi đau, lòng yêu thương và hy vọng",
-        img: orangeImg},
-        {title: "Harry Potter and the Chamber of Secrets", author: "J. K. Rowling",
-        des: "Harry Potter and the Chamber of Secrets kể về năm học thứ hai của Harry tại trường Hogwarts, nơi hàng loạt vụ tấn công bí ẩn xảy ra. Cùng bạn bè, Harry khám phá bí mật Phòng chứa, đối đầu với quá khứ đen tối và con quái vật nguy hiểm ẩn sâu trong trường",
-        img: chamberImg}
-    ]
-    
+    const [books, setBooks] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [fade, setFade] = useState(false);
+    const [showBookInfor, setShowBookInfor] = useState(false)
+    const [selectedBook, setSelectedBook] = useState(null)
 
-   useEffect(() => {
+    const bannerClick = (book) => {
+        setSelectedBook(book)
+        setShowBookInfor(true)
+    }
+
+    useEffect(() => {
+        const fetchBooks = async () => {
+            try {
+                const allBooks = await GetBook();
+                setBooks(allBooks.slice(0, 5)); // Giả sử chỉ hiển thị 5 cuốn sắp ra mắt
+            } catch (error) {
+                console.error("Lỗi khi lấy sách:", error);
+            }
+        };
+
+        fetchBooks();
+    }, []);
+
+    useEffect(() => {
+        if (books.length === 0) return;
+
         const interval = setInterval(() => {
-            setFade(true); // Bắt đầu fade-out
+            setFade(true);
             setTimeout(() => {
-                setCurrentIndex((prevIndex) => (prevIndex + 1) % banners.length);
-                setFade(false); // Fade-in cái mới
-            }, 500); // thời gian fade-out trước khi đổi banner (0.5s)
+                setCurrentIndex((prevIndex) => (prevIndex + 1) % books.length);
+                setFade(false);
+            }, 500);
         }, 5000);
 
-        return () => clearInterval(interval); // Clear interval khi unmount
-    }, [banners.length]);
+        return () => clearInterval(interval);
+    }, [books]);
 
-    const currentBanner = banners[currentIndex]
+    if (books.length === 0) {
+        return <p>Đang tải sách...</p>;
+    }
+
+    const currentBook = books[currentIndex];
 
     return (
         <div className="upComing">
-            <h2>Sách sắp ra mắt</h2>
-            <div className={`banner ${fade ? "fade-out" : ""}`}>
+            {showBookInfor && (
+                <div className="banner__overlay" onClick={() => setShowBookInfor(false)}>
+                    <BookInfor book={selectedBook}/>
+                </div>
+            )}
+            <h2>Sách mới</h2>
+            <div className={`banner ${fade ? "fade-out" : ""}`} onClick={() => bannerClick(currentBook)}>
                 <div className="banner_des">
-                    <h2>{currentBanner.title}</h2>
-                    <h3>{currentBanner.author}</h3>
+                    <h2>{currentBook.title}</h2>
+                    <h3>{currentBook.author}</h3>
                     <div className="Cross"></div>
-                    <p>{currentBanner.des}</p>
+                    <p>{currentBook.description}</p>
                 </div>
                 <div className="banner_img">
-                    <img src={currentBanner.img} alt="" />
+                    <img src={`${getApiUrl()}${currentBook.image}`} alt={currentBook.title} />
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Banner
+export default Banner;
