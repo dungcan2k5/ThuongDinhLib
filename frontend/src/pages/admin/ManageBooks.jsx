@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faPen, faTrash, faUpload, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { MdLibraryBooks } from 'react-icons/md';
+import { faPenToSquare, faTimes, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons';
+
 import './ManageBooks.css';
 import { getApiUrl } from '../../utils/apiUtils';
 
@@ -21,6 +21,7 @@ const ManageBooks = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isCreateMode, setIsCreateMode] =  useState(false);
   const [editingId, setEditingId] = useState(null);
   const [imageUrl, setImageUrl] = useState('');
   const [formData, setFormData] = useState(initialValues);
@@ -208,28 +209,37 @@ const ManageBooks = () => {
 
   return (
     <div className="manage-books">
-      <div className="header">
-        <MdLibraryBooks size={24} />
-        <h2>Book Management</h2>
+      <div className="book-header">
+        <h2 className="books-header__title">Danh sách sách</h2>
+        <button
+          className="book-add-btn"
+          onClick={() => {
+            setEditingId(null);             
+            setFormData(initialValues);  
+            setImageUrl('');
+            setPreviewUrl('');
+            setSelectedFile(null);
+            setIsModalVisible(true);    
+          }}
+        >
+          Thêm sách
+        </button>
       </div>
+      
 
-      <button className="btn btn-primary" onClick={() => setIsModalVisible(true)}>
-        <FontAwesomeIcon icon={faPlus} /> Add Book
-      </button>
-
-      <div className="table-container">
-        <table>
+      <div className="book-container">
+        <table className="book-table-container">
           <thead>
             <tr>
-              <th>Title</th>
+              <th>Tên sách</th>
               <th>ISBN</th>
-              <th>Author</th>
-              <th>Category</th>
-              <th>Year</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Image</th>
-              <th>Actions</th>
+              <th>Tác giả</th>
+              <th>Thể loại</th>
+              <th>Năm xuất bản</th>
+              <th>Giá</th>
+              <th>Số lượng</th>
+              <th>Hình ảnh</th>
+              <th>Thao tác</th>
             </tr>
           </thead>
           <tbody>
@@ -251,11 +261,11 @@ const ManageBooks = () => {
                     style={{ cursor: 'pointer' }}
                   />}
                 </td>
-                <td className="actions">
-                  <button className="btn btn-edit" onClick={() => handleEdit(book)}>
-                    <FontAwesomeIcon icon={faPen} />
+                <td>
+                  <button className="book-btn-edit" onClick={() => handleEdit(book)}>
+                    <FontAwesomeIcon icon={faPenToSquare} />
                   </button>
-                  <button className="btn btn-delete" onClick={() => handleDelete(book._id)}>
+                  <button className="book-btn-delete" onClick={() => handleDelete(book._id)}>
                     <FontAwesomeIcon icon={faTrash} />
                   </button>
                 </td>
@@ -266,17 +276,20 @@ const ManageBooks = () => {
       </div>
 
       {isModalVisible && (
-        <div className="modal">
+        <div className="book-modal">
           <div className="modal-content">
-            <div className="modal-header">
-              <h3>{editingId ? 'Edit Book' : 'Add Book'}</h3>
-              <button className="close-btn" onClick={() => setIsModalVisible(false)}>
+
+            <div className="book-modal-header">
+              <h3>{editingId ? 'Chỉnh sửa sách' : 'Thêm mới sách'}</h3>
+              <button className="book-close-btn" onClick={() => setIsModalVisible(false)}>
                 <FontAwesomeIcon icon={faTimes} />
               </button>
             </div>
+
             <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>Title</label>
+
+              <div className="book-form-group">
+                <label>Tên sách</label>
                 <input
                   type="text"
                   name="title"
@@ -285,7 +298,8 @@ const ManageBooks = () => {
                   required
                 />
               </div>
-              <div className="form-group">
+
+              <div className="book-form-group">
                 <label>ISBN</label>
                 <input
                   type="text"
@@ -295,8 +309,9 @@ const ManageBooks = () => {
                   required
                 />
               </div>
-              <div className="form-group">
-                <label>Author</label>
+
+              <div className="book-form-group">
+                <label>Tác giả</label>
                 <input
                   type="text"
                   name="author"
@@ -305,8 +320,9 @@ const ManageBooks = () => {
                   required
                 />
               </div>
-              <div className="form-group">
-                <label>Category</label>
+              
+              <div className="book-form-group">
+                <label>Thể loại</label>
                 <input
                   type="text"
                   name="category"
@@ -315,8 +331,9 @@ const ManageBooks = () => {
                   required
                 />
               </div>
-              <div className="form-group">
-                <label>Year</label>
+
+              <div className="book-form-group">
+                <label>Năm xuất bản</label>
                 <input
                   type="number"
                   name="publishYear"
@@ -325,8 +342,9 @@ const ManageBooks = () => {
                   required
                 />
               </div>
-              <div className="form-group">
-                <label>Price</label>
+
+              <div className="book-form-group">
+                <label>Giá</label>
                 <input
                   type="number"
                   name="price"
@@ -337,8 +355,9 @@ const ManageBooks = () => {
                   required
                 />
               </div>
-              <div className="form-group">
-                <label>Quantity</label>
+
+              <div className="book-form-group">
+                <label>Số lượng</label>
                 <input
                   type="number"
                   name="quantity"
@@ -349,8 +368,9 @@ const ManageBooks = () => {
                   required
                 />
               </div>
-              <div className="form-group">
-                <label>Description</label>
+
+              <div className="book-form-group">
+                <label>Mô tả</label>
                 <textarea
                   name="description"
                   rows="4"
@@ -358,9 +378,10 @@ const ManageBooks = () => {
                   onChange={handleInputChange}
                 ></textarea>
               </div>
-              <div className="form-group">
+
+              <div className="upload-img">
                 <label className="upload-label">
-                  <FontAwesomeIcon icon={faUpload} /> Upload Image
+                  <FontAwesomeIcon icon={faUpload} /> Tải ảnh lên
                   <input
                     type="file"
                     onChange={(e) => handleImageSelect(e.target.files[0])}
@@ -371,12 +392,14 @@ const ManageBooks = () => {
                 {previewUrl && <img src={previewUrl} alt="preview" className="preview-image" />}
                 {imageUrl && !previewUrl && <img src={`${getApiUrl()}${imageUrl}`} alt="current" className="preview-image" />}
               </div>
+
+
               <div className="modal-actions">
-                <button type="button" className="btn" onClick={() => setIsModalVisible(false)}>
-                  Cancel
+                <button type="button" className="book-cancel-btn" onClick={() => setIsModalVisible(false)}>
+                  Huỷ
                 </button>
-                <button type="submit" className="btn btn-primary">
-                  {editingId ? 'Update' : 'Create'}
+                <button type="submit" className="book-save-btn">
+                  {editingId ? 'Lưu' : 'Thêm'}
                 </button>
               </div>
             </form>

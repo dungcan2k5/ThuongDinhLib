@@ -207,16 +207,16 @@ const ManageAccounts = () => {
   return (
     <div className="acc-manage-accounts">
       <div className="acc-header">
-        <h2>Danh sách nhân viên</h2>
+        <h2 className="acc-header__title">Danh sách nhân viên</h2>
         <button className="acc-add-btn" onClick={() => setCreateOpen(true)}>
           Thêm nhân viên
         </button>
       </div>
-      <div className="acc-table-container">
+      <div className="acc-container">
         {loading ? (
           <p>Đang tải dữ liệu...</p>
         ) : (
-          <table>
+          <table className="acc-table-container">
             <thead>
               <tr>
                 <th>Tên</th>
@@ -326,16 +326,14 @@ const ManageAccounts = () => {
                     onChange={handleCreateChange}
                   />
                 </div>
-                <div className="acc-form-group">
-                  <label className="checkbox-label">
+                <div className="acc-form-checkbox">
+                  <label>Là Admin</label>
                     <input
                       type="checkbox"
                       name="isAdmin"
                       checked={createForm.isAdmin}
                       onChange={handleCreateChange}
                     />
-                    Là Admin
-                  </label>
                 </div>
               </div>
               <div className="acc-modal-footer">
