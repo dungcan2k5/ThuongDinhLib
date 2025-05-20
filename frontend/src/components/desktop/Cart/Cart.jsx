@@ -90,7 +90,7 @@ const Cart = () => {
                                         <button onClick={() => handleQuantityChange(index, 1)} className="qty--btn">+</button>
                                     </div>
                                     <p className="cart__item-price">
-                                        Giá: {totalItemPrice.toLocaleString("vi-VN")}đ
+                                        Giá: <span style={{ color: 'red' }}>{totalItemPrice.toLocaleString("vi-VN")}đ</span>
                                     </p>
                                 </div>
                                 <FaTimes className="cart__item-del" onClick={() => removeFromCart(index)} />

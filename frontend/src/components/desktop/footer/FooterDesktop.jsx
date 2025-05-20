@@ -8,7 +8,7 @@ const FooterDesktop = () => {
                 <h2>Thư Viện Thượng Đình</h2>
             </div>
             <div className="footer__contact">
-                <p><span>Địa chỉ: </span>123 Nguyễn Trãi, Thượng Đình, TP. Hồ Chí Minh, Việt Nam</p>
+                <p><span>Địa chỉ: </span>Nghiêm Xuân Yêm, Đại Kim, Hoàng Mai, Hà Nội</p>
                 <p><span>Liên hệ: </span>0353267883 - 0353229224</p>
                 <p><span>Email: </span>thuongdinhlib@gmail.com</p>
             </div>

@@ -36,15 +36,19 @@
 }
 
 .record__bookinfor > h3 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: #A86523;
     margin: 0;
 }
 
 .record__bookinfor > h4 {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: #999;
     margin-top: 0.6rem;
+}
+
+.record__bookinfor > p{
+    font-size: 1.3rem;
 }
 
 .record__price > p {
@@ -85,6 +89,7 @@
 .record__total > p {
     font-size: 1.5rem;
     color: #A86523;
+    margin-top: 1rem;
 }
 
 .record__container {
@@ -115,6 +120,7 @@
     border-bottom: #999 solid 1px;
     margin-bottom: 2rem;
     outline: none;
+    font-size: 1.5rem;
 }
 
 .Record__button {
@@ -128,6 +134,11 @@
 
 .Record__day {
     color: #000000 !important;
-    font-size: 1.2rem !important;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.Record__day:first-child {
+    margin-top: 1rem;
 }
 

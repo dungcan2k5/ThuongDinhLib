@@ -3,7 +3,7 @@
     background-color: #fff;
     border-radius: 8px;
     padding: 2rem;
-    margin-left: 2rem;
+    margin: 0 24rem;
     margin-bottom: 2rem;
 }
 
@@ -11,6 +11,7 @@
     font-size: 3rem;
     border-bottom: #999 1px solid;
     padding-bottom: 1rem;
+    margin: 1rem 0;
 }
 
 .cart__list {
@@ -20,7 +21,7 @@
 }
 
 .card__item-content > h3 {
-    color: #A86523;
+    color: #a86523;
     font-size: 2rem;
     font-weight: bold;
 }
@@ -31,7 +32,7 @@
 }
 
 .cart__item-price {
-    color: #A86523;
+    color: #a86523;
     font-size: 1.6rem;
 }
 
@@ -54,7 +55,7 @@
 
 .cart__item-del {
     font-size: 2rem;
-    color: #A86523;
+    color: #a86523;
 }
 
 .cart__form {
@@ -63,7 +64,7 @@
 
 .cart__total {
     font-size: 2rem;
-    color: #A86523;
+    color: #a86523;
     margin-bottom: 2rem;
     text-align: right;
 }
@@ -73,13 +74,14 @@
     align-items: ();
     align-self: flex-end;
 }
-.cart__bookBorrow , .cart__qr {
-    background-color: #A86523;
+.cart__bookBorrow,
+.cart__qr {
+    background-color: #a86523;
     border: none;
     color: #fff;
     width: 20rem;
     padding: 1rem 0rem;
-    border-radius: 5px;  
+    border-radius: 5px;
     font-size: 2rem;
     font-weight: bold;
 }
@@ -104,3 +106,7 @@
     font-size: 1.3rem;
     margin: 0 1rem;
 }
+
+.cart__item-quantity {
+    font-size: 1.5rem;
+}   

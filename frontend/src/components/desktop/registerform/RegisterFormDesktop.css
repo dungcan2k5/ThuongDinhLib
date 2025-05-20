@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    font-family: Arial, sans-serif
+    font-family: Arial, sans-serif;
 }
 
 .register__title {
@@ -18,7 +18,7 @@ body {
 }
 
 .register {
-    background-color: #E9A319;
+    background-color: #e9a319;
     min-width: 50rem;
     max-width: 80rem;
     display: flex;
@@ -34,7 +34,7 @@ body {
     margin: 0 auto;
     width: 40rem;
     padding: 2.5rem 3rem;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     min-width: 25rem;
 }
 
@@ -42,8 +42,9 @@ body {
     padding: 0.5rem 0rem;
     margin-bottom: 0rem;
     border: none;
-    border-bottom: #D1D5DB solid 1px;
+    border-bottom: #d1d5db solid 1px;
     outline: none;
+    font-size: 1.5rem;
 }
 
 .register__feature {
@@ -67,10 +68,10 @@ body {
 }
 
 .register__confirm {
-    background-color: #A86523;
+    background-color: #a86523;
     border: none;
     border-radius: 5px;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 1.6rem;
     padding: 0.8rem 1.2rem;
     font-weight: bold;
@@ -78,12 +79,12 @@ body {
 }
 
 .register__forgot {
-    color: #4B5563;
+    color: #4b5563;
     font-size: 1.4rem;
 }
 
 .register__forgot > a {
-    color: #A86523;
+    color: #a86523;
     text-decoration: none;
     margin-left: 1rem;
 }
@@ -112,7 +113,7 @@ body {
 }
 
 .popup__content {
-    background-color: #FCEFCB;
+    background-color: #fcefcb;
     display: flex;
     align-items: center;
     min-width: 27rem;

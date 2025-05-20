@@ -41,6 +41,7 @@ body {
     border: none;
     border-bottom: #D1D5DB solid 1px;
     outline: none;
+    font-size: 1.5rem;
 }
 
 .login__feature {
