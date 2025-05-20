@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import GetBook from "../../../services/GetBook";
-import './banner.css';
+import './recommend.css';
 import BookInfor from "../BookInfor/BookInfor";
 import { getApiUrl } from "../../../utils/apiUtils";
 
@@ -10,12 +10,12 @@ import { Autoplay, EffectFade } from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 
-const Banner = () => {
+const Recommend = () => {
     const [books, setBooks] = useState([]);
     const [showBookInfor, setShowBookInfor] = useState(false);
     const [selectedBook, setSelectedBook] = useState(null);
 
-    const bannerClick = (book) => {
+    const recommendClick = (book) => {
         setSelectedBook(book);
         setShowBookInfor(true);
     };
@@ -24,7 +24,7 @@ const Banner = () => {
         const fetchBooks = async () => {
             try {
                 const allBooks = await GetBook();
-                setBooks(allBooks.slice(0, 5));
+                setBooks(allBooks.slice(-5));
             } catch (error) {
                 console.error("Lỗi khi lấy sách:", error);
             }
@@ -40,30 +40,30 @@ const Banner = () => {
     return (
         <div className="upComing">
             {showBookInfor && selectedBook && (
-                <div className="banner__overlay" onClick={() => setShowBookInfor(false)}>
+                <div className="recommend__overlay" onClick={() => setShowBookInfor(false)}>
                     <BookInfor book={selectedBook} />
                 </div>
             )}
 
-            <h2 className="banner__title">Sách mới</h2>
+            <h2 className="recommend__title">Gợi ý cho bạn</h2>
 
             <Swiper
                 modules={[Autoplay, EffectFade]}
                 effect="fade"
                 autoplay={{ delay: 5000, disableOnInteraction: false }}
                 loop={true}
-                className="banner-swiper"
+                className="recommend-swiper"
             >
                 {books.map((book, index) => (
                     <SwiperSlide key={index}>
-                        <div className="banner" onClick={() => bannerClick(book)}>
-                            <div className="banner_des">
+                        <div className="recommend" onClick={() => recommendClick(book)}>
+                            <div className="recommend_des">
                                 <h2>{book.title}</h2>
                                 <h3>{book.author}</h3>
-                                <div className="banner__cross"></div>
+                                <div className="recommend__cross"></div>
                                 <p>{book.description}</p>
                             </div>
-                            <div className="banner_img">
+                            <div className="recommend_img">
                                 <img src={`${getApiUrl()}${book.image}`} alt={book.title} />
                             </div>
                         </div>
@@ -74,4 +74,4 @@ const Banner = () => {
     );
 };
 
-export default Banner;
+export default Recommend;

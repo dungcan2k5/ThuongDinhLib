@@ -48,6 +48,8 @@
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+    min-height: 33rem;
+    position: relative;
 }
 
 .categoryPage__card:hover {
@@ -88,7 +90,7 @@
 }
 
 .categoryPage__pageBtn.active {
-    background: #007bff;
+    background: #A86523;
     color: white;
 }
 
@@ -151,4 +153,55 @@
     color: #A86523;
     font-size: 4rem;
     font-weight: bold;
+}
+
+.categoryPage__select {
+    background-color: #A86523;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 200;
+    outline: none;
+}
+
+.categoryPage__select > option {
+    font-weight: 200;
+}
+
+.categoryPage__select > option:hover {
+    background-color: #A86523;
+}
+
+.categoryPage__movePage {
+    padding: 0.7rem 1rem;
+    background-color: #A86523;
+    border: navajowhite;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0rem 1rem;
+}
+
+.categoryPage__movePage:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.categoryPage__info > h3 {
+    color: #A86523;
+    font-size: 1.7rem;
+}
+
+.categoryPage__info > h4 {
+    color: #555;
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.categoryPage__info > p {
+    color: red;
+    font-size: 1.5rem;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
 }
