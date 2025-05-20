@@ -35,6 +35,7 @@ const SidebarMobile = ({ isOpen, toggleSidebar, setIsLoggedIn }) => {
             {isLoggedIn ? (
               <button
                 onClick={() => {
+                  navigate("/");
                   logout();
                   toggleSidebar();
                 }}

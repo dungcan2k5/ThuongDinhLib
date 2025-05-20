@@ -166,6 +166,7 @@ const HeaderMobile = () => {
                         {" "}
                         <button
                           onClick={() => {
+                            navigate("/");
                             logout();
                             setIsLoggedIn(false);
                             setIsDropDownOpen(false);

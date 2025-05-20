@@ -59,10 +59,6 @@
   box-sizing: border-box;
 }
 
-.header-mobile__user {
-  font-size: 2.2rem;
-  color: #000;
-}
 .header-mobile__nav,
 .header-mobile__user img {
   display: flex;
@@ -79,6 +75,8 @@
 .header-mobile__user--nav li {
   text-decoration: none;
   list-style: none;
+  font-size: 16px;
+  padding: 5px;
 }
 .header-mobile__user--nav {
   position: absolute;
@@ -117,6 +115,8 @@
   color: #000;
   font-family: var(--font-secondary);
   transition: background-color 0.2s ease;
+  font-size: 16px;
+  padding: 5px;
 }
 
 .user-nav__item:focus {
