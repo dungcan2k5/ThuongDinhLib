@@ -1,21 +1,23 @@
 .admin-layout {
   display: flex;
   height: 100vh;
+  font-size: medium;
 }
+
 .admin-sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 200px;
+  width: 230px;
   height: 100vh;
-  background-color: #f2f2f2;
-  padding: 40px 20px;
+  background-color: #fcfcfc;
+  padding: 40px 10px;
   box-sizing: border-box;
   overflow-y: auto;
   transform: translateX(0);
   transition: transform 0.4s ease;
   z-index: 900;
-
+  border: solid 2px #c8c8c8;
 }
 .admin-sidebar.hide {
   transform: translateX(-100%);
@@ -39,10 +41,8 @@
 }
 
 .sidebar-toggle--btn {
-  padding-right: 80px;
-  border-right: 1px solid #333;
   transition: all 0.4s ease;
-  margin-top: 40px;
+  height: 100vh;
 }
 
 .with-sidebar .sidebar-toggle--btn {
@@ -68,44 +68,73 @@
   transition: left 0.4s ease;
 }
 
-.admin-layout.with-sidebar .sidebar-toggle{
-  left: 200px;
-}
-
-.admin-layout.no-sidebar .sidebar-toggle {
-  left: 1rem;
-}
-
-.logo__admin{
-  width: 70%;
+.logo__admin {
+  width: 100%;
   height: auto;
-  margin-left: 1rem;
-}
-
-.admin-sidebar__title{
-  font-size: 3rem;
-  font-weight: 500;
-  margin-left: 1rem;
-  margin-top: 50px;
+  border-bottom: solid 2px #c8c8c8;
+  display: block;
 }
 
 .admin-nav ul {
   list-style: none;
-  padding: .5rem;
+  left: 0;
+  padding: 0.1rem;
 }
 .admin-nav ul li {
   font-size: 1.5rem;
-  padding-bottom: 1.5rem;
+  width: 100%;
 }
 .admin-nav-link {
   text-decoration: none;
   color: #333;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
 }
-.admin-nav-link:hover {
-  color: #e9a319;
+.admin-nav-link:hover,
+.admin-submenu-link:hover {
+  background-color: #e0e0e0;
   font-weight: 500;
+  border-radius: 5px;
 }
-.admin-nav-link.active {
+.admin-nav-link.active,
+.admin-submenu-link.active {
+  border-radius: 5px;
   font-weight: bold;
-  color: #e9a319;
+  color: #ffffff;
+  background-color: #e8a520;
+}
+.admin-nav-link--toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-submenu {
+  list-style: none;
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.admin-submenu-link {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0;
+  background-color: #f2f2f2;
+  text-decoration: none;
+  color: #333;
+  padding: 10px;
+}
+
+.chevron-icon {
+  transition: transform 0.3s ease;
+}
+
+.chevron-icon.rotate {
+  transform: rotate(180deg);
 }

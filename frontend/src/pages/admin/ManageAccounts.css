@@ -1,5 +1,5 @@
 .acc-manage-accounts {
-  padding: 70px 20px;
+  margin-left: 5rem;
 }
 .acc-container {
   overflow-x: auto;
@@ -41,9 +41,6 @@
   margin-left: 8px;
   font-size: 1.7rem;
 }
-
-
-
 
 .acc-modal-overlay {
   position: fixed;
@@ -121,7 +118,8 @@
   gap: 15px;
   margin-top: 30px;
 }
-.acc-cancel-btn, .acc-save-btn {
+.acc-cancel-btn,
+.acc-save-btn {
   padding: 10px 15px;
   border-radius: 4px;
   cursor: pointer;
@@ -150,6 +148,8 @@
 .acc-header__title {
   font-size: 3rem;
   text-transform: uppercase;
+  font-weight: 500;
+  font-family: var(--font-primary);
 }
 .acc-add-btn {
   background-color: #e9a319;

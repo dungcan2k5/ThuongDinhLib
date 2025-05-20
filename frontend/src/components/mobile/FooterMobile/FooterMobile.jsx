@@ -14,13 +14,13 @@ const Footer = () => {
       </div>
       <div>
         <p>
-          <b>Liên hệ: </b>024 87245901
+          <b>Liên hệ: </b>0353267883 - 0353229224
         </p>
       </div>
       <div>
         <p>
           <b>Email: </b>
-          p.thuongdinh@gmail.com
+          thuongdinhlib@gmail.com
         </p>
       </div>
       <div className="footer-link">

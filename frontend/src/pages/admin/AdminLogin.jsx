@@ -29,7 +29,7 @@ const AdminLogin = () => {
       if (data.status === "success") {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify({ isAdmin: data.isAdmin }));
-        navigate("/admin");
+        navigate("/admin/admin-dashboard");
       } else {
         setError("Bạn không có quyền truy cập");
       }
@@ -64,7 +64,9 @@ const AdminLogin = () => {
           />
         </div>
         {error && <p className="admin-login-error">{error}</p>}
-        <button type="submit" className="admin-login-button">Đăng nhập</button>
+        <button type="submit" className="admin-login-button">
+          Đăng nhập
+        </button>
       </form>
     </div>
   );
