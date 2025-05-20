@@ -3,15 +3,15 @@
     padding: 20px;
 }
 
-.banner-swiper {
+.recommend-swiper {
     width: 100%;
-    max-width: 1200px;
-    height: 400px;
+    height: 40rem;
+    max-width: 120rem;
     border-radius: 5px;
     overflow: hidden;
 }
 
-.banner {
+.recommend {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,31 +23,31 @@
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-.banner_des {
+.recommend_des {
     flex: 1;
     padding-right: 20px;
 }
 
-.banner_des > h2 {
+.recommend_des > h2 {
     font-size: 24px;
     margin-bottom: 10px;
     margin: 0;
 }
 
-.banner_des > h3 {
+.recommend_des > h3 {
     font-size: 18px;
     margin-bottom: 10px;
     color: #555;
 }
 
-.banner_des p {
+.recommend_des p {
     font-size: 1.5rem;
     color: #000;
     max-height: 150px;
     overflow: hidden;
 }
 
-.banner_img {
+.recommend_img {
     width: 40rem;
     height: 30rem; /* hoặc tùy chiều cao mong muốn */
     overflow: hidden;
@@ -59,13 +59,12 @@
     background-color: white; /* tránh ảnh nhỏ bị xuyên nền */
 }
 
-.banner_img > img {
+.recommend_img > img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
-
-.banner__overlay {
+.recommend__overlay {
     position: fixed;
     top: 0; left: 0;
     right: 0; bottom: 0;
@@ -76,24 +75,17 @@
     z-index: 1000;
 }
 
-.banner__title {
+.recommend__title {
     font-size: 4rem;
     font-weight: bold;
     color: #A86523;
 }
 
-<<<<<<< HEAD
-.upComing {
-    margin: 2rem;
-    max-width: 1440px;
-    margin: 0 auto;
-=======
-.banner_des {
+.recommend_des {
     align-self: flex-start;
->>>>>>> origin/new-desktop
 }
 
-.banner__cross {
+.recommend__cross {
     width: 100%;
     background-color: #555;
     height: 1px;
