@@ -2,33 +2,110 @@
   display: flex;
   height: 100vh;
 }
-
 .admin-sidebar {
-  width: 220px;
-  background: #f2f2f2;
-  padding: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100vh;
+  background-color: #f2f2f2;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  transform: translateX(0);
+  transition: transform 0.4s ease;
+  z-index: 900;
+
+}
+.admin-sidebar.hide {
+  transform: translateX(-100%);
 }
 
-.admin-nav ul {
-  list-style: none;
-  padding: 0;
-}
-
-.admin-nav-link {
-  text-decoration: none;
-  color: #333;
-}
-
-.admin-nav-link.active {
-  font-weight: bold;
-  color: #007bff;
+.no-sidebar .admin-sidebar {
+  transform: translateX(-100%);
 }
 
 .admin-main {
   flex: 1;
-  padding: 1rem;
+  transition: all 0.4s ease;
+  padding: 20px;
+}
+.with-sidebar .admin-main {
+  margin-left: 0;
+}
+
+.no-sidebar .admin-main {
+  margin-left: 0;
+}
+
+.sidebar-toggle--btn {
+  padding-right: 80px;
+  border-right: 1px solid #333;
+  transition: all 0.4s ease;
+  margin-top: 40px;
+}
+
+.with-sidebar .sidebar-toggle--btn {
+  padding-left: 180px;
+}
+
+.no-sidebar .sidebar-toggle--btn {
+  padding-right: 70px;
 }
 
 .sidebar-toggle {
-  margin-bottom: 1rem;
+  position: fixed;
+  top: 12rem;
+  left: 0;
+  z-index: 888;
+  background-color: #e9a319;
+  color: white;
+  border: none;
+  padding: 1.5rem 1.75rem;
+  cursor: pointer;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  transition: left 0.4s ease;
+}
+
+.admin-layout.with-sidebar .sidebar-toggle{
+  left: 200px;
+}
+
+.admin-layout.no-sidebar .sidebar-toggle {
+  left: 1rem;
+}
+
+.logo__admin{
+  width: 70%;
+  height: auto;
+  margin-left: 1rem;
+}
+
+.admin-sidebar__title{
+  font-size: 3rem;
+  font-weight: 500;
+  margin-left: 1rem;
+  margin-top: 50px;
+}
+
+.admin-nav ul {
+  list-style: none;
+  padding: .5rem;
+}
+.admin-nav ul li {
+  font-size: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.admin-nav-link {
+  text-decoration: none;
+  color: #333;
+}
+.admin-nav-link:hover {
+  color: #e9a319;
+  font-weight: 500;
+}
+.admin-nav-link.active {
+  font-weight: bold;
+  color: #e9a319;
 }
