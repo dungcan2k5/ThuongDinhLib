@@ -4,12 +4,15 @@ import logo from '../../../assets/logo/logo_trang.png'
 import { Link } from 'react-router-dom'
 import useValidator from '../../../hooks/useValidator'
 import register from '../../../services/registerService'
+import { useNavigate } from 'react-router-dom'
 
 const RegisterFormDesktop = () => {
  const[successMessage, setSuccessMessage] = useState('')
  const[membershipDate, setMembershipDate] = useState(new Date())
  const[message, setMessage] = useState('')
  const[cPass, setCPass] = useState('')
+const navigate = useNavigate();
+
  const useValidatorOption = {
     rules: [
       useValidator.isRequired('[name="password"]', 'Vui lòng không để trống mật khẩu'),
@@ -36,6 +39,7 @@ const RegisterFormDesktop = () => {
 
         if (result._id) {
           alert("Đăng kí tài khoản thành công")
+          navigate('/login')
         } else {
           setMessage('Đăng ký không thành công');
         }
@@ -63,13 +67,6 @@ const RegisterFormDesktop = () => {
             <input type="text" name = 'name' className="register__input" value={values.name || ''} onChange={handleChange}/>
             <p className="register__error">{errors.name}</p>
 
-            <label htmlFor="" className='register__label'>Mật khẩu <span>*</span></label>
-            <input type="password" name = 'password' className="register__input" value={values.password || ''} onChange={handleChange}/>
-            <p className="register__error">{errors.password}</p>
-
-            <label htmlFor="" className='register__label'>Xác nhận mật khẩu <span>*</span></label>
-            <input type="password" name = 'cPassword' className="register__input" value={values.cPassword || ''} onChange={handleChange}/>
-            <p className="register__error">{cPass}</p>
 
             <label htmlFor="" className='register__label'>Email <span>*</span></label>
             <input type="text" name = 'email'  className="register__input" value={values.email || ''} onChange={handleChange}/>
@@ -78,6 +75,14 @@ const RegisterFormDesktop = () => {
             <label htmlFor="" className='register__label'>Số điện thoại <span>*</span></label>
             <input type="text" name = 'phone' className="register__input" value={values.phone || ''} onChange={handleChange}/>
             <p className="register__error">{errors.phone}</p>
+
+            <label htmlFor="" className='register__label'>Mật khẩu <span>*</span></label>
+            <input type="password" name = 'password' className="register__input" value={values.password || ''} onChange={handleChange}/>
+            <p className="register__error">{errors.password}</p>
+
+            <label htmlFor="" className='register__label'>Xác nhận mật khẩu <span>*</span></label>
+            <input type="password" name = 'cPassword' className="register__input" value={values.cPassword || ''} onChange={handleChange}/>
+            <p className="register__error">{cPass}</p>
 
             <label htmlFor="" className='register__label'>Địa chỉ</label>
             <input type="text" name = 'address' className="register__input" value={values.address || ''} onChange={handleChange}/>
