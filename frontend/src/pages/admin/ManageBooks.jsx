@@ -1,34 +1,42 @@
-import { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faTimes, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons';
-
-import './ManageBooks.css';
-import { getApiUrl } from '../../utils/apiUtils';
+import { useState, useEffect, useRef } from "react";
+import { IoSearchOutline } from "react-icons/io5";
+import { searchBooks } from "../../services/bookService";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPenToSquare,
+  faTimes,
+  faTrash,
+  faUpload,
+} from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import "./ManageBooks.css";
+import { getApiUrl } from "../../utils/apiUtils";
+import "../../components/mobile/HeaderMobile/HeaderMobile.css";
 
 const ManageBooks = () => {
   const initialValues = {
-    title: '',
-    isbn: '',
-    author: '',
-    category: '',
-    publishYear: '',
-    price: '',  // Changed from 0 to empty string
-    quantity: '',  // Changed from 0 to empty string
-    description: '',
-    image: ''
+    title: "",
+    isbn: "",
+    author: "",
+    category: "",
+    publishYear: "",
+    price: "",
+    quantity: "",
+    description: "",
+    image: "",
   };
 
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isCreateMode, setIsCreateMode] =  useState(false);
+  const [isCreateMode, setIsCreateMode] = useState(false);
   const [editingId, setEditingId] = useState(null);
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState("");
   const [formData, setFormData] = useState(initialValues);
 
   // Add new state for image preview
   const [selectedFile, setSelectedFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState('');
+  const [previewUrl, setPreviewUrl] = useState("");
 
   useEffect(() => {
     fetchBooks();
@@ -42,7 +50,7 @@ const ManageBooks = () => {
       if (!response.ok) throw new Error(data.message);
       setBooks(data);
     } catch (error) {
-      toast.error('Failed to fetch books');
+      console.error("Failed to fetch books:", error);
     } finally {
       setLoading(false);
     }
@@ -50,31 +58,31 @@ const ManageBooks = () => {
 
   const validateForm = (data) => {
     if (!data.title?.trim()) {
-      alert('Vui lòng nhập tên sách');
+      alert("Vui lòng nhập tên sách");
       return false;
     }
     if (!data.isbn?.trim()) {
-      alert('Vui lòng nhập ISBN');
+      alert("Vui lòng nhập ISBN");
       return false;
     }
     if (!data.author?.trim()) {
-      alert('Vui lòng nhập tên tác giả');
+      alert("Vui lòng nhập tên tác giả");
       return false;
     }
     if (!data.category?.trim()) {
-      alert('Vui lòng nhập thể loại');
+      alert("Vui lòng nhập thể loại");
       return false;
     }
     if (!data.publishYear || data.publishYear < 1900) {
-      alert('Năm xuất bản không hợp lệ');
+      alert("Năm xuất bản không hợp lệ");
       return false;
     }
     if (!data.price || data.price <= 0) {
-      alert('Giá tiền không hợp lệ');
+      alert("Giá tiền không hợp lệ");
       return false;
     }
     if (!data.quantity || data.quantity < 0) {
-      alert('Số lượng không hợp lệ');
+      alert("Số lượng không hợp lệ");
       return false;
     }
     return true;
@@ -85,88 +93,87 @@ const ManageBooks = () => {
     if (!validateForm(formData)) return;
 
     try {
-      // Upload image first if there's a new file selected
       let uploadedImageUrl = imageUrl;
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       if (selectedFile) {
         const formData = new FormData();
-        formData.append('file', selectedFile);
+        formData.append("file", selectedFile);
         const uploadResponse = await fetch(`${getApiUrl()}/api/upload`, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Authorization': `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
-          body: formData
+          body: formData,
         });
 
         if (!uploadResponse.ok) {
-          throw new Error('Tải ảnh lên thất bại');
+          throw new Error("Tải ảnh lên thất bại");
         }
         const uploadData = await uploadResponse.json();
         uploadedImageUrl = uploadData.url;
       }
 
-      // Then submit the form with the image URL
       const response = await fetch(
-        `${getApiUrl()}/api/books${editingId ? `/${editingId}` : ''}`,
+        `${getApiUrl()}/api/books${editingId ? `/${editingId}` : ""}`,
         {
-          method: editingId ? 'PUT' : 'POST',
+          method: editingId ? "PUT" : "POST",
           headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify({ ...formData, image: uploadedImageUrl })
+          body: JSON.stringify({ ...formData, image: uploadedImageUrl }),
         }
       );
-      
+
       if (!response.ok) {
         const error = await response.json();
         throw new Error(error.message);
       }
 
-      alert(`${editingId ? 'Cập nhật' : 'Thêm'} sách thành công`);
+      alert(`${editingId ? "Cập nhật" : "Thêm"} sách thành công`);
       setIsModalVisible(false);
       setFormData(initialValues);
-      setImageUrl('');
+      setImageUrl("");
       setSelectedFile(null);
-      setPreviewUrl('');
+      setPreviewUrl("");
       setEditingId(null);
       fetchBooks();
     } catch (error) {
-      alert(error.message || 'Có lỗi xảy ra');
+      alert(error.message || "Có lỗi xảy ra");
     }
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: name === 'price' || name === 'quantity' || name === 'publishYear' 
-        ? Number(value) 
-        : value
+      [name]:
+        name === "price" || name === "quantity" || name === "publishYear"
+          ? Number(value)
+          : value,
     }));
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Bạn có chắc chắn muốn xóa sách này?')) {
+    if (!window.confirm("Bạn có chắc chắn muốn xóa sách này?")) {
       return;
     }
 
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       const response = await fetch(`${getApiUrl()}/api/books/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.message);
-      
-      alert('Xóa sách thành công');
+
+      alert("Xóa sách thành công");
       fetchBooks();
     } catch (error) {
-      alert(error.message || 'Xóa sách thất bại');
+      alert(error.message || "Xóa sách thất bại");
     }
   };
 
@@ -180,32 +187,70 @@ const ManageBooks = () => {
       publishYear: book.publishYear,
       price: book.price.$numberDecimal,
       quantity: book.quantity,
-      description: book.description || ''
+      description: book.description || "",
     });
-    setImageUrl(book.image || '');
+    setImageUrl(book.image || "");
     setIsModalVisible(true);
   };
 
   const handleImageSelect = (file) => {
     if (file) {
       setSelectedFile(file);
-      // Create local preview URL
       const fileUrl = URL.createObjectURL(file);
       setPreviewUrl(fileUrl);
     }
   };
 
   const columns = [
-    { id: 'title', label: 'Title' },
-    { id: 'isbn', label: 'ISBN' },
-    { id: 'author', label: 'Author' },
-    { id: 'category', label: 'Category' },
-    { id: 'publishYear', label: 'Year' },
-    { id: 'price', label: 'Price' },
-    { id: 'quantity', label: 'Quantity' },
-    { id: 'image', label: 'Image' },
-    { id: 'actions', label: 'Actions' }
+    { id: "title", label: "Tên sách" },
+    { id: "isbn", label: "ISBN" },
+    { id: "author", label: "Tác giả" },
+    { id: "category", label: "Thể loại" },
+    { id: "publishYear", label: "Năm xuất bản" },
+    { id: "price", label: "Giá" },
+    { id: "quantity", label: "Số lượng" },
+    { id: "image", label: "Hình ảnh" },
+    { id: "actions", label: "Thao tác" },
   ];
+
+  // Search functionality
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [isFocused, setIsFocused] = useState(false);
+  const searchRef = useRef(null);
+
+  useEffect(() => {
+    const fetchResults = async () => {
+      if (!searchTerm.trim()) {
+        setSearchResults([]);
+        return;
+      }
+
+      try {
+        console.log("Searching for:", searchTerm);
+        const results = await searchBooks(searchTerm);
+        console.log("Search results:", results);
+        setSearchResults(results || []);
+      } catch (error) {
+        console.error("Lỗi tìm kiếm sách:", error);
+        setSearchResults([]);
+      }
+    };
+
+    const delay = setTimeout(() => fetchResults(), 300);
+    return () => clearTimeout(delay);
+  }, [searchTerm]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setIsFocused(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="manage-books">
@@ -214,19 +259,95 @@ const ManageBooks = () => {
         <button
           className="book-add-btn"
           onClick={() => {
-            setEditingId(null);             
-            setFormData(initialValues);  
-            setImageUrl('');
-            setPreviewUrl('');
+            setEditingId(null);
+            setFormData(initialValues);
+            setImageUrl("");
+            setPreviewUrl("");
             setSelectedFile(null);
-            setIsModalVisible(true);    
+            setIsModalVisible(true);
           }}
         >
+          <span
+            style={{
+              fontSize: "2rem",
+              marginRight: "0.5rem",
+              fontWeight: "bold",
+            }}
+          >
+            +
+          </span>
           Thêm sách
         </button>
       </div>
-      
 
+      <div className="header-mobile__search" ref={searchRef}>
+        <div className="header-mobile__search--icon">
+          <IoSearchOutline />
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="Tìm kiếm"
+            className="header-mobile__search--input"
+            value={searchTerm}
+            onFocus={() => setIsFocused(true)}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        {isFocused && searchResults.length > 0 && (
+          <ul className="header-mobile__search-suggestions">
+            {searchResults.map((book) => (
+              <li
+                key={book._title}
+                className="header-mobile__search-suggestion-item"
+                style={{
+                  display: "flex",
+                  padding: "10px",
+                }}
+              >
+                <Link
+                  onClick={() => {
+                    setSearchTerm("");
+                    setIsFocused(false);
+                    setSearchResults([]);
+                  }}
+                  style={{
+                    textDecoration: "none",
+                    color: "inherit",
+                    width: "100%",
+                  }}
+                >
+                  <div
+                    className="suggestion-content"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                    }}
+                  >
+                    <img
+                      src={`${getApiUrl()}${book.image}`}
+                      alt={book.title || "Book image"}
+                      width={60}
+                      style={{ objectFit: "cover" }}
+                    />
+                    <div className="suggestion-info">
+                      <strong>{book.title || "No title"}</strong>
+                      <p>{book.author || "Unknown author"}</p>
+                      <p style={{ color: "red", fontWeight: "bolder" }}>
+                        {parseFloat(
+                          book.price?.$numberDecimal || book.price || 0
+                        ).toLocaleString()}
+                        ₫
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
       <div className="book-container">
         <table className="book-table-container">
           <thead>
@@ -253,19 +374,28 @@ const ManageBooks = () => {
                 <td>{book.price.$numberDecimal}</td>
                 <td>{book.quantity}</td>
                 <td>
-                  {book.image &&
-                  <img 
-                    src={`${getApiUrl()}${book.image}`} 
-                    alt={book.title} 
-                    onClick={() => window.open(`${getApiUrl()}${book.image}`, '_blank')}
-                    style={{ cursor: 'pointer' }}
-                  />}
+                  {book.image && (
+                    <img
+                      src={`${getApiUrl()}${book.image}`}
+                      alt={book.title}
+                      onClick={() =>
+                        window.open(`${getApiUrl()}${book.image}`, "_blank")
+                      }
+                      style={{ cursor: "pointer" }}
+                    />
+                  )}
                 </td>
                 <td>
-                  <button className="book-btn-edit" onClick={() => handleEdit(book)}>
+                  <button
+                    className="book-btn-edit"
+                    onClick={() => handleEdit(book)}
+                  >
                     <FontAwesomeIcon icon={faPenToSquare} />
                   </button>
-                  <button className="book-btn-delete" onClick={() => handleDelete(book._id)}>
+                  <button
+                    className="book-btn-delete"
+                    onClick={() => handleDelete(book._id)}
+                  >
                     <FontAwesomeIcon icon={faTrash} />
                   </button>
                 </td>
@@ -274,20 +404,20 @@ const ManageBooks = () => {
           </tbody>
         </table>
       </div>
-
       {isModalVisible && (
         <div className="book-modal">
           <div className="modal-content">
-
             <div className="book-modal-header">
-              <h3>{editingId ? 'Chỉnh sửa sách' : 'Thêm mới sách'}</h3>
-              <button className="book-close-btn" onClick={() => setIsModalVisible(false)}>
+              <h3>{editingId ? "Chỉnh sửa sách" : "Thêm mới sách"}</h3>
+              <button
+                className="book-close-btn"
+                onClick={() => setIsModalVisible(false)}
+              >
                 <FontAwesomeIcon icon={faTimes} />
               </button>
             </div>
 
             <form onSubmit={handleSubmit}>
-
               <div className="book-form-group">
                 <label>Tên sách</label>
                 <input
@@ -320,7 +450,7 @@ const ManageBooks = () => {
                   required
                 />
               </div>
-              
+
               <div className="book-form-group">
                 <label>Thể loại</label>
                 <input
@@ -389,17 +519,32 @@ const ManageBooks = () => {
                     hidden
                   />
                 </label>
-                {previewUrl && <img src={previewUrl} alt="preview" className="preview-image" />}
-                {imageUrl && !previewUrl && <img src={`${getApiUrl()}${imageUrl}`} alt="current" className="preview-image" />}
+                {previewUrl && (
+                  <img
+                    src={previewUrl}
+                    alt="preview"
+                    className="preview-image"
+                  />
+                )}
+                {imageUrl && !previewUrl && (
+                  <img
+                    src={`${getApiUrl()}${imageUrl}`}
+                    alt="current"
+                    className="preview-image"
+                  />
+                )}
               </div>
 
-
               <div className="modal-actions">
-                <button type="button" className="book-cancel-btn" onClick={() => setIsModalVisible(false)}>
+                <button
+                  type="button"
+                  className="book-cancel-btn"
+                  onClick={() => setIsModalVisible(false)}
+                >
                   Huỷ
                 </button>
                 <button type="submit" className="book-save-btn">
-                  {editingId ? 'Lưu' : 'Thêm'}
+                  {editingId ? "Lưu" : "Thêm"}
                 </button>
               </div>
             </form>

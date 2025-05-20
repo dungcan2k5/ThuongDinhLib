@@ -1,5 +1,5 @@
 .manage-books {
-  padding: 70px 20px;
+  margin-left: 5rem;
 }
 .book-header {
   display: flex;
@@ -10,6 +10,7 @@
 .books-header__title {
   font-size: 3rem;
   text-transform: uppercase;
+  font-weight: 500;
 }
 .book-add-btn {
   background-color: #e9a319;
@@ -70,9 +71,6 @@
   max-width: 50px;
   height: auto;
 }
-
-
-
 
 .book-modal {
   position: fixed;
@@ -179,7 +177,8 @@
   margin: 0;
 }
 
-.book-cancel-btn, .book-save-btn {
+.book-cancel-btn,
+.book-save-btn {
   padding: 10px 15px;
   border-radius: 4px;
   cursor: pointer;
