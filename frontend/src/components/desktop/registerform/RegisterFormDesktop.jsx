@@ -24,6 +24,7 @@ const navigate = useNavigate();
       useValidator.minLength('[name="password"]', 6),
       useValidator.minLength('[name="name"]', 5),
       useValidator.isRequired('[name="phone"]', 'Vui lòng nhập số điện thoại'),
+      useValidator.isRequired('[name="address"]', 'Vui lòng nhập địa chỉ')
     ],
     onSubmit: async (values) => {
       setCPass('')
@@ -76,6 +77,10 @@ const navigate = useNavigate();
             <input type="text" name = 'phone' className="register__input" value={values.phone || ''} onChange={handleChange}/>
             <p className="register__error">{errors.phone}</p>
 
+            <label htmlFor="" className='register__label'>Địa chỉ</label>
+            <input type="text" name = 'address' className="register__input" value={values.address || ''} onChange={handleChange}/>
+            <p className="register__error">{errors.address}</p>
+
             <label htmlFor="" className='register__label'>Mật khẩu <span>*</span></label>
             <input type="password" name = 'password' className="register__input" value={values.password || ''} onChange={handleChange}/>
             <p className="register__error">{errors.password}</p>
@@ -83,9 +88,6 @@ const navigate = useNavigate();
             <label htmlFor="" className='register__label'>Xác nhận mật khẩu <span>*</span></label>
             <input type="password" name = 'cPassword' className="register__input" value={values.cPassword || ''} onChange={handleChange}/>
             <p className="register__error">{cPass}</p>
-
-            <label htmlFor="" className='register__label'>Địa chỉ</label>
-            <input type="text" name = 'address' className="register__input" value={values.address || ''} onChange={handleChange}/>
 
             <div className="register__feature">
               <button type = 'submit'  className="register__confirm">Đăng kí</button>

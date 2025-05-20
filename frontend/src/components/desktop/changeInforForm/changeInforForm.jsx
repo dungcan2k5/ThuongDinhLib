@@ -10,6 +10,7 @@ const ChangeInforForm = ({currentInfor, closeChangeInfor, onUpdateSuccess}) => {
 
     const [nameMessage, setNameMessage] = useState('')
     const [phoneMessage, setPhoneMessage] = useState('')
+    const [addressMessage, setAddressMessage] = useState('')
 
     useEffect(() => {
         setName(currentInfor.name);
@@ -41,6 +42,10 @@ const ChangeInforForm = ({currentInfor, closeChangeInfor, onUpdateSuccess}) => {
         }
         if (phone && !isValidPhoneNumber(phone)) {
             setPhoneMessage('Số điện thoại không hợp lệ')
+            flag = true
+        }
+        if (!address) {
+            setAddressMessage('Vui lòng không để trống địa chỉ')
             flag = true
         }
         if (flag) return
@@ -77,7 +82,7 @@ const ChangeInforForm = ({currentInfor, closeChangeInfor, onUpdateSuccess}) => {
                             <div className="changeInforForm__item">
                                 <h4>Địa chỉ</h4>
                                 <input type="text" value={address} onChange={(e) => {setAddress(e.target.value)}}/>
-                                <p className="changeInforForm__abort"></p>
+                                <p className="changeInforForm__abort">{addressMessage}</p>
                             </div>
                             <div className="changeInforForm__item">
                                 <h4>Số điện thoại</h4>
