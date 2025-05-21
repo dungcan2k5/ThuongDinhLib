@@ -116,15 +116,25 @@ const HeaderDesktop = () => {
                     </div>
                 </div>
             </div>
-            <div className="header__right" onClick={() => setUserFocus(true)} onMouseLeave={() => setUserFocus(false)}>
+            <div className="header__right">
                 {logined ? (
                     <>
-                        <FaUser className="header__right-icon" />
-                        {userFocus && (
-                            <div className={`header__right-nav ${userFocus ? "show" : ""}`}>
-                                {userNav()}
-                            </div>
-                        )}
+                        <div 
+                            onMouseEnter={() => {
+                                clearTimeout(timeoutRef.current);
+                                setUserFocus(true);
+                            }}
+                            onMouseLeave={() => {
+                                timeoutRef.current = setTimeout(() => setUserFocus(false), 100);
+                            }}
+                        >
+                            <FaUser className="header__right-icon" />
+                            {userFocus && (
+                                <div className={`header__right-nav ${userFocus ? "show" : ""}`}>
+                                    {userNav()}
+                                </div>
+                            )}
+                        </div>
                     </>
                 ) : (
                     <a href="/login" className="header__login-text">Đăng nhập</a>

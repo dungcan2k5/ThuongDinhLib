@@ -11,9 +11,11 @@ const HomeDesktop = () => {
       <div className='Body'>
         <SlideBar></SlideBar>
         <div className='content'>
+          <div className='content__container'>
           <Banner></Banner>
-          <HDesktop></HDesktop>
           <Recommend></Recommend>
+          </div>
+          <HDesktop></HDesktop>
           <RegisterRecommend></RegisterRecommend>
         </div>
       </div>

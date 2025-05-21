@@ -1,6 +1,8 @@
 .login__background {
     width: 100%;
-    background-image: url('../../assets/libbackground.jpg');
-    padding: 20rem 0;
+    background-image: url("../../assets/libbackground.jpg");
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

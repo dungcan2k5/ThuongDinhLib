@@ -84,14 +84,13 @@
   padding: 6px 12px;
   margin: 0 5px;
   border: none;
-  background: #eee;
+  background: #A86523;
   cursor: pointer;
   border-radius: 4px;
 }
 
 .categoryPage__pageBtn.active {
-    background: #A86523;
-    color: white;
+    background: #eee;
 }
 
 /* Hiệu ứng chuyển slide */
@@ -156,15 +155,15 @@
 }
 
 .categoryPage__select {
-    background-color: #A86523;
+    background-color: #ebab2c;
     border-radius: 5px;
-    color: #fff;
-    font-weight: 200;
+    color: #A86523;
+    font-weight: 700;
     outline: none;
 }
 
 .categoryPage__select > option {
-    font-weight: 200;
+    font-weight: 500;
 }
 
 .categoryPage__select > option:hover {

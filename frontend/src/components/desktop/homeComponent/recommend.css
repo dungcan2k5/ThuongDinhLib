@@ -1,6 +1,5 @@
 .upComing {
     margin: 0 auto;
-    padding: 20px;
 }
 
 .recommend-swiper {
@@ -52,7 +51,6 @@
     height: 30rem; /* hoặc tùy chiều cao mong muốn */
     overflow: hidden;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     align-self: center;
     justify-content: center;

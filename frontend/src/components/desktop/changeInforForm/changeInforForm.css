@@ -12,10 +12,9 @@
 
 .changeInforForm__content {
     background-color: #fff;
-    padding: 2rem;
+    padding: 3rem;
     border-radius: 5px;
     width: 40rem;
-    min-height: 50%;
 }
 
 .changeInforForm__title > h2 {

@@ -36,7 +36,7 @@ const SlideBar = () => {
             <ul className="sideBar__list">
                 <li className="sideBar__item" onClick={toggleSidebar}>
                     <FaThList className="SideBar__Toggle-icon" />
-                    <span className="sideBar__text">{(isExpanded || isHovered) && 'Thu gọn'}</span>
+                    <span className="sideBar__text">{(isExpanded || isHovered) && 'Ghim Sidebar'}</span>
                 </li>
                 <li className="sideBar__item"  onClick={() => toHome()}>
                     <FaHome className="SideBar__Home-icon"/>
