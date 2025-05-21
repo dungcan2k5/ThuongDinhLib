@@ -1,6 +1,12 @@
-
 import { getApiUrl } from "../utils/apiUtils";
 
+/**
+ * Change password service
+ * @param {string} currentPassword - Current user password
+ * @param {string} newPassword - New password to set
+ * @returns {Promise} Response from API
+ * @throws {Error} When API request fails
+ */
 const changePassword = async(currentPassword, newPassword) => {
     try {
         const baseURL = getApiUrl();
@@ -8,8 +14,8 @@ const changePassword = async(currentPassword, newPassword) => {
         const res = await fetch(`${baseURL}/api/customers/profile`, {
             method: 'PUT',
             headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({currentPassword, newPassword})
         });
@@ -25,4 +31,4 @@ const changePassword = async(currentPassword, newPassword) => {
     }
 }
 
-export default changePassword
+export default changePassword;

@@ -16,7 +16,6 @@ export const registerStaff = asyncHandler(async (req, res) => {
     }
 
     const hashedPassword = await hashPassword(req.body.password);
-    console.log('Password being saved:', hashedPassword);
     const staff = await Staff.create({
         ...req.body,
         password: hashedPassword
@@ -42,7 +41,6 @@ export const registerStaff = asyncHandler(async (req, res) => {
 export const loginStaff = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     const staff = await Staff.findOne({ email });
-    console.log(staff);
     
     if (staff && await bcrypt.compare(password, staff.password)) {
         return res.json({

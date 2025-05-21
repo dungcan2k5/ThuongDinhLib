@@ -1,48 +1,55 @@
-# ThuongDinhLib
+# Thư viện Thượng Đình
 
-A web-based library application.
+## Giới thiệu
+Hệ thống quản lý thư viện trực tuyến với các tính năng mượn sách, quản lý người dùng và quản lý kho sách.
 
-## Description
+## Công nghệ sử dụng
+- Frontend: React.js
+- Backend: Node.js, Express.js
+- Database: MongoDB
+- Authentication: JWT
 
-ThuongDinhLib is a modern web application for managing library resources and services.
+## Cài đặt và Chạy
 
-## Features
+### Yêu cầu hệ thống
+- Node.js >= 14
+- MongoDB >= 4.4
 
-- Book management
-- User authentication
-- Search functionality
-- Borrowing system
-- Digital catalog
-
-## Installation
-
+### Cài đặt
+1. Clone repository:
 ```bash
-# Clone the repository
-git clone https://github.com/dungcan2k5/ThuongDinhLib.git
+git clone https://github.com/your-username/ThuongDinhLib.git
+cd ThuongDinhLib
+```
 
-# Install all dependencies
+2. Cài đặt dependencies:
+```bash
 npm install
+```
 
-# Start both frontend and backend in development mode
+3. Tạo file .env trong thư mục backend:
+```
+PORT=5001
+MONGODB_URI=mongodb://localhost:27017/thuongdinhlib
+JWT_SECRET=your_jwt_secret
+```
+
+### Chạy ứng dụng
+1. Chạy đồng thời cả backend và frontend trong môi trường phát triển
+``` bash
 npm run dev
-
-# Or run them separately:
+```
+2. Cũng có thể chạy riêng biệt
+``` bash
 # Start backend only
 npm run server
 # Start frontend only
 npm run client
 ```
-
-## Technologies
-
-- Frontend: HTML, CSS, JavaScript
-- Backend: Node.js, Express.js
-- Database: MongoDB
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss changes.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+## Tính năng chính
+- Đăng nhập/Đăng ký tài khoản
+- Tìm kiếm và mượn sách
+- Quản lý thông tin cá nhân
+- Quản lý sách (Admin)
+- Quản lý người dùng (Admin)
+- Quản lý danh mục (Admin)
