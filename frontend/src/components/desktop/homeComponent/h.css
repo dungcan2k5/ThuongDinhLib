@@ -38,18 +38,6 @@
 }
 
 .categoryPage__card {
-<<<<<<< HEAD
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-  transition: 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-=======
     background: #fff;
     border: 1px solid #eee;
     border-radius: 8px;
@@ -62,7 +50,6 @@
     cursor: pointer;
     min-height: 33rem;
     position: relative;
->>>>>>> origin/new-desktop
 }
 
 .categoryPage__card:hover {
@@ -103,13 +90,8 @@
 }
 
 .categoryPage__pageBtn.active {
-<<<<<<< HEAD
-  background: #007bff;
-  color: white;
-=======
     background: #A86523;
     color: white;
->>>>>>> origin/new-desktop
 }
 
 /* Hiệu ứng chuyển slide */
@@ -168,12 +150,6 @@
 }
 
 .categoryPage__title {
-<<<<<<< HEAD
-  color: #a86523;
-  font-size: 4rem;
-  font-weight: bold;
-}
-=======
     color: #A86523;
     font-size: 4rem;
     font-weight: bold;
@@ -229,4 +205,3 @@
     left: 50%;
     transform: translateX(-50%);
 }
->>>>>>> origin/new-desktop

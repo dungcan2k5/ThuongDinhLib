@@ -45,17 +45,6 @@ const HDesktop = () => {
         }
     };
 
-    fetchCategory();
-  }, []);
-
-  const handleCategoryChange = async (e) => {
-    setCurrentPage(1);
-    const category = e.target.value;
-    setSelectedCategory(category);
-    const res = await categorySearch(category);
-    setBooks(res);
-  };
-
   const getBooksForPage = (page) => {
     const start = (page - 1) * booksPerPage;
     return books.slice(start, start + booksPerPage);
@@ -67,6 +56,17 @@ const HDesktop = () => {
     const direction = page > currentPage ? "right" : "left";
     setAnimationClass(`slide-out-${direction}`);
     setAnimating(true);
+
+    setTimeout(() => {
+      setCurrentPage(page);
+      setAnimationClass(`slide-in-${direction}`);
+    }, 300);
+
+        setTimeout(() => {
+            setAnimationClass('');
+            setAnimating(false);
+        }, 600);
+    };
 
     const totalPages = Math.ceil(books.length / booksPerPage);
 
@@ -89,13 +89,13 @@ const HDesktop = () => {
         return range;
     };
 
-    return (
-        <div className="categoryPage">
-            {bookInforState && selectedBook && (
-                <div className="overlay" onClick={() => setBookInforState(false)}>
-                    <BookInfor book={selectedBook} />
-                </div>
-            )}
+  return (
+      <div className="categoryPage">
+        {bookInforState && selectedBook && (
+          <div className="overlay" onClick={() => setBookInforState(false)}>
+            <BookInfor book={selectedBook} />
+          </div>
+        )}
 
             <div className="categoryPage__header">
                 <h2 className="categoryPage__title">Thể Loại</h2>
@@ -162,57 +162,7 @@ const HDesktop = () => {
                 </div>
             )}
         </div>
-
-        {books.length === 0 ? (
-          <p className="categoryPage__empty">
-            Không có sách trong thể loại này
-          </p>
-        ) : (
-          <div className={`categoryPage__list ${animationClass}`}>
-            {getBooksForPage(currentPage).map((book) => (
-              <div
-                key={book._id}
-                className="categoryPage__card"
-                onClick={() => {
-                  setBookInforState(true);
-                  setSelectedBook(book);
-                }}
-              >
-                <img src={`${getApiUrl()}${book.image}`} alt={book.title} />
-                <div className="categoryPage__info">
-                  <h3>{book.title}</h3>
-                  <p>{book.author}</p>
-                  <p>
-                    {Number(book.price?.$numberDecimal || 0).toLocaleString(
-                      "vi-VN"
-                    )}{" "}
-                    đ
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        <div className="categoryPage__pagination">
-          {Array.from(
-            { length: Math.ceil(books.length / booksPerPage) },
-            (_, i) => i + 1
-          ).map((num) => (
-            <button
-              key={num}
-              className={`categoryPage__pageBtn ${
-                num === currentPage ? "active" : ""
-              }`}
-              onClick={() => handlePageChange(num)}
-            >
-              {num}
-            </button>
-          ))}
-        </div>
-      </div>
-    </>
-  );
+    );
 };
 
 export default HDesktop;
